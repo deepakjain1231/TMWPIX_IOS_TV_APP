@@ -1,0 +1,495 @@
+
+/* Class = "UITextField"; placeholder = "Street address"; ObjectID = "17K-h0-bRl"; */
+"17K-h0-bRl.placeholder" = "Street address";
+
+/* Class = "UIButton"; configuration.title = "To Watch"; ObjectID = "17i-cn-lrT"; */
+"17i-cn-lrT.configuration.title" = "To Watch";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "17i-cn-lrT"; */
+"17i-cn-lrT.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Remove Profile"; ObjectID = "1K8-Ln-nir"; */
+"1K8-Ln-nir.configuration.title" = "Remove Profile";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "1K8-Ln-nir"; */
+"1K8-Ln-nir.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Cancel"; ObjectID = "1Qq-Ou-GrQ"; */
+"1Qq-Ou-GrQ.configuration.title" = "Cancel";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "1Qq-Ou-GrQ"; */
+"1Qq-Ou-GrQ.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Plano"; ObjectID = "1f3-Yq-nQM"; */
+"1f3-Yq-nQM.placeholder" = "Plano";
+
+/* Class = "UITextField"; placeholder = "Name"; ObjectID = "2i1-R1-j2m"; */
+"2i1-R1-j2m.placeholder" = "Name";
+
+/* Class = "UITextField"; placeholder = "Number"; ObjectID = "42T-8H-oAb"; */
+"42T-8H-oAb.placeholder" = "Number";
+
+/* Class = "UILabel"; text = "Please Wait"; ObjectID = "4CO-pV-w4P"; */
+"4CO-pV-w4P.text" = "Please Wait";
+
+/* Class = "UILabel"; text = "SBT RS HD"; ObjectID = "5t6-SV-xAd"; */
+"5t6-SV-xAd.text" = "SBT RS HD";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "7Cf-dT-gJQ"; */
+"7Cf-dT-gJQ.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "7Cf-dT-gJQ"; */
+"7Cf-dT-gJQ.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "City"; ObjectID = "7jh-2K-Gnc"; */
+"7jh-2K-Gnc.placeholder" = "City";
+
+/* Class = "UILabel"; text = "1 hours 53 minutes"; ObjectID = "7ly-0k-Jig"; */
+"7ly-0k-Jig.text" = "1 hours 53 minutes";
+
+/* Class = "UILabel"; text = "2012"; ObjectID = "89O-2d-ggY"; */
+"89O-2d-ggY.text" = "2012";
+
+/* Class = "UIButton"; configuration.title = "Solved"; ObjectID = "8Vj-34-5gW"; */
+"8Vj-34-5gW.configuration.title" = "Solved";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "8Vj-34-5gW"; */
+"8Vj-34-5gW.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Proximo"; ObjectID = "A8V-pd-BK2"; */
+"A8V-pd-BK2.configuration.title" = "Proximo";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "A8V-pd-BK2"; */
+"A8V-pd-BK2.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Duracao do aluguel:"; ObjectID = "A8z-Q7-Tqu"; */
+"A8z-Q7-Tqu.text" = "Duracao do aluguel:";
+
+/* Class = "UILabel"; text = "Radio"; ObjectID = "AAE-xW-EPW"; */
+"AAE-xW-EPW.text" = "Radio";
+
+/* Class = "UIButton"; configuration.title = "SEARCH"; ObjectID = "ACk-Uh-UMI"; */
+"ACk-Uh-UMI.configuration.title" = "SEARCH";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ACk-Uh-UMI"; */
+"ACk-Uh-UMI.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Duration"; ObjectID = "BB8-9I-thc"; */
+"BB8-9I-thc.text" = "Duration";
+
+/* Class = "UIButton"; configuration.title = "Anterior"; ObjectID = "BTj-at-UUe"; */
+"BTj-at-UUe.configuration.title" = "Anterior";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "BTj-at-UUe"; */
+"BTj-at-UUe.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "X Close"; ObjectID = "Br9-N3-eCO"; */
+"Br9-N3-eCO.configuration.title" = "X Close";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Br9-N3-eCO"; */
+"Br9-N3-eCO.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Channels"; ObjectID = "C6F-Ei-USi"; */
+"C6F-Ei-USi.text" = "Channels";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "C6w-8M-NIX"; */
+"C6w-8M-NIX.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "C6w-8M-NIX"; */
+"C6w-8M-NIX.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Logar"; ObjectID = "Cix-MA-3sc"; */
+"Cix-MA-3sc.configuration.title" = "Logar";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Cix-MA-3sc"; */
+"Cix-MA-3sc.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Filter by Title"; ObjectID = "D8H-hm-NR5"; */
+"D8H-hm-NR5.text" = "Filter by Title";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "DAZ-1m-H4c"; */
+"DAZ-1m-H4c.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "48h"; ObjectID = "Dl6-tg-fzj"; */
+"Dl6-tg-fzj.text" = "48h";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "E2I-Y5-Lv6"; */
+"E2I-Y5-Lv6.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "E2I-Y5-Lv6"; */
+"E2I-Y5-Lv6.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Previous"; ObjectID = "E5W-zx-PGr"; */
+"E5W-zx-PGr.configuration.title" = "Previous";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "E5W-zx-PGr"; */
+"E5W-zx-PGr.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Anu"; ObjectID = "EPz-si-iVb"; */
+"EPz-si-iVb.text" = "Anu";
+
+/* Class = "UITextField"; placeholder = "CPF"; ObjectID = "EmB-VP-RKJ"; */
+"EmB-VP-RKJ.placeholder" = "CPF";
+
+/* Class = "UIButton"; configuration.title = "X Fechar"; ObjectID = "EpD-Wo-0sB"; */
+"EpD-Wo-0sB.configuration.title" = "X Fechar";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "EpD-Wo-0sB"; */
+"EpD-Wo-0sB.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "FeZ-lK-DLd"; */
+"FeZ-lK-DLd.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "FeZ-lK-DLd"; */
+"FeZ-lK-DLd.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "GbM-zf-aX1"; */
+"GbM-zf-aX1.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "GbM-zf-aX1"; */
+"GbM-zf-aX1.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Anterior"; ObjectID = "HeL-KH-MK4"; */
+"HeL-KH-MK4.configuration.title" = "Anterior";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "HeL-KH-MK4"; */
+"HeL-KH-MK4.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "A Familia Mitchell e a Revolta das Maquinas"; ObjectID = "Hvg-V0-4yx"; */
+"Hvg-V0-4yx.text" = "A Familia Mitchell e a Revolta das Maquinas";
+
+/* Class = "UILabel"; text = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. "; ObjectID = "Hx9-HY-4bb"; */
+"Hx9-HY-4bb.text" = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. ";
+
+/* Class = "UIButton"; configuration.title = "Edit Profile"; ObjectID = "IsD-hU-euF"; */
+"IsD-hU-euF.configuration.title" = "Edit Profile";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "IsD-hU-euF"; */
+"IsD-hU-euF.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "KKp-cM-oYM"; */
+"KKp-cM-oYM.normalTitle" = "Button";
+
+/* Class = "UITextField"; text = "Child"; ObjectID = "KaY-4o-kzL"; */
+"KaY-4o-kzL.text" = "Child";
+
+/* Class = "UILabel"; text = "Description"; ObjectID = "Kfr-Q5-cyZ"; */
+"Kfr-Q5-cyZ.text" = "Description";
+
+/* Class = "UISearchBar"; placeholder = "Search"; ObjectID = "Kw4-KE-cbP"; */
+"Kw4-KE-cbP.placeholder" = "Search";
+
+/* Class = "UILabel"; text = "A Origem dos Gaurdios"; ObjectID = "L1u-js-fea"; */
+"L1u-js-fea.text" = "A Origem dos Gaurdios";
+
+/* Class = "UITextField"; placeholder = "State"; ObjectID = "L5g-2e-plH"; */
+"L5g-2e-plH.placeholder" = "State";
+
+/* Class = "UIButton"; configuration.title = "Hire"; ObjectID = "Mhq-d4-f1A"; */
+"Mhq-d4-f1A.configuration.title" = "Hire";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Mhq-d4-f1A"; */
+"Mhq-d4-f1A.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Entre em contato com a TMW Telecom pelos Fones:"; ObjectID = "Mzb-r5-S62"; */
+"Mzb-r5-S62.text" = "Entre em contato com a TMW Telecom pelos Fones:";
+
+/* Class = "UILabel"; text = "Options"; ObjectID = "P8p-lQ-gpm"; */
+"P8p-lQ-gpm.text" = "Options";
+
+/* Class = "UIButton"; configuration.title = "Solved"; ObjectID = "QIC-CK-Cn4"; */
+"QIC-CK-Cn4.configuration.title" = "Solved";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "QIC-CK-Cn4"; */
+"QIC-CK-Cn4.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "QuC-4G-H6G"; */
+"QuC-4G-H6G.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "QuC-4G-H6G"; */
+"QuC-4G-H6G.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "SYT-c0-uI4"; */
+"SYT-c0-uI4.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "1 hour 54 minutes"; ObjectID = "TGb-dy-4DR"; */
+"TGb-dy-4DR.text" = "1 hour 54 minutes";
+
+/* Class = "UILabel"; text = "Pesquisar conteudo"; ObjectID = "TNK-1e-R9H"; */
+"TNK-1e-R9H.text" = "Pesquisar conteudo";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "TPJ-Gn-heM"; */
+"TPJ-Gn-heM.placeholder" = "Password";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "Tth-A9-xLU"; */
+"Tth-A9-xLU.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Tth-A9-xLU"; */
+"Tth-A9-xLU.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "UC4-yV-UeO"; */
+"UC4-yV-UeO.text" = "Label";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "UOk-UU-ur0"; */
+"UOk-UU-ur0.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "UOk-UU-ur0"; */
+"UOk-UU-ur0.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Come back"; ObjectID = "UXd-mc-L7E"; */
+"UXd-mc-L7E.configuration.title" = "Come back";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "UXd-mc-L7E"; */
+"UXd-mc-L7E.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "OK"; ObjectID = "VUK-82-1zh"; */
+"VUK-82-1zh.configuration.title" = "OK";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "VUK-82-1zh"; */
+"VUK-82-1zh.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "(51)3656 7200"; ObjectID = "WAj-tf-QLD"; */
+"WAj-tf-QLD.text" = "(51)3656 7200";
+
+/* Class = "UILabel"; text = "Rental detail"; ObjectID = "WCd-uu-WuG"; */
+"WCd-uu-WuG.text" = "Rental detail";
+
+/* Class = "UIButton"; configuration.title = "SEARCH"; ObjectID = "Wep-1c-pSJ"; */
+"Wep-1c-pSJ.configuration.title" = "SEARCH";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Wep-1c-pSJ"; */
+"Wep-1c-pSJ.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Cadastro"; ObjectID = "Wg5-I5-DiM"; */
+"Wg5-I5-DiM.configuration.title" = "Cadastro";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Wg5-I5-DiM"; */
+"Wg5-I5-DiM.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "XEc-GS-T0s"; */
+"XEc-GS-T0s.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "XEc-GS-T0s"; */
+"XEc-GS-T0s.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Zip Code"; ObjectID = "YJh-YN-Sb2"; */
+"YJh-YN-Sb2.placeholder" = "Zip Code";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "ZcZ-Wq-ixT"; */
+"ZcZ-Wq-ixT.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ZcZ-Wq-ixT"; */
+"ZcZ-Wq-ixT.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Cancel"; ObjectID = "Zkd-v2-fjt"; */
+"Zkd-v2-fjt.configuration.title" = "Cancel";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "Zkd-v2-fjt"; */
+"Zkd-v2-fjt.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "2021"; ObjectID = "Zr3-ex-U6i"; */
+"Zr3-ex-U6i.text" = "2021";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "a01-er-Y3A"; */
+"a01-er-Y3A.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "a01-er-Y3A"; */
+"a01-er-Y3A.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Duration:"; ObjectID = "aN8-V8-xC5"; */
+"aN8-V8-xC5.text" = "Duration:";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "ahw-cT-ryv"; */
+"ahw-cT-ryv.text" = "1";
+
+/* Class = "UILabel"; text = "Filter by Title"; ObjectID = "bmG-cu-w7S"; */
+"bmG-cu-w7S.text" = "Filter by Title";
+
+/* Class = "UIButton"; configuration.title = "Next"; ObjectID = "bzO-kv-Z3Q"; */
+"bzO-kv-Z3Q.configuration.title" = "Next";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "bzO-kv-Z3Q"; */
+"bzO-kv-Z3Q.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "06:00 - 11:40"; ObjectID = "cRf-k8-4Y5"; */
+"cRf-k8-4Y5.text" = "06:00 - 11:40";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "cag-Q4-Nvo"; */
+"cag-Q4-Nvo.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cag-Q4-Nvo"; */
+"cag-Q4-Nvo.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Error Resolved"; ObjectID = "cbS-cX-2Wz"; */
+"cbS-cX-2Wz.text" = "Error Resolved";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "cx9-13-PJo"; */
+"cx9-13-PJo.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "cx9-13-PJo"; */
+"cx9-13-PJo.normalTitle" = "Button";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "dMy-7X-dzh"; */
+"dMy-7X-dzh.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Atual: Primerio Impacto     Proximo: SBT Rio Grande"; ObjectID = "dOv-M8-akl"; */
+"dOv-M8-akl.text" = "Atual: Primerio Impacto     Proximo: SBT Rio Grande";
+
+/* Class = "UIButton"; configuration.title = "Selection Category: Todas"; ObjectID = "dmt-tz-c0h"; */
+"dmt-tz-c0h.configuration.title" = "Selection Category: Todas";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "dmt-tz-c0h"; */
+"dmt-tz-c0h.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Profile"; ObjectID = "eHq-Km-F6S"; */
+"eHq-Km-F6S.text" = "Profile";
+
+/* Class = "UILabel"; text = "Ano:"; ObjectID = "eo6-aO-gNw"; */
+"eo6-aO-gNw.text" = "Ano:";
+
+/* Class = "UIButton"; configuration.title = "X Close"; ObjectID = "exX-gy-hXu"; */
+"exX-gy-hXu.configuration.title" = "X Close";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "exX-gy-hXu"; */
+"exX-gy-hXu.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "R$ 14,90"; ObjectID = "ezw-1n-wiD"; */
+"ezw-1n-wiD.text" = "R$ 14,90";
+
+/* Class = "UITextField"; placeholder = "Data de Nascimento"; ObjectID = "fZu-Sc-pSi"; */
+"fZu-Sc-pSi.placeholder" = "Data de Nascimento";
+
+/* Class = "UIButton"; configuration.title = "Selection Category: Todas"; ObjectID = "g0g-Uz-gnw"; */
+"g0g-Uz-gnw.configuration.title" = "Selection Category: Todas";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "g0g-Uz-gnw"; */
+"g0g-Uz-gnw.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "Token de login"; ObjectID = "gpE-HG-RpK"; */
+"gpE-HG-RpK.placeholder" = "Token de login";
+
+/* Class = "UIButton"; configuration.title = "Proximo"; ObjectID = "gxK-a5-XK9"; */
+"gxK-a5-XK9.configuration.title" = "Proximo";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "gxK-a5-XK9"; */
+"gxK-a5-XK9.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "RG"; ObjectID = "itz-0B-za9"; */
+"itz-0B-za9.placeholder" = "RG";
+
+/* Class = "UILabel"; text = "0800 648 3961"; ObjectID = "j72-dC-ivy"; */
+"j72-dC-ivy.text" = "0800 648 3961";
+
+/* Class = "UILabel"; text = "Pesquisar conteudo"; ObjectID = "jXB-y5-QFI"; */
+"jXB-y5-QFI.text" = "Pesquisar conteudo";
+
+/* Class = "UILabel"; text = "Series"; ObjectID = "jcv-XW-VtI"; */
+"jcv-XW-VtI.text" = "Series";
+
+/* Class = "UIButton"; configuration.title = "Check rent"; ObjectID = "jsw-v4-ocu"; */
+"jsw-v4-ocu.configuration.title" = "Check rent";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "jsw-v4-ocu"; */
+"jsw-v4-ocu.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Report Error"; ObjectID = "ldG-Lk-NhM"; */
+"ldG-Lk-NhM.configuration.title" = "Report Error";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "ldG-Lk-NhM"; */
+"ldG-Lk-NhM.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = "Report error"; ObjectID = "m4v-6C-ASB"; */
+"m4v-6C-ASB.configuration.title" = "Report error";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "m4v-6C-ASB"; */
+"m4v-6C-ASB.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "1"; ObjectID = "oUO-3Z-dys"; */
+"oUO-3Z-dys.text" = "1";
+
+/* Class = "UILabel"; text = "Films"; ObjectID = "p7H-ik-WDd"; */
+"p7H-ik-WDd.text" = "Films";
+
+/* Class = "UILabel"; text = "Select Profile"; ObjectID = "piL-wd-eJf"; */
+"piL-wd-eJf.text" = "Select Profile";
+
+/* Class = "UITextField"; text = "Sh"; ObjectID = "qIj-fF-eVv"; */
+"qIj-fF-eVv.text" = "Sh";
+
+/* Class = "UILabel"; text = "Preco de alguel:"; ObjectID = "r3Z-e7-T12"; */
+"r3Z-e7-T12.text" = "Preco de alguel:";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "rRB-eM-n1v"; */
+"rRB-eM-n1v.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "rRB-eM-n1v"; */
+"rRB-eM-n1v.normalTitle" = "Button";
+
+/* Class = "UITextField"; placeholder = "E-Mail"; ObjectID = "rx5-gD-1T2"; */
+"rx5-gD-1T2.placeholder" = "E-Mail";
+
+/* Class = "UILabel"; text = "EPG"; ObjectID = "sZH-IU-2DX"; */
+"sZH-IU-2DX.text" = "EPG";
+
+/* Class = "UILabel"; text = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. "; ObjectID = "smg-JW-9de"; */
+"smg-JW-9de.text" = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. ";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "syc-wg-aBO"; */
+"syc-wg-aBO.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "syc-wg-aBO"; */
+"syc-wg-aBO.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "name"; ObjectID = "szf-ll-TLt"; */
+"szf-ll-TLt.text" = "name";
+
+/* Class = "UILabel"; text = ".                          Rent This Movie                          There are many variations of passages of Lorem Ipsum available . There are many variations of passages of Lorem Ipsum available .There are many variations of passages of Lorem Ipsum available"; ObjectID = "t14-Ud-20h"; */
+"t14-Ud-20h.text" = ".                          Rent This Movie                          There are many variations of passages of Lorem Ipsum available . There are many variations of passages of Lorem Ipsum available .There are many variations of passages of Lorem Ipsum available";
+
+/* Class = "UILabel"; text = "Selecionar Perfil"; ObjectID = "tqd-g4-VPe"; */
+"tqd-g4-VPe.text" = "Selecionar Perfil";
+
+/* Class = "UITextField"; placeholder = "Neighbourhood"; ObjectID = "uiP-Vo-UqC"; */
+"uiP-Vo-UqC.placeholder" = "Neighbourhood";
+
+/* Class = "UIButton"; configuration.title = "Anterior"; ObjectID = "vFd-Un-X90"; */
+"vFd-Un-X90.configuration.title" = "Anterior";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "vFd-Un-X90"; */
+"vFd-Un-X90.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "wX3-az-Tcx"; */
+"wX3-az-Tcx.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "wX3-az-Tcx"; */
+"wX3-az-Tcx.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance."; ObjectID = "whe-fJ-aXE"; */
+"whe-fJ-aXE.text" = "Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance.";
+
+/* Class = "UISearchBar"; placeholder = "Search"; ObjectID = "wja-U6-B5G"; */
+"wja-U6-B5G.placeholder" = "Search";
+
+/* Class = "UITextField"; placeholder = "Senha"; ObjectID = "xQT-26-wGU"; */
+"xQT-26-wGU.placeholder" = "Senha";
+
+/* Class = "UIButton"; configuration.title = "Proximo"; ObjectID = "xYN-Vw-K9h"; */
+"xYN-Vw-K9h.configuration.title" = "Proximo";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "xYN-Vw-K9h"; */
+"xYN-Vw-K9h.normalTitle" = "Button";
+
+/* Class = "UIButton"; configuration.title = " "; ObjectID = "yZZ-JA-LVt"; */
+"yZZ-JA-LVt.configuration.title" = " ";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "yZZ-JA-LVt"; */
+"yZZ-JA-LVt.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Descricao"; ObjectID = "yh2-gJ-rEU"; */
+"yh2-gJ-rEU.text" = "Descricao";
+
+/* Class = "UIButton"; configuration.title = "X Fechar"; ObjectID = "yy4-JJ-2cm"; */
+"yy4-JJ-2cm.configuration.title" = "X Fechar";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "yy4-JJ-2cm"; */
+"yy4-JJ-2cm.normalTitle" = "Button";

@@ -1,0 +1,77 @@
+{
+  "pins" : [
+    {
+      "identity" : "alamofire",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/Alamofire.git",
+      "state" : {
+        "revision" : "f455c2975872ccd2d9c81594c658af65716e9b9a",
+        "version" : "5.9.1"
+      }
+    },
+    {
+      "identity" : "alamofireimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/Alamofire/AlamofireImage.git",
+      "state" : {
+        "revision" : "1eaf3b6c6882bed10f6e7b119665599dd2329aa1",
+        "version" : "4.3.0"
+      }
+    },
+    {
+      "identity" : "netkit-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kaltura/netkit-ios.git",
+      "state" : {
+        "revision" : "52b00fb1080d3b338749004125237b8f07d04063",
+        "version" : "1.6.1"
+      }
+    },
+    {
+      "identity" : "playkit-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kaltura/playkit-ios.git",
+      "state" : {
+        "branch" : "develop",
+        "revision" : "12606dad607af576e64ce6ff4f32b708211ac2dc"
+      }
+    },
+    {
+      "identity" : "playkit-ios-utils",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/kaltura/playkit-ios-utils.git",
+      "state" : {
+        "revision" : "289c745e46387ae6c7934e9d75aeb17249f52156",
+        "version" : "0.5.1"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage",
+      "state" : {
+        "revision" : "f6afa0132961d593f07970d84e2d8b588c29ea04",
+        "version" : "5.19.1"
+      }
+    },
+    {
+      "identity" : "swiftyjson",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftyJSON/SwiftyJSON.git",
+      "state" : {
+        "revision" : "af76cf3ef710b6ca5f8c05f3a31307d44a3c5828",
+        "version" : "5.0.2"
+      }
+    },
+    {
+      "identity" : "xcglogger",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/DaveWoodCom/XCGLogger.git",
+      "state" : {
+        "revision" : "a9c4667b247928a29bdd41be2ec2c8d304215a54",
+        "version" : "7.0.1"
+      }
+    }
+  ],
+  "version" : 2
+}
