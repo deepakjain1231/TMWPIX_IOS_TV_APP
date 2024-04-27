@@ -26,7 +26,8 @@ class DetailsFilmViewController: TMWViewController {
     @IBOutlet weak var lblYear: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblAluguel: UILabel!
-    
+    var player: AVPlayer!
+    var playerController: AVPlayerViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,6 +38,7 @@ class DetailsFilmViewController: TMWViewController {
         self.loadingIndicator.startAnimating()
         FilmAPI.getMovieInfoData(delegate: self)
 
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
     }
 #if TARGET_OS_IOS
     //======= Orientation Control ===========
@@ -50,6 +52,16 @@ class DetailsFilmViewController: TMWViewController {
     //======================================
 #endif
     
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if let player = object as? AVPlayer, player == self.player, keyPath == "status" {
+            if player.status == .readyToPlay {
+                self.player?.play()
+            } else if player.status == .failed {
+                debugPrint("failed_player")
+            }
+        }
+    }
     
     @IBAction func viewDismissed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -95,29 +107,35 @@ class DetailsFilmViewController: TMWViewController {
             present(popupVC, animated: true, completion: nil)
             
         } else {
-            
-//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MoviePlayerViewController") as! MoviePlayerViewController
-//            nextViewController.ImageUrl = ImageUrl
-//            nextViewController.VideoURl = self.movie?.movies?.url!
-//            self.present(nextViewController, animated:true, completion:nil)
 
-            
-            
-            if let videoURL = URL(string: self.movie?.movies?.url ?? "") {
-                // Create an AVPlayer instance with the URL as the asset
-                let player = AVPlayer(url: videoURL)
-                
-                // Create an AVPlayerViewController and set its player
-                let controller = AVPlayerViewController()
-                controller.player = player
-                
-                // Present the AVPlayerViewController or add it to your view hierarchy
-                present(controller, animated: true) {
-                    // Start playback
-                    player.play()
-                }
+            guard let url = URL(string: self.movie?.movies?.url ?? "") else {
+                debugPrint("Invalid URL")
+                return
             }
+
+            let asset = AVURLAsset(url: url, options: nil)
+            let playerItem = AVPlayerItem(asset: asset)
+            self.player = AVPlayer(playerItem: playerItem)
+            self.player?.addObserver(self, forKeyPath: "status", options: [], context: nil)// listen the current time of playing video
+            self.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: Double(1), preferredTimescale: 2), queue: DispatchQueue.main) { [weak self] (sec) in
+                guard let self = self else { return }
+
+            }
+            self.player?.volume = 1.0
+
+            // Create AVPlayerViewController and set player
+            self.playerController = AVPlayerViewController()
+            self.playerController.player = self.player
+
+            // Present the AVPlayerViewController or add it to your view hierarchy
+            self.present(self.playerController, animated: true)
+            
+            let but_Back = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 50, height: 50))
+            but_Back.addSubview(self.view)
+//            self.present(self.playerController, animated: true) {
+//                // Start playback
+//                self.player.play()
+//            }
         }
     }
     

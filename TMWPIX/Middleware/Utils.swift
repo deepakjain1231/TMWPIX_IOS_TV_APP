@@ -228,4 +228,204 @@ class utils{
     
     
     
+    
+    
+    
+}
+
+
+
+class FocusableImageView: UIImageView {
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.isFocused {
+            // Change appearance when focused (e.g., increase size, change border color)
+            self.layer.borderWidth = 5.0
+            self.layer.borderColor = UIColor.fromHex(hexString: "#DE003F").cgColor
+        } else {
+            // Reset appearance when unfocused
+            self.layer.borderWidth = 0.0
+        }
+    }
+}
+
+
+class FocusableView: UIView {
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.isFocused {
+            // Change appearance when focused (e.g., increase size, change border color)
+            self.layer.borderWidth = 2.0
+            self.layer.borderColor = UIColor.fromHex(hexString: "#DE003F").cgColor
+        } else {
+            // Reset appearance when unfocused
+            self.layer.borderWidth = 0.0
+        }
+    }
+}
+
+
+class Focusable_Button: UIButton {
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.isFocused {
+            // Change appearance when focused (e.g., increase size, change border color)
+            self.layer.borderWidth = 2.0
+            self.layer.borderColor = UIColor.white.cgColor
+            self.backgroundColor = AppColor.app_Light_RedColor
+            self.layer.cornerRadius = 8
+        } else {
+            // Reset appearance when unfocused
+            self.layer.cornerRadius = 8
+            self.layer.borderWidth = 0.0
+            self.backgroundColor = AppColor.app_Dark_RedColor
+        }
+    }
+}
+
+class Focusable_TextField: UITextField {
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.isFocused {
+            // Change appearance when focused (e.g., increase size, change border color)
+            self.layer.borderWidth = 5.0
+            self.layer.borderColor = AppColor.app_YelloColor.cgColor
+            //self.layer.cornerRadius = 8
+        } else {
+            // Reset appearance when unfocused
+            //self.layer.cornerRadius = 8
+            self.layer.borderWidth = 0.0
+        }
+    }
+}
+
+
+class Focusable_BackButton: UIButton {
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.isFocused {
+            self.layer.borderWidth = 2.0
+            self.layer.borderColor = UIColor.white.cgColor
+            self.layer.cornerRadius = 12
+            
+        } else {
+            // Reset appearance when unfocused
+            self.layer.borderWidth = 0.0
+            self.layer.cornerRadius = 0
+        }
+    }
+}
+
+
+class Focusable_HomeButton: UIButton {
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        
+        if let arr_views = context.previouslyFocusedView?.superview?.superview?.subviews {
+            for selected_view in arr_views {
+                if (selected_view as? UIView)?.tag == 101 {
+                    (selected_view as? UIView)?.isHidden = false
+                }
+                
+                if (selected_view as? UIView)?.tag == 102 {
+                    self.layer.borderWidth = 0.0
+                    self.layer.borderColor = UIColor.clear.cgColor
+                }
+            }
+        }
+        
+        if self.isFocused {
+            // Change appearance when focused (e.g., increase size, change border color)
+            if let arr_views = self.superview?.superview?.subviews {
+                for selected_view in arr_views {
+                    if (selected_view as? UIView)?.tag == 101 {
+                        (selected_view as? UIView)?.isHidden = true
+                    }
+                    
+                    if (selected_view as? UIView)?.tag == 102 {
+                        self.layer.borderWidth = 4.0
+                        self.layer.borderColor = UIColor.white.cgColor
+                        self.layer.cornerRadius = 20
+                    }
+                }
+            }
+            
+            
+        } else {
+            // Reset appearance when unfocused
+            self.layer.borderWidth = 0.0
+        }
+    }
+}
+
+
+
+struct AppColor {
+    static let app_Dark_RedColor = #colorLiteral(red: 0.8705882353, green: 0, blue: 0.2470588235, alpha: 1) //DE003F
+    static let app_Light_RedColor = #colorLiteral(red: 0.6352941176, green: 0.2039215686, blue: 0.1803921569, alpha: 1) //DE003F
+    static let app_YelloColor = #colorLiteral(red: 0.9490196078, green: 0.662745098, blue: 0.231372549, alpha: 1) //DE003F
 }

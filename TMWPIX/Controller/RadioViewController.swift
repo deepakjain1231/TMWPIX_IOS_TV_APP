@@ -58,13 +58,13 @@ class RadioViewController: TMWViewController {
         
         if isRadioPlay{
             isRadioPlay = false
-            RadioBtn.setImage(UIImage(named: "ic_play-1.png"), for: .normal)
+            RadioBtn.setImage(UIImage(named: "ic_play-1"), for: .normal)
             DispatchQueue.main.async {
                 self.player!.pause()
             }
         }else{
             isRadioPlay = true
-            RadioBtn.setImage(UIImage(named: "ic_pause-1.png"), for: .normal)
+            RadioBtn.setImage(UIImage(named: "ic_pause"), for: .normal)
             DispatchQueue.main.async {
                 self.player!.play()
             }

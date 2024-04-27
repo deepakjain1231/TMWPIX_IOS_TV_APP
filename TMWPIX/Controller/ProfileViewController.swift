@@ -5,8 +5,9 @@
 //  Created by Apple on 03/08/2022.
 //
 
-import Foundation
 import UIKit
+import Foundation
+
 
 enum ProfileState {
     case profileList
@@ -33,6 +34,8 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
         
 //        tfPassword.becomeFirstResponder()
         tfPassword.delegate = self
+        
+        
     }
     
     @IBAction func ViewDismissed(_ sender: Any) {
@@ -196,10 +199,10 @@ extension ProfileViewController {
 }
 
 extension ProfileViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
-//                        UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: self.collectionView.frame.size.width / 5 - 10, height: self.collectionView.frame.size.height)
-//    }
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
+                        UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.collectionView.frame.size.width / 5 - 10, height: 185)
+    }
     
 }
 
@@ -240,3 +243,26 @@ extension ProfileViewController{
     }
 }
 
+
+
+class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+
+    override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+        let attributes = super.layoutAttributesForElements(in: rect)
+
+        var leftMargin = sectionInset.left
+        var maxY: CGFloat = -1.0
+        attributes?.forEach { layoutAttribute in
+            if layoutAttribute.frame.origin.y >= maxY {
+                leftMargin = sectionInset.left
+            }
+
+            layoutAttribute.frame.origin.x = leftMargin
+
+            leftMargin += layoutAttribute.frame.width + minimumInteritemSpacing
+            maxY = max(layoutAttribute.frame.maxY , maxY)
+        }
+
+        return attributes
+    }
+}

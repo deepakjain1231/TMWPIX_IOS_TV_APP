@@ -104,7 +104,10 @@ extension SeriesViewController : UICollectionViewDataSource {
             guard let indx = indx_tag else {
                 return
             }
-            if indexPath.row == indx {
+            if indx == 100 {
+                cell.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+            }
+            else if indexPath.row == indx {
                 cell.layer.borderColor = UIColor.fromHex(hexString: "#DE003F").cgColor
             }
             else {
