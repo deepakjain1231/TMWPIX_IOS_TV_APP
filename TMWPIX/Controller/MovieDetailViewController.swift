@@ -26,6 +26,8 @@ class MovieDetailViewController: TMWViewController {
     @IBOutlet weak var movieTitle: UILabel!
     @IBOutlet weak var movieDiscription: UITextView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var img_logo: UIImageView!
+    @IBOutlet weak var btn_Back: UIButton!
 
     var episodes: [SeriesEpisode] = []
     var seasonId: Int?
@@ -35,6 +37,9 @@ class MovieDetailViewController: TMWViewController {
         super.viewDidLoad()
         sereisImage.sd_setImage(with: URL(string:image!))
         movieTitle.text = name
+        self.img_logo.tag = 100
+        self.btn_Back.tag = 100
+        sereisImage.adjustsImageWhenAncestorFocused = true
         
         self.loadingIndicator.startAnimating()
         SeriesAPI.getSeasonData(serieid: String(self.id!), delegate: self)
@@ -84,6 +89,10 @@ class MovieDetailViewController: TMWViewController {
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width / 2 , height: UIScreen.main.bounds.height)
     }
     
+    override func shouldUpdateFocus(in context: UIFocusUpdateContext) -> Bool {
+        return true
+    }
+    
 }
 
 
@@ -95,7 +104,23 @@ extension MovieDetailViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! EpisodeViewCell
+        cell.tag = indexPath.row
         cell.episodeNumber.text = "Episodio " + String(episodes[indexPath.row].number!)
+        
+        cell.did_completation_Focus = { (indx_tag) in
+            guard let indx = indx_tag else {
+                return
+            }
+            if indx == 100 {
+                cell.backgroundColor = UIColor.fromHex(hexString: "#F35302")
+            }
+            else if indexPath.row == indx {
+                cell.backgroundColor = UIColor.fromHex(hexString: "#DE003F")
+            }
+            else {
+                cell.backgroundColor = UIColor.fromHex(hexString: "#F35302")
+            }
+        }
         
         return cell
     }
@@ -105,7 +130,7 @@ extension MovieDetailViewController : UICollectionViewDataSource {
 extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
                         UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.collectionView.frame.size.width, height: self.collectionView.frame.size.height/8)
+        return CGSize(width: self.collectionView.frame.size.width, height: 50)
     }
     
 }
@@ -156,5 +181,60 @@ extension MovieDetailViewController {
         self.loadingIndicator.startAnimating()
         seasonNumber.text = season.name
         SeriesAPI.getSeriesEpisodeData(seasonid: String(season.id!), delegate: self)
+    }
+}
+
+
+
+
+
+class FocusableImageView: UIImageView {
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.isFocused {
+            // Change appearance when focused (e.g., increase size, change border color)
+            self.layer.borderWidth = 5.0
+            self.layer.borderColor = UIColor.fromHex(hexString: "#DE003F").cgColor
+        } else {
+            // Reset appearance when unfocused
+            self.layer.borderWidth = 0.0
+        }
+    }
+}
+
+
+class FocusableView: UIView {
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.isFocused {
+            // Change appearance when focused (e.g., increase size, change border color)
+            self.layer.borderWidth = 2.0
+            self.layer.borderColor = UIColor.fromHex(hexString: "#DE003F").cgColor
+        } else {
+            // Reset appearance when unfocused
+            self.layer.borderWidth = 0.0
+        }
     }
 }

@@ -11,6 +11,8 @@ import UIKit
 
 class OptionViewController: TMWViewController {
 
+    @IBOutlet weak var btn_Back: UIButton!
+    @IBOutlet weak var btn_profile: UIButton!
 
     
     override func viewDidLoad() {

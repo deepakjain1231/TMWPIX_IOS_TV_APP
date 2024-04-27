@@ -53,7 +53,31 @@ extension CategoryViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CategoryViewCell
+        cell.tag = indexPath.row
+        cell.categoryName.font = UIFont.boldSystemFont(ofSize: 18)
         cell.categoryName.text = categoryData[indexPath.row].nome!
+        
+        
+        cell.did_completation_Focus = { (indx_tag) in
+            guard let indx = indx_tag else {
+                return
+            }
+            if indx == 100 {
+                cell.categoryName.textColor = .white
+                cell.categoryName.font = UIFont.boldSystemFont(ofSize: 18)
+            }
+            else if indexPath.row == indx {
+                cell.categoryName.font = UIFont.boldSystemFont(ofSize: 22)
+                cell.categoryName.textColor = UIColor.fromHex(hexString: "#DE003F")
+            }
+            else {
+                cell.categoryName.textColor = .white
+                cell.categoryName.font = UIFont.boldSystemFont(ofSize: 18)
+            }
+            
+        }
+        
+        
         return cell
     }
     

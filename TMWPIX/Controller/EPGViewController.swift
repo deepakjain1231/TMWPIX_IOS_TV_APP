@@ -211,6 +211,8 @@ extension EPGViewController: UICollectionViewDataSource {
         // swiftlint:disable force_cast
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: contentCellIdentifier,
                                                       for: indexPath) as! ContentCollectionViewCell
+        cell.tag = indexPath.row
+        cell.accessibilityHint = "\(indexPath.section)"
         
         cell.layer.borderWidth = 0.5
         cell.layer.borderColor = UIColor.white.cgColor
@@ -263,6 +265,25 @@ extension EPGViewController: UICollectionViewDataSource {
                     cell.contentLabel.text = programName
                 }
                 
+            }
+        }
+        
+        
+        
+        
+        
+        cell.did_completation_Focus = { (indx_tag_row, indx_tag_section) in
+            if indx_tag_row == 100 {
+                cell.layer.borderWidth = 0.5
+                cell.layer.borderColor = UIColor.white.cgColor
+            }
+            else if indexPath.section == indx_tag_section && indexPath.row == indx_tag_row {
+                cell.layer.borderWidth = 2.0
+                cell.layer.borderColor = utils.UIColorFromRGBValue(red: 189, green: 0, blue: 54).cgColor
+            }
+            else {
+                cell.layer.borderWidth = 0.5
+                cell.layer.borderColor = UIColor.white.cgColor
             }
         }
         

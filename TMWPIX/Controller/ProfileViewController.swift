@@ -119,10 +119,15 @@ extension ProfileViewController : UICollectionViewDataSource{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ProfileViewCell
+        cell.tag = indexPath.row
         cell.profilePic.layer.borderWidth = 1.0
         cell.profilePic.layer.masksToBounds = false
         cell.profilePic.layer.cornerRadius = cell.profilePic.frame.size.width / 2
         cell.profilePic.clipsToBounds = true
+        
+        cell.backgorundView.layer.borderWidth = 1
+        cell.backgorundView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+        
         if isProfileState == .profileList {
             cell.actionImage.isHidden = true
         }else{
@@ -145,9 +150,33 @@ extension ProfileViewController : UICollectionViewDataSource{
             cell.profilePic.layer.borderColor = UIColor.white.cgColor
             cell.name.text = userProfiles[indexPath.row].name
         }
+        
+        //cell.profilePic.adjustsImageWhenAncestorFocused = true
+        
+        
+        cell.did_completation_Focus = { (indx_tag) in
+            guard let indx = indx_tag else {
+                return
+            }
+            if indx == 100 {
+                cell.backgorundView.layer.borderWidth = 1
+                cell.backgorundView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+            }
+            else if indexPath.row == indx {
+                cell.backgorundView.layer.borderWidth = 3
+                cell.backgorundView.layer.borderColor = UIColor.fromHex(hexString: "#DE003F").cgColor
+            }
+            else {
+                cell.backgorundView.layer.borderWidth = 1
+                cell.backgorundView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+            }
+            
+        }
+        
+        
+        
         return cell
     }
-    
 }
 
 

@@ -11,7 +11,7 @@ import SDWebImage
 import UIKit
 
 class ChannelViewController: TMWViewController {
-    
+
     @IBOutlet weak var collectionView: UICollectionView!
     var channels : [Channel] = []
     var is_home = true
@@ -62,11 +62,30 @@ extension ChannelViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ChannelViewCell
+        cell.backView.backgroundColor = .clear
+        
+        cell.tag = indexPath.row
         cell.ChannelImage.sd_setImage(with: URL(string: channels[indexPath.row].image!))
         cell.ChannelNumber.text = String(channels[indexPath.row].number!)
         
+        cell.img_focus.isHidden = true//.adjustsImageWhenAncestorFocused = true
+        
+        cell.did_completation_Focus = { (indx_tag) in
+            guard let indx = indx_tag else {
+                return
+            }
+            if indexPath.row == indx {
+                cell.backView.backgroundColor = .systemBlue
+            }
+            else {
+                cell.backView.backgroundColor = .clear
+            }
+            //self.collectionView.reloadData()
+        }
+        
         return cell
     }
+    
     
 }
 

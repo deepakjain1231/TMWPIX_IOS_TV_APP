@@ -31,6 +31,7 @@ class RadioViewController: TMWViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.RadioImage.adjustsImageWhenAncestorFocused = true
         
         self.loadingIndicator.startAnimating()
         RadioAPI.getRadioData(delegate: self);
@@ -115,6 +116,7 @@ extension RadioViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! RadioViewCell
+        cell.tag = indexPath.row
         cell.ChannelText.text = RadioName[indexPath.row]
         
         if (self.AudioUrlString ?? "") == url[indexPath.row] {
@@ -124,6 +126,22 @@ extension RadioViewController : UICollectionViewDataSource {
             cell.contentView.backgroundColor = .clear
         }
 
+        
+        cell.did_completation_Focus = { (indx_tag) in
+            guard let indx = indx_tag else {
+                return
+            }
+            if indx == 100 {
+                cell.contentView.backgroundColor = .clear
+            }
+            else if indexPath.row == indx {
+                cell.contentView.backgroundColor = utils.UIColorFromRGBValue(red: 189, green: 0, blue: 54)
+            }
+            else {
+                cell.contentView.backgroundColor = UIColor.clear
+            }
+            
+        }
         
         return cell
     }

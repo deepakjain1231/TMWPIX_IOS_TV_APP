@@ -82,32 +82,35 @@ extension SeriesViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! SeriesViewCell
+        cell.tag = indexPath.row
+        cell.layer.borderWidth = 1
+        cell.layer.cornerRadius = 8
+        cell.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
         
         if(type == filmVC){
-            let str_img = films[indexPath.row].image ?? ""
-            
-            if let imgURL = URL(string: "\(str_img)") {
-                let request: URLRequest = URLRequest(url: imgURL)
-                let mainQueue = OperationQueue.main
-                NSURLConnection.sendAsynchronousRequest(request, queue: mainQueue, completionHandler: { (response, data, error) -> Void in
-                    if error == nil {
-                        // Convert the downloaded data in to a UIImage object
-                        cell.SeriesImage.image = UIImage(data: data!)
-                    } else {
-                        cell.SeriesImage = nil
-                    }
-                })
-            }
-          
-            
-            //cell.SeriesImage.af.setImage(withURL: URL(string: films[indexPath.row].image ?? "")!)
-            
-            //cell.SeriesImage.sd_setImage(with: URL(string: films[indexPath.row].image ?? ""))
+            var str_img = films[indexPath.row].image ?? ""
+            str_img = str_img.replacingOccurrences(of: ".webp", with: ".jpg")
+            cell.SeriesImage.sd_setImage(with: URL(string: films[indexPath.row].image ?? ""))
             cell.StarImage.isHidden = films[indexPath.row].aluguel != 2
+            cell.SeriesImage.adjustsImageWhenAncestorFocused = true
             
         }else{
             cell.SeriesImage.sd_setImage(with: URL(string: series[indexPath.row].image ?? ""))
             cell.StarImage.isHidden = series[indexPath.row].aluguel != 2
+            cell.SeriesImage.adjustsImageWhenAncestorFocused = true
+        }
+        
+        cell.did_completation_Focus = { (indx_tag) in
+            guard let indx = indx_tag else {
+                return
+            }
+            if indexPath.row == indx {
+                cell.layer.borderColor = UIColor.fromHex(hexString: "#DE003F").cgColor
+            }
+            else {
+                cell.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+            }
+            
         }
         
         return cell
@@ -229,4 +232,39 @@ extension SeriesViewController{
         collectionView.reloadData()
     }
 
+}
+
+
+
+
+extension UIColor {
+    
+    /// Returns color from its hex string
+    ///
+    /// - Parameter hexString: the color hex string
+    /// - Returns: UIColor
+    static func fromHex(hexString: String) -> UIColor {
+        let hex = hexString.trimmingCharacters(
+            in: CharacterSet.alphanumerics.inverted)
+        var int = UInt32()
+        Scanner(string: hex).scanHexInt32(&int)
+        let a, r, g, b: UInt32
+        switch hex.count {
+        case 3: // RGB (12-bit)
+            (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: // RGB (24-bit)
+            (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: // ARGB (32-bit)
+            (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default:
+            return UIColor.clear
+        }
+        
+        return UIColor(
+            red: CGFloat(r) / 255,
+            green: CGFloat(g) / 255,
+            blue: CGFloat(b) / 255,
+            alpha: CGFloat(a) / 255)
+    }
+    
 }

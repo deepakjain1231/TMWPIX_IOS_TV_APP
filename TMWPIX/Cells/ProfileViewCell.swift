@@ -14,14 +14,32 @@ class ProfileViewCell: UICollectionViewCell {
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var backgorundView: UIView!
     
+    var did_completation_Focus: ((Int?)->Void)? = nil
+    
     override var isSelected: Bool {
       didSet {
-          self.backgorundView.backgroundColor = isSelected ?utils.UIColorFromRGBValue(red: 5, green: 23, blue: 41): utils.UIColorFromRGBValue(red: 2, green: 13, blue: 25)
+          self.backgorundView.backgroundColor = isSelected ? utils.UIColorFromRGBValue(red: 5, green: 23, blue: 41): utils.UIColorFromRGBValue(red: 2, green: 13, blue: 25)
           self.backgorundView.layer.borderWidth = 1
           
           self.backgorundView.layer.borderColor = isSelected ?UIColor(red:222/255, green:225/255, blue:227/255, alpha: 1).cgColor: UIColor(red:2/255, green:13/255, blue:5/255, alpha: 1).cgColor
 
       }
+    }
+    
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        // Initialization code
+        
+    }
+    
+    override func shouldUpdateFocus(in context: UIFocusUpdateContext) -> Bool {
+        // Condition
+        return true
+    }
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        // Condition
+        self.did_completation_Focus?(context.nextFocusedView?.tag)
     }
     
 }
