@@ -90,7 +90,7 @@ extension SeriesViewController : UICollectionViewDataSource {
         if(type == filmVC){
             var str_img = films[indexPath.row].image ?? ""
             str_img = str_img.replacingOccurrences(of: ".webp", with: ".jpg")
-            cell.SeriesImage.sd_setImage(with: URL(string: films[indexPath.row].image ?? ""))
+            cell.SeriesImage.sd_setImage(with: URL(string: str_img))
             cell.StarImage.isHidden = films[indexPath.row].aluguel != 2
             cell.SeriesImage.adjustsImageWhenAncestorFocused = true
             

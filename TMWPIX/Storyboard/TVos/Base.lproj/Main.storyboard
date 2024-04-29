@@ -1266,7 +1266,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="A1h-jR-0UT" customClass="RemoveProfileViewCell" customModule="TMWPIXtvOS" customModuleProvider="target">
-                                                <rect key="frame" x="7" y="10" width="165" height="163"/>
+                                                <rect key="frame" x="3" y="10" width="165" height="163"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7Sl-zG-458">
                                                     <rect key="frame" x="0.0" y="0.0" width="165" height="163"/>
@@ -1526,6 +1526,9 @@
                                 <subviews>
                                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAY-KU-PDk" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="vAY-KU-PDk" secondAttribute="height" multiplier="1:1" id="1zY-fE-H58"/>
+                                        </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="icon_back"/>
                                         <connections>
@@ -1538,7 +1541,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="vAY-KU-PDk" firstAttribute="width" secondItem="vAY-KU-PDk" secondAttribute="height" multiplier="1:1" id="1zY-fE-H58"/>
                                     <constraint firstItem="Arj-W3-o7Q" firstAttribute="top" secondItem="Wo7-8Z-3BO" secondAttribute="top" id="5QK-bk-fIx"/>
                                     <constraint firstItem="vAY-KU-PDk" firstAttribute="top" secondItem="Wo7-8Z-3BO" secondAttribute="top" id="DIb-6g-rLV"/>
                                     <constraint firstItem="vAY-KU-PDk" firstAttribute="leading" secondItem="Wo7-8Z-3BO" secondAttribute="leading" id="Eja-1V-mf4"/>
@@ -1599,6 +1601,9 @@
                                         <subviews>
                                             <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NI7-3h-mk4" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="NI7-3h-mk4" secondAttribute="height" multiplier="1:1" id="kMp-Ps-sxE"/>
+                                                </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="icon_back_white"/>
                                                 <connections>
@@ -1616,7 +1621,6 @@
                                             <constraint firstItem="NI7-3h-mk4" firstAttribute="leading" secondItem="3lH-Ko-x1b" secondAttribute="leading" id="NDU-uF-P4y"/>
                                             <constraint firstAttribute="bottom" secondItem="NI7-3h-mk4" secondAttribute="bottom" id="PEh-Le-8Tu"/>
                                             <constraint firstAttribute="height" constant="60" id="Uxl-0P-nUm"/>
-                                            <constraint firstItem="NI7-3h-mk4" firstAttribute="width" secondItem="NI7-3h-mk4" secondAttribute="height" multiplier="1:1" id="kMp-Ps-sxE"/>
                                             <constraint firstItem="NI7-3h-mk4" firstAttribute="top" secondItem="3lH-Ko-x1b" secondAttribute="top" id="qcM-tX-oQa"/>
                                             <constraint firstAttribute="bottom" secondItem="hzC-Sf-pK1" secondAttribute="bottom" id="yY7-3v-Nms"/>
                                         </constraints>
@@ -2334,6 +2338,9 @@
                                     </imageView>
                                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNs-k3-61K" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="bNs-k3-61K" secondAttribute="height" multiplier="1:1" id="3pr-8W-zvg"/>
+                                        </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="icon_back"/>
                                         <connections>
@@ -2344,7 +2351,6 @@
                                 <color key="backgroundColor" red="0.0078431372550000003" green="0.050980392159999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="lgd-Yt-38B" secondAttribute="trailing" id="0cH-Qv-sZO"/>
-                                    <constraint firstItem="bNs-k3-61K" firstAttribute="width" secondItem="bNs-k3-61K" secondAttribute="height" multiplier="1:1" id="3pr-8W-zvg"/>
                                     <constraint firstAttribute="bottom" secondItem="bNs-k3-61K" secondAttribute="bottom" id="7bi-sj-ijr"/>
                                     <constraint firstAttribute="height" constant="60" id="9s7-QB-hup"/>
                                     <constraint firstItem="lgd-Yt-38B" firstAttribute="height" secondItem="wzl-Ba-dve" secondAttribute="height" multiplier="0.8" id="HXr-a0-HVr"/>
@@ -3308,7 +3314,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="140" height="169"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qeU-hQ-mCE">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qeU-hQ-mCE">
                                                     <rect key="frame" x="5.5" y="0.0" width="129" height="152"/>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="FxZ-NU-qxV">
@@ -3387,6 +3393,9 @@
                                 <subviews>
                                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nls-yV-nXZ" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Nls-yV-nXZ" secondAttribute="height" multiplier="1:1" id="5uV-bF-Rme"/>
+                                        </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="icon_back"/>
                                         <connections>
@@ -3399,7 +3408,6 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="Nls-yV-nXZ" firstAttribute="width" secondItem="Nls-yV-nXZ" secondAttribute="height" multiplier="1:1" id="5uV-bF-Rme"/>
                                     <constraint firstAttribute="trailing" secondItem="aoZ-ya-5sA" secondAttribute="trailing" id="B0O-8b-qLd"/>
                                     <constraint firstAttribute="bottom" secondItem="Nls-yV-nXZ" secondAttribute="bottom" id="EFw-lH-pAv"/>
                                     <constraint firstItem="Nls-yV-nXZ" firstAttribute="top" secondItem="K1F-Rv-NFG" secondAttribute="top" id="IyF-Op-Zuf"/>
@@ -3676,6 +3684,9 @@
                                         <subviews>
                                             <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njp-pc-H9R" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="Njp-pc-H9R" secondAttribute="height" multiplier="1:1" id="PIZ-5K-wPl"/>
+                                                </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="icon_back"/>
                                                 <connections>
@@ -3690,7 +3701,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="3BP-jF-bxe"/>
                                             <constraint firstAttribute="trailing" secondItem="CVW-ag-fMj" secondAttribute="trailing" id="Fde-FE-DxO"/>
-                                            <constraint firstItem="Njp-pc-H9R" firstAttribute="width" secondItem="Njp-pc-H9R" secondAttribute="height" multiplier="1:1" id="PIZ-5K-wPl"/>
                                             <constraint firstItem="Njp-pc-H9R" firstAttribute="top" secondItem="FjY-dD-0W7" secondAttribute="top" id="VrS-np-bbM"/>
                                             <constraint firstItem="CVW-ag-fMj" firstAttribute="top" secondItem="FjY-dD-0W7" secondAttribute="top" id="ZDX-3G-N2L"/>
                                             <constraint firstItem="Njp-pc-H9R" firstAttribute="leading" secondItem="FjY-dD-0W7" secondAttribute="leading" id="aJb-yi-AcZ"/>
@@ -3766,6 +3776,9 @@
                                                     </imageView>
                                                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8v-bv-XYW" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                         <rect key="frame" x="281" y="7" width="45" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="L8v-bv-XYW" secondAttribute="height" multiplier="1:1" id="z6H-KH-lVe"/>
+                                                        </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="ic_audio"/>
                                                         <connections>
@@ -3774,6 +3787,9 @@
                                                     </button>
                                                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLl-l4-26O" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                         <rect key="frame" x="224" y="7" width="45" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="dLl-l4-26O" secondAttribute="height" multiplier="1:1" id="bCU-LR-I6G"/>
+                                                        </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="icon_information"/>
                                                         <connections>
@@ -3782,6 +3798,9 @@
                                                     </button>
                                                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQH-cu-ehn" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                         <rect key="frame" x="167" y="7" width="45" height="45"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="kQH-cu-ehn" secondAttribute="height" multiplier="1:1" id="o4t-LN-PdX"/>
+                                                        </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="ic_subtitles-1"/>
                                                         <connections>
@@ -3796,18 +3815,15 @@
                                                     <constraint firstItem="L8v-bv-XYW" firstAttribute="top" secondItem="JBx-co-Pmq" secondAttribute="top" constant="7" id="TUD-ul-Qps"/>
                                                     <constraint firstAttribute="width" constant="400" id="VEe-Pb-l6o"/>
                                                     <constraint firstItem="kQH-cu-ehn" firstAttribute="top" secondItem="JBx-co-Pmq" secondAttribute="top" constant="7" id="VTO-SV-0Bj"/>
-                                                    <constraint firstItem="dLl-l4-26O" firstAttribute="width" secondItem="dLl-l4-26O" secondAttribute="height" multiplier="1:1" id="bCU-LR-I6G"/>
                                                     <constraint firstItem="P1u-js-kiA" firstAttribute="leading" secondItem="L8v-bv-XYW" secondAttribute="trailing" constant="12" id="erP-Ju-1Ls"/>
                                                     <constraint firstAttribute="trailing" secondItem="P1u-js-kiA" secondAttribute="trailing" constant="2" id="hLb-6G-Lep"/>
                                                     <constraint firstAttribute="bottom" secondItem="P1u-js-kiA" secondAttribute="bottom" constant="3" id="hNQ-ey-E3m"/>
                                                     <constraint firstAttribute="bottom" secondItem="L8v-bv-XYW" secondAttribute="bottom" constant="7" id="m92-il-GVS"/>
-                                                    <constraint firstItem="kQH-cu-ehn" firstAttribute="width" secondItem="kQH-cu-ehn" secondAttribute="height" multiplier="1:1" id="o4t-LN-PdX"/>
                                                     <constraint firstAttribute="bottom" secondItem="dLl-l4-26O" secondAttribute="bottom" constant="7" id="pl5-Aj-KKb"/>
                                                     <constraint firstItem="P1u-js-kiA" firstAttribute="top" secondItem="3fK-d4-UD6" secondAttribute="bottom" constant="5" id="qJZ-WJ-hhy"/>
                                                     <constraint firstItem="3fK-d4-UD6" firstAttribute="centerX" secondItem="P1u-js-kiA" secondAttribute="centerX" id="rE5-RM-G46"/>
                                                     <constraint firstItem="dLl-l4-26O" firstAttribute="top" secondItem="JBx-co-Pmq" secondAttribute="top" constant="7" id="vk3-gP-wjr"/>
                                                     <constraint firstItem="dLl-l4-26O" firstAttribute="leading" secondItem="kQH-cu-ehn" secondAttribute="trailing" constant="12" id="vrq-Bo-gHw"/>
-                                                    <constraint firstItem="L8v-bv-XYW" firstAttribute="width" secondItem="L8v-bv-XYW" secondAttribute="height" multiplier="1:1" id="z6H-KH-lVe"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
@@ -4033,6 +4049,9 @@
                                 <subviews>
                                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HEU-bf-sfy" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="HEU-bf-sfy" secondAttribute="height" multiplier="1:1" id="kxV-sg-XS8"/>
+                                        </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="icon_back"/>
                                         <connections>
@@ -4058,7 +4077,6 @@
                                     <constraint firstAttribute="bottom" secondItem="sAx-rv-cMK" secondAttribute="bottom" id="f0X-UN-ZQf"/>
                                     <constraint firstItem="9BD-VC-J1y" firstAttribute="centerX" secondItem="rTY-Ab-H0b" secondAttribute="centerX" id="hXJ-21-fEo"/>
                                     <constraint firstAttribute="bottom" secondItem="HEU-bf-sfy" secondAttribute="bottom" id="ixo-Dq-VIr"/>
-                                    <constraint firstItem="HEU-bf-sfy" firstAttribute="width" secondItem="HEU-bf-sfy" secondAttribute="height" multiplier="1:1" id="kxV-sg-XS8"/>
                                     <constraint firstItem="9BD-VC-J1y" firstAttribute="centerY" secondItem="rTY-Ab-H0b" secondAttribute="centerY" id="nGw-Zj-6zv"/>
                                     <constraint firstItem="HEU-bf-sfy" firstAttribute="top" secondItem="rTY-Ab-H0b" secondAttribute="top" id="nHy-ZN-BAX"/>
                                 </constraints>
@@ -4182,6 +4200,9 @@
                                     </imageView>
                                     <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBu-A8-cB6" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="TBu-A8-cB6" secondAttribute="height" multiplier="1:1" id="cbF-dw-AQe"/>
+                                        </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="icon_back"/>
                                         <connections>
@@ -4196,7 +4217,6 @@
                                     <constraint firstItem="TBu-A8-cB6" firstAttribute="leading" secondItem="dSs-UD-jiY" secondAttribute="leading" id="TQH-ya-4ZL"/>
                                     <constraint firstItem="bXV-g3-SEH" firstAttribute="centerY" secondItem="dSs-UD-jiY" secondAttribute="centerY" id="bt4-iv-GQN"/>
                                     <constraint firstItem="bXV-g3-SEH" firstAttribute="height" secondItem="dSs-UD-jiY" secondAttribute="height" multiplier="0.8" id="c2L-qY-Dv7"/>
-                                    <constraint firstItem="TBu-A8-cB6" firstAttribute="width" secondItem="TBu-A8-cB6" secondAttribute="height" multiplier="1:1" id="cbF-dw-AQe"/>
                                     <constraint firstAttribute="bottom" secondItem="TBu-A8-cB6" secondAttribute="bottom" id="jra-hy-lPC"/>
                                     <constraint firstAttribute="trailing" secondItem="bXV-g3-SEH" secondAttribute="trailing" id="qV4-vb-Qvh"/>
                                 </constraints>
@@ -4364,6 +4384,9 @@
                                         <subviews>
                                             <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="06H-Vc-lMS" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="06H-Vc-lMS" secondAttribute="height" multiplier="1:1" id="CfJ-eD-wH3"/>
+                                                </constraints>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                 <state key="normal" image="icon_back"/>
                                                 <connections>
@@ -4376,7 +4399,6 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstItem="06H-Vc-lMS" firstAttribute="width" secondItem="06H-Vc-lMS" secondAttribute="height" multiplier="1:1" id="CfJ-eD-wH3"/>
                                             <constraint firstItem="nth-3E-hDY" firstAttribute="top" secondItem="Hdf-LM-FoJ" secondAttribute="top" id="Efm-d8-m32"/>
                                             <constraint firstAttribute="bottom" secondItem="06H-Vc-lMS" secondAttribute="bottom" id="MWr-1t-8Bv"/>
                                             <constraint firstItem="06H-Vc-lMS" firstAttribute="top" secondItem="Hdf-LM-FoJ" secondAttribute="top" id="WTQ-rK-V4m"/>
@@ -4745,19 +4767,19 @@
             <color white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
