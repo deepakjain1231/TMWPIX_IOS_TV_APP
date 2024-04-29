@@ -274,7 +274,7 @@ class FilmAPI{
     //======== Opejn Movie Full Info ========
     static func getMovieInfoData(delegate: DetailsFilmViewController){
         let userProfile = UserProfile.getInstance()
-        let params = ["id" : delegate.FilmID,
+        let params = ["id" : "\(delegate.FilmID ?? "")",
                       "perfis" : "\(userProfile?.id ?? 13349)",
                       "user" : "",
                       "time" : "1657390028215",

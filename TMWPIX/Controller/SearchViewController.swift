@@ -74,7 +74,7 @@ class SearchViewController: TMWViewController, UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        self.search_action()
+        //self.search_action()
         textField.resignFirstResponder()
         return true
     }
