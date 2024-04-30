@@ -332,10 +332,10 @@ class Focusable_TextField: UITextField {
             // Change appearance when focused (e.g., increase size, change border color)
             self.layer.borderWidth = 5.0
             self.layer.borderColor = AppColor.app_YelloColor.cgColor
-            //self.layer.cornerRadius = 8
+            self.layer.cornerRadius = 8
         } else {
             // Reset appearance when unfocused
-            //self.layer.cornerRadius = 8
+            self.layer.cornerRadius = 8
             self.layer.borderWidth = 0.0
         }
     }
@@ -422,10 +422,79 @@ class Focusable_HomeButton: UIButton {
     }
 }
 
+class Focusable_Label_Temp: UILabel {
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        
+        if self.isFocused {
+            // Change appearance when focused (e.g., increase size, change border color)
+        } else {
+            // Reset appearance when unfocused
+        }
+    }
+}
+
 
 
 struct AppColor {
     static let app_Dark_RedColor = #colorLiteral(red: 0.8705882353, green: 0, blue: 0.2470588235, alpha: 1) //DE003F
     static let app_Light_RedColor = #colorLiteral(red: 0.6352941176, green: 0.2039215686, blue: 0.1803921569, alpha: 1) //DE003F
     static let app_YelloColor = #colorLiteral(red: 0.9490196078, green: 0.662745098, blue: 0.231372549, alpha: 1) //DE003F
+}
+
+
+extension String {
+
+    func isValidMobile() -> Bool {
+        let PHONE_REGEX = "^[0-9]{6,14}$"
+        let phoneTest = NSPredicate(format: "SELF MATCHES %@", PHONE_REGEX)
+        let result =  phoneTest.evaluate(with: self)
+        return result
+    }
+    
+    func isValidPassword(digit: Int = 7) -> Bool {
+        //Minimum six characters, at least one letter and one number
+        let passwordRegex = "^(?=.*[A-Za-z])(?=.*\\d)[A-Za-z\\d].{\(digit),}"
+        return NSPredicate(format: "SELF MATCHES %@", passwordRegex).evaluate(with: self)
+    }
+
+    
+    func isValidString(value:String?) -> Bool {
+         return value == "" || value == nil
+    }
+    
+    func checkAcceptableValidation(AcceptedCharacters:String) -> Bool {
+        let cs = NSCharacterSet(charactersIn: AcceptedCharacters).inverted
+        let filtered = self.components(separatedBy: cs).joined(separator: "")
+        if self != filtered{
+            return false
+        }
+        return true
+    }
+    
+    func byaddingLineHeight(linespacing:CGFloat) -> NSAttributedString {
+        let attributedString = NSMutableAttributedString(string: self)
+        // *** Create instance of `NSMutableParagraphStyle`
+        let paragraphStyle = NSMutableParagraphStyle()
+        // *** set LineSpacing property in points ***
+        paragraphStyle.lineSpacing = linespacing  // Whatever line spacing you want in points
+        // *** Apply attribute to string ***
+        attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+        return attributedString
+    }
+    
+    func trimed() -> String{
+       return  self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
 }

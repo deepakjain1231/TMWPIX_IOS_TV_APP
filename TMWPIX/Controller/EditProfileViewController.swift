@@ -67,24 +67,26 @@ class EditProfileViewController: TMWViewController, UITextFieldDelegate {
     
     @IBAction func edit_addProfile(_ sender: Any) {
         //check name, password, state
-        if (nameText.text == "" || passwordText.text == ""){
+        let str_Name = self.nameText.text ?? ""
+        let str_Password = self.passwordText.text ?? ""
+        if str_Name.trimed() == "" {
             utils.showDestructiveAlert(message: "name or password is missing", presentationController: self)
-        }else{
-            var tempState = 1
-            if state == "normal" {
-                tempState = 0
-            }
-            
-            if isAddProfile == true {
-                // call add profile api
-                ProfileAPI.addProfile(status: "ativo", infantil: tempState, password: passwordText.text!, name: nameText.text!, delegate: self)
-                // take name, password and state to send to api
-            }else{
-                //call edit profile api
-                ProfileAPI.editProfile(status: "ativo", infantil: tempState, password: passwordText.text!, name: nameText.text!, delegate: self)
-            }
+            return
         }
-        
+
+        var tempState = 1
+        if state == "normal" {
+            tempState = 0
+        }
+
+        if isAddProfile == true {
+            // call add profile api
+            ProfileAPI.addProfile(status: "ativo", infantil: tempState, password: str_Password, name: str_Name, delegate: self)
+            // take name, password and state to send to api
+        }else{
+            //call edit profile api
+            ProfileAPI.editProfile(status: "ativo", infantil: tempState, password: str_Password, name: str_Name, delegate: self)
+        }
     }
     
     

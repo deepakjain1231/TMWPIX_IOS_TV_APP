@@ -141,54 +141,19 @@ class ProfileAPI{
     
     static func addProfile(status: String, infantil: Int, password: String, name: String, delegate: EditProfileViewController){
         let userInfo = UserInfo.getInstance()
-//        const link = `http://api.tmwpix.com/profileadd?user=${userTokenObj.usr}&time=${userTokenObj.time}&hash=${userTokenObj.hash}&dtoken=${userTokenObj.pass}&os=android&operator=1&tipo=${userTokenObj.loginType}&usrtoken=${userTokenObj.usrtoken}&hashtoken=${userTokenObj.hashtoken}`;
+
         let methodString = "/profileadd?user=\("")&time=\(utils.getTime())&hash=\(utils.getHash())&dtoken=\(utils.getDToken())&os=\("ios")&operator=1&tipo=\("t")&usrtoken=\(userInfo?.token! ?? "")&hashtoken=\(utils.getHashToken(token: (userInfo?.token)!))"
         
-        let params = ["nome" : name.trimmingCharacters(in: .whitespacesAndNewlines),
+        var params = ["senha": "",
+                      "nome" : name.trimed(),
                       "status" : "ativo",
                       "infantil" :"\(infantil)",
-                      "clientes_id" : "\((userInfo?.client_id)! as Int)",
-                      "senha" : utils.md5(string: password)]
-//        let userInfo = UserInfo.getInstance()
-//        let params = ["nome" : name.trimmingCharacters(in: .whitespacesAndNewlines),
-//                      "status" : "ativo",
-//                      "infantil" :infantil,
-//                      "clientes_id" : userInfo?.client_id as Any,
-//                      "senha" : utils.md5(string: password)]
+                      "clientes_id" : "\(userInfo?.client_id ?? 0)"]
         
-//        let headers : HTTPHeaders = [
-//                "Accept": "application/json",
-//                "Content-Type": "application/json"
-//            ]
-//        const bodyJson = {
-//                nome: profilename.trim(),
-//                status: 'ativo',
-//                infantil: parseInt(infantil, 10),
-//                clientes_id: userTokenObj.client_id,
-//                senha: md5(profilepassword),
-//              };
-//    loginType: loginType === 'token' ? 't' : '',
-//                  client_id: responseJson.client_id,
-        
-//        AF.request(Constants.baseUrl+methodString,method: .post, parameters: params, headers: headers).responseJSON { response in
-//            if let data = response.data {
-//                print(data)
-//                print(response.result)
-//                do {
-//                    let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
-//                    let profileStatus = dictonary!["success"] as! String
-//                        if profileStatus == "Profile is successfully deleted" {
-//                            delegate.addProfileResponseHandler(errorMessage: "")
-//                        }else{
-//                            let error = dictonary!["error"]
-//                            delegate.addProfileResponseHandler(errorMessage: error!["message"] as! String)
-//                        }
-//                    }catch let error as NSError {
-//                        print(error)
-//                    }
-//
-//                }
-//        }
+        if password != "" {
+            params["senha"] = utils.md5(string: password)
+        }
+
         AF.request(Constants.baseUrl+methodString,method: .post, parameters: params)
             .response{  response in
 

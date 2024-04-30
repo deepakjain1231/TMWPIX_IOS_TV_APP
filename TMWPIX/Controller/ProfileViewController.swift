@@ -90,6 +90,7 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
                 // call delete profile
                 let profileId = userProfiles[sel_index].id
                 ProfileAPI.removeProfile(profileId: "\(profileId!)", delegate: self)
+                self.passwordView.isHidden = true
             }else{
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let nextViewController = storyBoard.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController

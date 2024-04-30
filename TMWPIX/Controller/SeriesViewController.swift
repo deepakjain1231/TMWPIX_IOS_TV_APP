@@ -136,12 +136,15 @@ extension SeriesViewController : UICollectionViewDelegate {
         
         if (type == filmVC) {
             // Load Films detail
+            var str_img = films[indexPath.row].image ?? ""
+            str_img = str_img.replacingOccurrences(of: ".webp", with: ".jpg")
+            
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let popupVC = storyboard.instantiateViewController(withIdentifier: "DetailsFilmViewController") as! DetailsFilmViewController
             popupVC.modalPresentationStyle = .overCurrentContext
             popupVC.modalTransitionStyle = .crossDissolve
             popupVC.FilmName = films[indexPath.row].name!
-            popupVC.ImageUrl = films[indexPath.row].image!
+            popupVC.ImageUrl = str_img
             popupVC.FilmID = "\(films[indexPath.row].id!)"
             popupVC.aluguel = films[indexPath.row].aluguel!
             present(popupVC, animated: true, completion: nil)
