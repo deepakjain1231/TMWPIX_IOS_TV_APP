@@ -1266,7 +1266,7 @@
                                         </collectionViewFlowLayout>
                                         <cells>
                                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="A1h-jR-0UT" customClass="RemoveProfileViewCell" customModule="TMWPIXtvOS" customModuleProvider="target">
-                                                <rect key="frame" x="7" y="10" width="165" height="163"/>
+                                                <rect key="frame" x="3" y="10" width="165" height="163"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="7Sl-zG-458">
                                                     <rect key="frame" x="0.0" y="0.0" width="165" height="163"/>
@@ -1568,6 +1568,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btn_Back" destination="vAY-KU-PDk" id="8Gg-k9-DRV"/>
                         <outlet property="collectionView" destination="Gof-cA-bVS" id="vDq-zw-f2w"/>
                         <outlet property="img_logo" destination="Arj-W3-o7Q" id="OY1-Ix-GuX"/>
                         <outlet property="movieDiscription" destination="MA4-40-94O" id="yVW-aE-16b"/>
@@ -4776,19 +4777,19 @@
         <image name="radio.fill" catalog="system" width="128" height="117"/>
         <image name="star.circle.fill" catalog="system" width="128" height="128"/>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
