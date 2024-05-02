@@ -455,21 +455,21 @@ class FilmAPI{
         let userInfo = UserInfo.getInstance()
         let userProfile = UserProfile.getInstance()
         
-        let params = ["descricao"       : "\(delegate.tfError.text)",
+        let params = ["descricao"       : delegate.tfError.text ?? "",
                       "setor"           : "filmes",
-                      "idconteudo"      : delegate.FilmID,
-                      "clientes_id"     : "\(userInfo?.client_id)",
+                      "idconteudo"      : delegate.FilmID ?? "",
+                      "clientes_id"     : "\(userInfo?.client_id ?? 0)",
                       "perfis_id"       : "\(userProfile?.id ?? 13349)",
                       "user"            : "",
                       "time"            : "1657390028215",
                       "hash"            : "6b44ce6d55fb47f49a08c4ed436be469",
-                      "dtoken"          : userInfo?.password,
+                      "dtoken"          : userInfo?.password ?? "",
                       "os"              : "ios",
                       "operator"        : "1",
                       "tipo"            : "t",
-                      "usrtoken"        : userInfo?.token,
+                      "usrtoken"        : userInfo?.token ?? "",
                       "hashtoken"       : "fc427b261087b109867e42961ca645ce",
-                      "page"            : "movie"]
+                      "page"            : "movie"] as [String : Any]
         
         AF.request(Constants.baseUrl+Constants.API_METHOD_ERRORTICKET, parameters: params)
             .response{ [self] response in

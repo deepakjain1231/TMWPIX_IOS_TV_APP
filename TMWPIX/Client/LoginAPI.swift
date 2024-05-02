@@ -30,10 +30,8 @@ class LoginAPI{
 //        user=&time=1657435701486&hash=3f9b7d853e407cc1159077ad82b0fb1d&dtoken=d41d8cd98f00b204e9800998ecf8427e&os=android&operator=1&tipo=t&usrtoken=APP1234&hashtoken=aa2dd11aad8d9664a4cd9ac33b49caa9&device_id=7f3e54b720a6f34e&device_name=sdk_google_atv_x86&platform=android&appversion=1.3.1
         
         AF.request(Constants.baseUrl+Constants.API_METHOD_LOGIN, parameters: params)
-            .response{response in
-                let data = response.data
+            .response{ response in
                 if let data = response.data {
-                    print(data)
                     print(response.result)
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
@@ -42,19 +40,18 @@ class LoginAPI{
                         if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
                             let userInfo = UserInfo.getInstance()
                             for aDic in arrayOfDic{
-                                
-                                //                                    print(aDic)//print each of the dictionaries
-                                if let Email = aDic["email"] as? String{
+
+                                if let Email = aDic["email"] as? String {
                                     print(Email)//print price of each dic
                                     userInfo?.email = Email
                                 }
                                 
-                                if let Pass = aDic["senha"] as? String{
+                                if let Pass = aDic["senha"] as? String {
                                     print(Pass)//print price of each dic
                                     userInfo?.password = Pass
                                 }
                                 
-                                if let client_id = aDic["client_id"] as? Int{
+                                if let client_id = aDic["client_id"] as? Int {
                                     userInfo?.client_id = client_id
                                 }
                             }

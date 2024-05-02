@@ -8,7 +8,6 @@
 import Foundation
 import UIKit
 import Alamofire
-import AlamofireImage
 
 class SeriesViewController: TMWViewController {
     
@@ -20,7 +19,6 @@ class SeriesViewController: TMWViewController {
     var type: Int = 0
     
     var str_search_Text = ""
-    let downloader = ImageDownloader()
     
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var lblNoResult: UILabel!

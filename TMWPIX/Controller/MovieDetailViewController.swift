@@ -20,6 +20,9 @@ class MovieDetailViewController: TMWViewController {
     var name: String?
     var image: String?
     
+    var player: AVPlayer!
+    var playerController: AVPlayerViewController!
+    
     // Movie Detail
     @IBOutlet weak var seasonNumber: UILabel!
     @IBOutlet weak var sereisImage: UIImageView!
@@ -39,11 +42,25 @@ class MovieDetailViewController: TMWViewController {
         movieTitle.text = name
         self.img_logo.tag = 100
         self.btn_Back.tag = 100
+        self.sereisImage.tag = 100
         sereisImage.adjustsImageWhenAncestorFocused = true
         
         self.loadingIndicator.startAnimating()
         SeriesAPI.getSeasonData(serieid: String(self.id!), delegate: self)
         SeriesAPI.getSeriesInfoData(serieid: String(self.id!), delegate: self)
+        
+        try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
+
+    }
+    
+    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if let player = object as? AVPlayer, player == self.player, keyPath == "status" {
+            if player.status == .readyToPlay {
+                self.player?.play()
+            } else if player.status == .failed {
+                debugPrint("failed_player")
+            }
+        }
     }
     
     
@@ -68,7 +85,7 @@ class MovieDetailViewController: TMWViewController {
         let popupVC = storyboard.instantiateViewController(withIdentifier: "ErrorResolvedViewController") as! ErrorResolvedViewController
         popupVC.modalPresentationStyle = .overCurrentContext
         popupVC.modalTransitionStyle = .crossDissolve
-        popupVC.FilmID = "\(self.id)"
+        popupVC.FilmID = "\(self.id ?? 0)"
         let pVC = popupVC.popoverPresentationController
         pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
         present(popupVC, animated: true, completion: nil)
@@ -138,27 +155,48 @@ extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
 extension MovieDetailViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MoviePlayerViewController") as! MoviePlayerViewController
-//        nextViewController.ImageUrl = "http://api.tmwpix.com/storage/uploads/canais/capa2/1.png?timestamp=1661492443432"
-//        nextViewController.VideoURl = self.episodes[indexPath.row].url!
-//        self.present(nextViewController, animated:true, completion:nil)
-        
-        if let videoURL = URL(string: self.episodes[indexPath.row].url ?? "") {
-            // Create an AVPlayer instance with the URL as the asset
-            let player = AVPlayer(url: videoURL)
-            
-            // Create an AVPlayerViewController and set its player
-            let controller = AVPlayerViewController()
-            controller.player = player
-            
-            // Present the AVPlayerViewController or add it to your view hierarchy
-            present(controller, animated: true) {
-                // Start playback
-                player.play()
-            }
+
+        guard let url = URL(string: self.episodes[indexPath.row].url ?? "") else {
+            debugPrint("Invalid URL")
+            return
         }
+
+        let asset = AVURLAsset(url: url, options: nil)
+        let playerItem = AVPlayerItem(asset: asset)
+        self.player = AVPlayer(playerItem: playerItem)
+        self.player?.addObserver(self, forKeyPath: "status", options: [], context: nil)// listen the current time of playing video
+        self.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: Double(1), preferredTimescale: 2), queue: DispatchQueue.main) { [weak self] (sec) in
+            guard let self = self else { return }
+            
+        }
+        self.player?.volume = 1.0
+
+        // Create AVPlayerViewController and set player
+        self.playerController = AVPlayerViewController()
+        self.playerController.player = self.player
+
+        // Present the AVPlayerViewController or add it to your view hierarchy
+        self.present(self.playerController, animated: true)
+        
+        
+        
+        
+        
+        
+//        if let videoURL = URL(string: self.episodes[indexPath.row].url ?? "") {
+//            // Create an AVPlayer instance with the URL as the asset
+//            let player = AVPlayer(url: videoURL)
+//            
+//            // Create an AVPlayerViewController and set its player
+//            let controller = AVPlayerViewController()
+//            controller.player = player
+//            
+//            // Present the AVPlayerViewController or add it to your view hierarchy
+//            present(controller, animated: true) {
+//                // Start playback
+//                player.play()
+//            }
+//        }
     }
     
 }

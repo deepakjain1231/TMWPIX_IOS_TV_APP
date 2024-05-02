@@ -77,8 +77,7 @@ class MovieAPI{
     
     func getMovieInfoData(){
         let userProfile = UserProfile.getInstance()
-        let params = ["appversion" : "1.3",
-                      "id" : "1228",
+        let params = ["id" : "1228",
                       "perfis" : "\(userProfile?.id ?? 13349)",
                       "user" : "",
                       "time" : "1657390028215",

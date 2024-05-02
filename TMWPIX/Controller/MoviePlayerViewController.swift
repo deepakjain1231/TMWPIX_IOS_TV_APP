@@ -126,9 +126,7 @@ class MoviePlayerViewController: TMWViewController, AVPlayerViewControllerDelega
         vplayer?.addPeriodicTimeObserver(forInterval: CMTime(seconds: Double(1), preferredTimescale: 2), queue: DispatchQueue.main) { [weak self] (sec) in
             guard let self = self else { return }
             let seconds = CMTimeGetSeconds(sec)
-            let (hours, minutes, second) = self.getHoursMinutesSecondsFrom(seconds: seconds)
-//            self.title = "\(hours):\(minutes):\(second)"
-            //Temp//self.playheadSlider.value = Float(seconds)
+            let (_, _, _) = self.getHoursMinutesSecondsFrom(seconds: seconds)
         }
         vplayer?.volume = 1.0
         

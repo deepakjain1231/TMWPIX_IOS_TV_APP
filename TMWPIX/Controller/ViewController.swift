@@ -43,8 +43,8 @@ class ViewController: TMWViewController, UITextFieldDelegate {
     
     @IBAction func btn_Registraion_Action(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        //Temp//let nextViewController = storyBoard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-        //Temp//self.present(nextViewController, animated:true, completion:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        self.present(nextViewController, animated:true, completion:nil)
     }
     
     @IBAction func btn_Login_Action(_ sender: Any) {
