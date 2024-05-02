@@ -12,7 +12,6 @@
 		008CB6D82BDD25E9003C948C /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008CB6D72BDD25E9003C948C /* AlignedCollectionViewFlowLayout.swift */; };
 		00B7490F2BE33354008810C5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4C8BC6290F6DCF00B5AD26 /* RegisterViewController.swift */; };
 		00E392642BCAA5D300E8A615 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 00E392632BCAA5D300E8A615 /* Alamofire */; };
-		00E392662BCAA5D300E8A615 /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 00E392652BCAA5D300E8A615 /* AlamofireDynamic */; };
 		0449D61228B52A40000144D4 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0449D61028B52A40000144D4 /* Series.swift */; };
 		0468D27028E589C80009FBFD /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18990F0528BCAC85009BB6F6 /* Program.swift */; };
 		0468D27128E589CD0009FBFD /* EPGInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18990F0328BCAC7F009BB6F6 /* EPGInfo.swift */; };
@@ -225,7 +224,6 @@
 			files = (
 				0064E6382BBDA38900EB8EB5 /* PlayKit in Frameworks */,
 				00E392642BCAA5D300E8A615 /* Alamofire in Frameworks */,
-				00E392662BCAA5D300E8A615 /* AlamofireDynamic in Frameworks */,
 				0064E6352BBDA36D00EB8EB5 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -592,7 +590,6 @@
 				0064E6342BBDA36D00EB8EB5 /* SDWebImage */,
 				0064E6372BBDA38900EB8EB5 /* PlayKit */,
 				00E392632BCAA5D300E8A615 /* Alamofire */,
-				00E392652BCAA5D300E8A615 /* AlamofireDynamic */,
 			);
 			productName = TMWPIX;
 			productReference = 049FE37028AD17D900685A79 /* TMWPIXtvOS.app */;
@@ -1196,11 +1193,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 00E392622BCAA5D300E8A615 /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
-		};
-		00E392652BCAA5D300E8A615 /* AlamofireDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 00E392622BCAA5D300E8A615 /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
 		};
 /* End XCSwiftPackageProductDependency section */
 
