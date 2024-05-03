@@ -1,12 +1,10 @@
 {
   "images" : [
     {
-      "filename" : "iTunesArtwork@2x.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
-      "filename" : "iTunesArtwork@2x 1.png",
       "idiom" : "tv",
       "scale" : "2x"
     }
