@@ -1,12 +1,10 @@
 {
   "images" : [
     {
-      "filename" : "TMWPIX-ICON_AppIcon@1x.png",
       "idiom" : "tv",
       "scale" : "1x"
     },
     {
-      "filename" : "TMWPIX-ICON_AppIcon@1x 1.png",
       "idiom" : "tv",
       "scale" : "2x"
     }

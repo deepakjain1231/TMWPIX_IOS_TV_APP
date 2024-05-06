@@ -850,7 +850,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = X5Q6QAHJDP;
+				DEVELOPMENT_TEAM = L7DCWNR8YR;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "TMWPIX copy-Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
