@@ -2272,6 +2272,24 @@
                                             <constraint firstAttribute="height" constant="81" id="iRE-Lw-TVS"/>
                                         </constraints>
                                     </view>
+                                    <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOK-CI-58H">
+                                        <rect key="frame" x="769.5" y="75" width="221" height="30"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecionar Perfil" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Qh-dh-3oF">
+                                                <rect key="frame" x="0.0" y="-3" width="221" height="36"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="FnV-hU-dkp"/>
+                                            <constraint firstAttribute="trailing" secondItem="2Qh-dh-3oF" secondAttribute="trailing" id="Qie-gt-a1R"/>
+                                            <constraint firstItem="2Qh-dh-3oF" firstAttribute="centerY" secondItem="dOK-CI-58H" secondAttribute="centerY" id="pxd-XH-nlP"/>
+                                            <constraint firstItem="2Qh-dh-3oF" firstAttribute="leading" secondItem="dOK-CI-58H" secondAttribute="leading" id="wXc-ko-1w9"/>
+                                        </constraints>
+                                    </view>
                                     <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9K5-ts-yDq" customClass="Focusable_Label_Temp" customModule="TMWPIXtvOS" customModuleProvider="target">
                                         <rect key="frame" x="10" y="75" width="1740" height="30"/>
                                         <subviews>
@@ -2372,7 +2390,10 @@
                                     <constraint firstItem="juy-aU-zPc" firstAttribute="width" secondItem="jzU-gt-4RE" secondAttribute="width" multiplier="0.65" id="L30-LA-vFG"/>
                                     <constraint firstAttribute="trailing" secondItem="9K5-ts-yDq" secondAttribute="trailing" constant="10" id="RhB-6e-YC8"/>
                                     <constraint firstItem="oe7-FF-0jn" firstAttribute="width" secondItem="jzU-gt-4RE" secondAttribute="width" multiplier="0.45" id="WYI-kX-JBQ"/>
+                                    <constraint firstItem="dOK-CI-58H" firstAttribute="centerX" secondItem="9K5-ts-yDq" secondAttribute="centerX" id="aYd-7M-NLt"/>
+                                    <constraint firstItem="dOK-CI-58H" firstAttribute="bottom" secondItem="9K5-ts-yDq" secondAttribute="bottom" id="b1V-9O-DRX"/>
                                     <constraint firstItem="juy-aU-zPc" firstAttribute="top" secondItem="9K5-ts-yDq" secondAttribute="bottom" constant="35" id="bde-Jv-wm8"/>
+                                    <constraint firstItem="dOK-CI-58H" firstAttribute="top" secondItem="9K5-ts-yDq" secondAttribute="top" id="c6n-AU-o1G"/>
                                     <constraint firstItem="oe7-FF-0jn" firstAttribute="top" secondItem="juy-aU-zPc" secondAttribute="bottom" constant="25" id="gXd-r4-OjP"/>
                                     <constraint firstItem="9K5-ts-yDq" firstAttribute="top" secondItem="jzU-gt-4RE" secondAttribute="top" constant="75" id="hOf-Nq-uca"/>
                                     <constraint firstItem="juy-aU-zPc" firstAttribute="centerX" secondItem="jzU-gt-4RE" secondAttribute="centerX" id="n6w-cR-8Bl"/>
@@ -2485,6 +2506,8 @@
                         <outlet property="collectionView" destination="juy-aU-zPc" id="D1M-6S-lah"/>
                         <outlet property="passwordView" destination="enw-eh-prE" id="gpg-h0-rjE"/>
                         <outlet property="tfPassword" destination="yBa-Xb-8QX" id="NNh-2F-1Gh"/>
+                        <outlet property="view_Header_title" destination="9K5-ts-yDq" id="cW1-gk-HbV"/>
+                        <outlet property="view_Header_title_Short" destination="dOK-CI-58H" id="vVQ-K2-fT5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62r-cP-c7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3767,13 +3790,13 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIE-df-mkH" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
-                                        <rect key="frame" x="944" y="17" width="190" height="60"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RIE-df-mkH" customClass="Focusable_CloseLarge_Button" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                        <rect key="frame" x="346" y="17" width="788" height="60"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="60" id="3mV-VT-Py8"/>
-                                            <constraint firstAttribute="width" constant="190" id="gB4-oU-Q1I"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="22" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="X Fechar">
                                             <color key="titleColor" red="0.87058823529999996" green="0.0" blue="0.2477211356" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3783,12 +3806,12 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nXf-oR-18o" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
-                                        <rect key="frame" x="22" y="77" width="297" height="45"/>
+                                        <rect key="frame" x="22" y="77" width="353" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="45" id="yBE-MM-Sxy"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
-                                        <inset key="contentEdgeInsets" minX="22" minY="0.0" maxX="22" maxY="0.0"/>
+                                        <inset key="contentEdgeInsets" minX="50" minY="0.0" maxX="50" maxY="0.0"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" title="Selecionar categoria: Todas">
                                             <color key="titleColor" red="0.70326077939999998" green="0.465256691" blue="0.019599612799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -3868,6 +3891,7 @@
                                 <constraints>
                                     <constraint firstItem="Uqv-jR-mWo" firstAttribute="top" secondItem="nXf-oR-18o" secondAttribute="bottom" constant="18" id="3cQ-om-cAd"/>
                                     <constraint firstAttribute="trailing" secondItem="C3i-xL-INY" secondAttribute="trailing" constant="22" id="5nC-qV-L2h"/>
+                                    <constraint firstItem="RIE-df-mkH" firstAttribute="leading" secondItem="mcY-xB-Bdf" secondAttribute="trailing" constant="150" id="5o2-Cy-Wtx"/>
                                     <constraint firstItem="nXf-oR-18o" firstAttribute="top" secondItem="mcY-xB-Bdf" secondAttribute="bottom" constant="18" id="CSC-Kx-uBu"/>
                                     <constraint firstAttribute="trailing" secondItem="RIE-df-mkH" secondAttribute="trailing" constant="18" id="Gtb-FR-Ypc"/>
                                     <constraint firstItem="bEP-Nc-vpJ" firstAttribute="top" secondItem="C3i-xL-INY" secondAttribute="bottom" constant="40" id="Kvd-7E-dRC"/>
@@ -3878,7 +3902,6 @@
                                     <constraint firstItem="mcY-xB-Bdf" firstAttribute="top" secondItem="IZ2-uy-SgC" secondAttribute="top" constant="35" id="dpn-de-mdF"/>
                                     <constraint firstItem="C3i-xL-INY" firstAttribute="leading" secondItem="IZ2-uy-SgC" secondAttribute="leading" constant="22" id="dzb-Ag-1uB"/>
                                     <constraint firstItem="mcY-xB-Bdf" firstAttribute="leading" secondItem="IZ2-uy-SgC" secondAttribute="leading" constant="22" id="uK0-pM-s6w"/>
-                                    <constraint firstItem="RIE-df-mkH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="nXf-oR-18o" secondAttribute="trailing" constant="22" id="yS7-Jo-PpI"/>
                                     <constraint firstAttribute="bottom" secondItem="bEP-Nc-vpJ" secondAttribute="bottom" constant="50" id="yTq-p2-VQf"/>
                                     <constraint firstAttribute="trailing" secondItem="bEP-Nc-vpJ" secondAttribute="trailing" constant="25" id="zgJ-R4-dwc"/>
                                 </constraints>

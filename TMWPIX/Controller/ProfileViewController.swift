@@ -22,6 +22,10 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var tfPassword: UITextField!
     
+    @IBOutlet weak var view_Header_title: UIView!
+    @IBOutlet weak var view_Header_title_Short: UIView!
+    
+    
     var isProfileState = ProfileState.profileList
     var isFromLogin = false
     var userProfiles : [UserProfile] = []
@@ -29,6 +33,8 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.view_Header_title.isHidden = true
+        self.view_Header_title_Short.isHidden = false
         self.passwordView.isHidden = true
         getProfileList()
         
@@ -231,8 +237,12 @@ extension ProfileViewController{
     func handleBackButton(){
         if isFromLogin == true && isProfileState == .profileList{
             backButton.isHidden = true
+            self.view_Header_title.isHidden = true
+            self.view_Header_title_Short.isHidden = false
         }else{
             backButton.isHidden = false
+            self.view_Header_title.isHidden = false
+            self.view_Header_title_Short.isHidden = true
         }
         collectionView.reloadData()
     }

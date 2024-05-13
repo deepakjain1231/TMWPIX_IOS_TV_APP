@@ -78,4 +78,15 @@ class SearchViewController: TMWViewController, UITextFieldDelegate {
         textField.resignFirstResponder()
         return true
     }
+    
+    
+    override func shouldUpdateFocus(in context: UIFocusUpdateContext) -> Bool {
+        // Condition
+        return true
+    }
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        // Condition
+        debugPrint(context)
+    }
+
 }

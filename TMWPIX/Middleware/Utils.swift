@@ -498,3 +498,43 @@ extension String {
        return  self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
     }
 }
+
+
+
+
+class Focusable_CloseLarge_Button: UIButton {
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        let lbl = UILabel.init(frame: CGRect.init(x: self.frame.width - 150, y: 0, width: 150, height: self.frame.height))
+        lbl.tag = 200
+
+        if self.isFocused {
+            self.addSubview(lbl)
+            lbl.layer.borderWidth = 2.0
+            lbl.layer.borderColor = UIColor.white.cgColor
+            lbl.layer.cornerRadius = 12
+            
+        } else {
+            // Reset appearance when unfocused
+            for subviewss in self.subviews {
+                if (subviewss as? UILabel)?.tag == 200 {
+                    (subviewss as? UILabel)?.removeFromSuperview()
+                }
+            }
+            
+            //lbl.layer.borderWidth = 0.0
+            //lbl.layer.cornerRadius = 0
+        }
+    }
+}
