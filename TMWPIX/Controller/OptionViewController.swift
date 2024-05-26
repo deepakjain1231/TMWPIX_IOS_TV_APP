@@ -11,6 +11,13 @@ import UIKit
 
 class OptionViewController: TMWViewController {
 
+    @IBOutlet weak var lbl_Name: UILabel!
+    @IBOutlet weak var lbl_Endereco: UILabel!
+    @IBOutlet weak var lbl_Email: UILabel!
+    @IBOutlet weak var lbl_Plano: UILabel!
+    @IBOutlet weak var lbl_nesse: UILabel!
+    @IBOutlet weak var lbl_device: UILabel!
+    
     @IBOutlet weak var btn_Back: UIButton!
     @IBOutlet weak var btn_profile: UIButton!
 
@@ -18,7 +25,12 @@ class OptionViewController: TMWViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        self.lbl_Name.text = "Nome: \(appDelegate.dic_UserData?.name ?? "")"
+        self.lbl_Endereco.text = "Endereço:"
+        self.lbl_Email.text = "E-mail: \(appDelegate.dic_UserData?.email ?? "")"
+        self.lbl_Plano.text = "Plano: \(appDelegate.dic_UserData?.plano ?? "")"
+        self.lbl_nesse.text = "Alugueis grátis restantes nesse mês: \(appDelegate.dic_UserData?.aluguelGratisRestante ?? 0)"
+        self.lbl_device.text = "Dispositivo: \(utils.getDeviceId())"
     }
     
     

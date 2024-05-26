@@ -85,18 +85,18 @@ class ConfigAPI{
     
     
     
-    func getConfigStartData(usrToken: String){
+    func getConfigStartData(){
         
-        
+        let userInfo = UserInfo.getInstance()
         let params = ["user" : "",
                       "time" : utils.getTime(),
                       "hash" : utils.getHash(),
                       "dtoken" : utils.getDToken(),
-                      "os" : utils.getOperatingSystem(),
+                      "os" : "android",//utils.getOperatingSystem(),
                       "operator" : "1",
                       "tipo" : "t",
-                      "usrtoken" : usrToken,
-                      "hashtoken" : utils.getHashToken(token: usrToken),
+                      "usrtoken" : userInfo?.token,
+                      "hashtoken" : utils.getHashToken(token: (userInfo?.token)!),
                       "device_id" : "7f3e54b720a6f34e",
                       "device_name" : "sdk_google_atv_x86",
                       "platform" : utils.getPlatform(),
@@ -107,19 +107,17 @@ class ConfigAPI{
                 if let data = response.data {
                     ConfigAPI.isTokenCheck = true
                     do {
+                        arrUser.removeAll()
                         let result = try JSONDecoder().decode([ConfigStart].self, from: data)
                         arrUser.append(contentsOf: result)
-                        for i in arrUser{
-                            //                            myGroup.leave()
-                            print(i.token! as String)
+                        for i in arrUser {
+                            appDelegate.str_cpfValue = i.cpf ?? ""
+                            appDelegate.dic_UserData = i
                         }
-                        
-                        //return arrUser
                     } catch {
                         ConfigAPI.isTokenCheck = false
                         print(error)
                     }
-                    
                 }
             }
     }// close bracket of config Start

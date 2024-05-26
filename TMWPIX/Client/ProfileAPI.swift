@@ -184,12 +184,15 @@ class ProfileAPI{
         let methodString = "/profileedit?user=\("")&time=\(utils.getTime())&hash=\(utils.getHash())&dtoken=\(utils.getDToken())&os=\("ios")&operator=1&tipo=\("t")&usrtoken=\(userInfo?.token! ?? "")&hashtoken=\(utils.getHashToken(token: (userInfo?.token)!))"
 //        &name=\(name.trimmingCharacters(in: .whitespacesAndNewlines))&status=\("ativo")&infantil=\(infantil)&clientes_id=\((userInfo?.client_id)! as Int)&senha=\(utils.md5(string: password))"
 //        let userInfo = UserInfo.getInstance()
-        let params = ["nome" : name.trimmingCharacters(in: .whitespacesAndNewlines),
+        var params = ["nome" : name.trimed(),
                       "status" : "ativo",
-                      "infantil" :"\(infantil)",
+                      "infantil" : infantil,
                       "clientes_id" : "\((userInfo?.client_id)! as Int)",
-                      "senha" : utils.md5(string: password)]
+                      "senha" : utils.md5(string: password)] as [String : Any]
         
+        if password == "" {
+            params["senha"] = ""
+        }
         //
 //        let headers : HTTPHeaders = [
 //                "Accept": "application/json",

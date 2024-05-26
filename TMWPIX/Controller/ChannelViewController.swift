@@ -89,13 +89,12 @@ extension ChannelViewController : UICollectionViewDataSource {
     
 }
 
-//extension ChannelViewController: UICollectionViewDelegateFlowLayout {
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout:
-//                        UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        return CGSize(width: self.collectionView.frame.size.width / 4, height: self.collectionView.frame.size.height / 5 - 5)
-//    }
-//
-//}
+extension ChannelViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: self.collectionView.frame.size.width / 7, height: self.collectionView.frame.size.height / 5 - 5)
+    }
+
+}
 
 extension ChannelViewController : UICollectionViewDelegate {
     

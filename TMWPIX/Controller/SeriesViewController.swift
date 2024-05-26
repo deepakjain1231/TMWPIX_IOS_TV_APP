@@ -144,7 +144,7 @@ extension SeriesViewController : UICollectionViewDelegate {
             popupVC.FilmName = films[indexPath.row].name!
             popupVC.ImageUrl = str_img
             popupVC.FilmID = "\(films[indexPath.row].id!)"
-            popupVC.aluguel = films[indexPath.row].aluguel!
+            popupVC.int_aluguel = films[indexPath.row].aluguel!
             present(popupVC, animated: true, completion: nil)
             
         }else{

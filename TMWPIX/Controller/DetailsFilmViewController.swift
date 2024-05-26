@@ -12,12 +12,12 @@ import AVFoundation
 import AVKit
 
 
-class DetailsFilmViewController: TMWViewController {
+class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, delegate_cpfVerified {
     
     var FilmName:String?
     var FilmID:String?
     var ImageUrl:String?
-    var aluguel = 0
+    var int_aluguel = 0
     var movie: Movie?
 
     @IBOutlet weak var name: UILabel!
@@ -81,9 +81,10 @@ class DetailsFilmViewController: TMWViewController {
     
     
     @IBAction func RentalDetailTapped(_ sender: Any) {
-        if aluguel == 2 {
+        if self.int_aluguel == 2 {
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let popupVC = storyboard.instantiateViewController(withIdentifier: "RentalDetailViewController") as! RentalDetailViewController
+            popupVC.delegate = self
             popupVC.modalPresentationStyle = .overCurrentContext
             popupVC.modalTransitionStyle = .crossDissolve
             if self.movie == nil {
@@ -107,42 +108,62 @@ class DetailsFilmViewController: TMWViewController {
             present(popupVC, animated: true, completion: nil)
             
         } else {
-
-            guard let url = URL(string: self.movie?.movies?.url ?? "") else {
-                debugPrint("Invalid URL")
-                return
-            }
-
-            let asset = AVURLAsset(url: url, options: nil)
-            let playerItem = AVPlayerItem(asset: asset)
-            self.player = AVPlayer(playerItem: playerItem)
-            self.player?.addObserver(self, forKeyPath: "status", options: [], context: nil)// listen the current time of playing video
-            self.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: Double(1), preferredTimescale: 2), queue: DispatchQueue.main) { [weak self] (sec) in
-                guard let self = self else { return }
-
-            }
-            self.player?.volume = 1.0
-
-            // Create AVPlayerViewController and set player
-            self.playerController = AVPlayerViewController()
-            self.playerController.player = self.player
-
-            // Present the AVPlayerViewController or add it to your view hierarchy
-            self.present(self.playerController, animated: true)
             
-            let but_Back = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 50, height: 50))
-            but_Back.addSubview(self.view)
-//            self.present(self.playerController, animated: true) {
-//                // Start playback
-//                self.player.play()
-//            }
+            self.play_video()
+            
         }
+    }
+    
+    func play_video() {
+        guard let url = URL(string: self.movie?.movies?.url ?? "") else {
+            debugPrint("Invalid URL")
+            return
+        }
+
+        let asset = AVURLAsset(url: url, options: nil)
+        let playerItem = AVPlayerItem(asset: asset)
+        self.player = AVPlayer(playerItem: playerItem)
+        self.player?.addObserver(self, forKeyPath: "status", options: [], context: nil)// listen the current time of playing video
+        self.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: Double(1), preferredTimescale: 2), queue: DispatchQueue.main) { [weak self] (sec) in
+            guard let self = self else { return }
+
+        }
+        self.player?.volume = 1.0
+
+        // Create AVPlayerViewController and set player
+        self.playerController = AVPlayerViewController()
+        self.playerController.player = self.player
+
+        // Present the AVPlayerViewController or add it to your view hierarchy
+        self.present(self.playerController, animated: true)
+        
+        let but_Back = UIButton.init(frame: CGRect.init(x: 0, y: 0, width: 50, height: 50))
+        but_Back.addSubview(self.view)
     }
     
     override func viewDidAppear(_ animated: Bool) {
 //       scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width / 2 , height: UIScreen.main.bounds.height + 100)
     }
 
+    
+    func check_and_openCPF_popup(_ success: Bool) {
+        if success {
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let popupVC = storyboard.instantiateViewController(withIdentifier: "CPFVerifiedVC") as! CPFVerifiedVC
+            popupVC.delegate = self
+            popupVC.modalPresentationStyle = .overCurrentContext
+            popupVC.modalTransitionStyle = .crossDissolve
+            let pVC = popupVC.popoverPresentationController
+            pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
+            present(popupVC, animated: true, completion: nil)
+        }
+    }
+    
+    func cpf_verified_play_moview(_ success: Bool) {
+        if success {
+            self.play_video()
+        }
+    }
 }
 
 extension DetailsFilmViewController {

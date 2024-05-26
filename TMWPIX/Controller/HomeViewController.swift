@@ -66,7 +66,7 @@ class HomeViewController: TMWViewController {
 //        optionView.backgroundColor = utils.getHomeButtonsBGColor()
         self.loadingIndicator.startAnimating()
         HomeAPI.getHomeBackgroundData(delegate: self);
-        
+        ConfigAPI().getConfigStartData()
     }
     
     func getCatrgoryBtnColor() -> UIColor{

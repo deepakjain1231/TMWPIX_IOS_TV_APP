@@ -5,14 +5,16 @@
 //  Created by Apple on 04/08/2022.
 //
 
-import Foundation
+protocol delegate_Cpf_Verified {
+    func check_and_openCPF_popup(_ success: Bool)
+}
 
 import Foundation
-
 import UIKit
 
 class RentalDetailViewController: TMWViewController {
     
+    var delegate: delegate_Cpf_Verified?
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var lblContent: UILabel!
     
@@ -37,10 +39,15 @@ class RentalDetailViewController: TMWViewController {
     }
     
     @IBAction func HireTapped(_ sender: Any) {
-        let alert = UIAlertController(title: "Hire", message: "Film has been hired successfully", preferredStyle: UIAlertController.Style.alert)
+        self.dismiss(animated: true) {
+            self.delegate?.check_and_openCPF_popup(true)
+        }
         
-        self.present(alert, animated: true, completion: nil)
-        dismiss(animated: true, completion: nil)
+        
+//        let alert = UIAlertController(title: "Hire", message: "Film has been hired successfully", preferredStyle: UIAlertController.Style.alert)
+//        
+//        self.present(alert, animated: true, completion: nil)
+        //dismiss(animated: true, completion: nil)
     }
     
 #if TARGET_OS_IOS

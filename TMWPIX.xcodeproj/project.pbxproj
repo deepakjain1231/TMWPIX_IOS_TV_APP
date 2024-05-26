@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		0064E6352BBDA36D00EB8EB5 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 0064E6342BBDA36D00EB8EB5 /* SDWebImage */; };
 		0064E6382BBDA38900EB8EB5 /* PlayKit in Frameworks */ = {isa = PBXBuildFile; productRef = 0064E6372BBDA38900EB8EB5 /* PlayKit */; };
+		006672CC2C03217600198A1A /* CPFVerifiedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 006672CB2C03217600198A1A /* CPFVerifiedVC.swift */; };
 		008CB6D82BDD25E9003C948C /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008CB6D72BDD25E9003C948C /* AlignedCollectionViewFlowLayout.swift */; };
 		00B7490F2BE33354008810C5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4C8BC6290F6DCF00B5AD26 /* RegisterViewController.swift */; };
 		00E392642BCAA5D300E8A615 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 00E392632BCAA5D300E8A615 /* Alamofire */; };
@@ -112,6 +113,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		006672CB2C03217600198A1A /* CPFVerifiedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPFVerifiedVC.swift; sourceTree = "<group>"; };
 		008CB6D72BDD25E9003C948C /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		0449D61028B52A40000144D4 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
 		049FE37028AD17D900685A79 /* TMWPIXtvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMWPIXtvOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -523,6 +525,7 @@
 				1897775028B8E03C00DE41C6 /* EPGViewController.swift */,
 				1893900D28BF4C67008ADB9E /* GenderViewController.swift */,
 				1863080228C0FCE200CD0DEB /* TMWViewController.swift */,
+				006672CB2C03217600198A1A /* CPFVerifiedVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -792,6 +795,7 @@
 				049FE36228AD17D900685A79 /* FilmViewController.swift in Sources */,
 				049FE39828AFD90100685A79 /* Movie.swift in Sources */,
 				0468D27D28E58C240009FBFD /* GenderViewController.swift in Sources */,
+				006672CC2C03217600198A1A /* CPFVerifiedVC.swift in Sources */,
 				049FE36328AD17D900685A79 /* Profiles.swift in Sources */,
 				049FE39C28AFD91A00685A79 /* Aluguel.swift in Sources */,
 				049FE39128AFD8BF00685A79 /* Cobrancas.swift in Sources */,

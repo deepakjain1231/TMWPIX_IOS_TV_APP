@@ -24,7 +24,7 @@ class SeriesAPI{
 
         let params: [String:String] = [
             "user" : "",
-            "infantil" : "\(userProfile?.infantil ?? 0)",
+            "infantil": "\(userProfile?.infantil ?? 0)",
             "time" : utils.getTime(),
             "hash" : utils.getHash(),
             "dtoken" : utils.getDToken(),
