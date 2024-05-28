@@ -11,13 +11,27 @@ import UIKit
 
 class ErrorResolvedViewController: TMWViewController {
     
+    var str_Error = ""
+    var screenFrom = ""
+    var superVC: UIViewController?
+    
     @IBOutlet weak var tfError: UITextField!
+    @IBOutlet weak var lbl_msg: UILabel!
+    @IBOutlet weak var view_msg_bg: UIView!
+    
     var FilmID:String?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.view_msg_bg.isHidden = true
         
+        if self.screenFrom == "error_resolved" {
+            self.tfError.isHidden = true
+            self.view_msg_bg.isHidden = false
+            self.lbl_msg.text = str_Error
+            self.lbl_msg.textColor = .black
+        }
     }
     
     
@@ -26,9 +40,29 @@ class ErrorResolvedViewController: TMWViewController {
     }
     
     @IBAction func errorResolvedTapped(_ sender: Any) {
-        if (tfError.text != "") {
-            loadingIndicator.startAnimating()
-            FilmAPI.reportError(delegate: self)
+        if self.screenFrom == "error_resolved" {
+            dismiss(animated: true, completion: nil)
+        }
+        else {
+            if (tfError.text != "") {
+                loadingIndicator.startAnimating()
+                FilmAPI.reportError(delegate: self) { dic_response in
+                    DispatchQueue.main.async {
+                        if let dic_error = dic_response?["error"] as? [String: Any] {
+                            if (dic_error["code"] as? Int ?? 0) == 0 {
+                                let str_msg =  dic_error["message"] as? String ?? ""
+                                if str_msg != "" {
+                                    let alert = UIAlertController(title: nil, message: str_msg, preferredStyle: UIAlertController.Style.alert)
+                                    alert.addAction(UIAlertAction.init(title: "OK", style: .default))
+                                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+                                        self.superVC?.present(alert, animated: true, completion: nil)
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
     
@@ -47,7 +81,9 @@ class ErrorResolvedViewController: TMWViewController {
 
 extension ErrorResolvedViewController {
     func handleErrorReport(success: Bool) {
-        loadingIndicator.stopAnimating()
-        dismiss(animated: true)
+        DispatchQueue.main.async {
+            self.loadingIndicator.stopAnimating()
+            self.dismiss(animated: true)
+        }
     }
 }

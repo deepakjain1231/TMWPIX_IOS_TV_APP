@@ -37,6 +37,7 @@ class Constants {
     static let API_METHOD_MOVIEINFOFULL: String = "/movieinfofull" // Done
     static let API_METHOD_TICKET: String = "/ticket" //Done /
     static let API_METHOD_ERRORTICKET: String = "/sendticket" //Done /
+    static let API_METHOD_TICKETSTATUS: String = "/ticket" //Done /
 //    static let API_METHOD_MOVIEINFOFULL: String = "/movieinfofull"
     
     

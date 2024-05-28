@@ -402,6 +402,24 @@
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qia-jj-g94" customClass="Focusable_NormarView" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                        <rect key="frame" x="30" y="102" width="900" height="60"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6G4-id-xMe">
+                                                <rect key="frame" x="25" y="18" width="850" height="24"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="6G4-id-xMe" firstAttribute="top" secondItem="qia-jj-g94" secondAttribute="top" constant="18" id="2pm-ft-PnA"/>
+                                            <constraint firstAttribute="trailing" secondItem="6G4-id-xMe" secondAttribute="trailing" constant="25" id="7Lt-vw-Pca"/>
+                                            <constraint firstItem="6G4-id-xMe" firstAttribute="leading" secondItem="qia-jj-g94" secondAttribute="leading" constant="25" id="gsA-PC-EEp"/>
+                                            <constraint firstAttribute="bottom" secondItem="6G4-id-xMe" secondAttribute="bottom" constant="18" id="qKo-sM-kFu"/>
+                                        </constraints>
+                                    </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VUK-82-1zh" customClass="Focusable_Button" customModule="TMWPIXtvOS" customModuleProvider="target">
                                         <rect key="frame" x="360" y="202" width="240" height="60"/>
                                         <color key="backgroundColor" red="0.87058823529999996" green="0.0" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -418,10 +436,14 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.03045255505" green="0.053832218049999998" blue="0.1036251113" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="qia-jj-g94" firstAttribute="bottom" secondItem="H1v-rM-Yco" secondAttribute="bottom" id="0CE-Gh-9lg"/>
                                     <constraint firstItem="VUK-82-1zh" firstAttribute="top" secondItem="H1v-rM-Yco" secondAttribute="bottom" constant="40" id="AEY-gr-IRp"/>
+                                    <constraint firstItem="qia-jj-g94" firstAttribute="top" secondItem="H1v-rM-Yco" secondAttribute="top" id="DhJ-Ef-jAU"/>
                                     <constraint firstItem="VUK-82-1zh" firstAttribute="centerX" secondItem="bSX-9c-18c" secondAttribute="centerX" id="EV0-aq-HEg"/>
                                     <constraint firstItem="VUK-82-1zh" firstAttribute="width" secondItem="bSX-9c-18c" secondAttribute="width" multiplier="0.25" id="KIL-zP-bNb"/>
                                     <constraint firstItem="H1v-rM-Yco" firstAttribute="leading" secondItem="bSX-9c-18c" secondAttribute="leading" constant="30" id="Swa-B4-j30"/>
+                                    <constraint firstItem="qia-jj-g94" firstAttribute="leading" secondItem="H1v-rM-Yco" secondAttribute="leading" id="YfH-wT-Fcp"/>
+                                    <constraint firstItem="qia-jj-g94" firstAttribute="trailing" secondItem="H1v-rM-Yco" secondAttribute="trailing" id="Ynr-1A-3Jo"/>
                                     <constraint firstAttribute="trailing" secondItem="EpD-Wo-0sB" secondAttribute="trailing" constant="21" id="bq0-RA-qwe"/>
                                     <constraint firstItem="cbS-cX-2Wz" firstAttribute="leading" secondItem="bSX-9c-18c" secondAttribute="leading" constant="20" id="jAA-sa-6Jv"/>
                                     <constraint firstItem="H1v-rM-Yco" firstAttribute="top" secondItem="cbS-cX-2Wz" secondAttribute="bottom" constant="40" id="rXu-Ep-UAd"/>
@@ -441,7 +463,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="lbl_msg" destination="6G4-id-xMe" id="jXf-66-Pex"/>
                         <outlet property="tfError" destination="H1v-rM-Yco" id="z9y-NM-vY5"/>
+                        <outlet property="view_msg_bg" destination="qia-jj-g94" id="0jQ-VS-c1p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x54-sk-ZN8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3429,6 +3453,23 @@
                                                             <action selector="ReportErrorTapped:" destination="rTK-Jd-GeU" eventType="primaryActionTriggered" id="ogr-XM-aaz"/>
                                                         </connections>
                                                     </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ge3-C2-HLP" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="650" width="372" height="70"/>
+                                                        <color key="backgroundColor" red="0.30588235294117649" green="0.64313725490196072" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Reportar Erro"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="btn_resolve_Error_Action:" destination="rTK-Jd-GeU" eventType="primaryActionTriggered" id="Zay-lu-f8U"/>
+                                                        </connections>
+                                                    </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ano:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UCf-d2-niS">
                                                         <rect key="frame" x="8" y="22" width="364" height="24"/>
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
@@ -3481,6 +3522,7 @@
                                                 <color key="backgroundColor" red="0.063794560730000005" green="0.1279283762" blue="0.20267945530000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="Tx9-hz-FyE" firstAttribute="leading" secondItem="qH2-Yz-Grw" secondAttribute="leading" id="0Uu-iw-8sH"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Ge3-C2-HLP" secondAttribute="trailing" id="0jK-F4-2Zp"/>
                                                     <constraint firstItem="qH2-Yz-Grw" firstAttribute="leading" secondItem="mHB-4F-qzu" secondAttribute="leading" id="22l-7H-X9N"/>
                                                     <constraint firstItem="qH2-Yz-Grw" firstAttribute="trailing" secondItem="mHB-4F-qzu" secondAttribute="trailing" id="EXs-FY-jkD"/>
                                                     <constraint firstItem="g5I-91-OLl" firstAttribute="top" secondItem="P76-0L-tuK" secondAttribute="bottom" constant="12" id="EuS-5z-gVR"/>
@@ -3502,8 +3544,10 @@
                                                     <constraint firstItem="mHB-4F-qzu" firstAttribute="leading" secondItem="4sm-9n-gGe" secondAttribute="leading" id="hy6-eD-gFS"/>
                                                     <constraint firstItem="UCf-d2-niS" firstAttribute="trailing" secondItem="vAc-LJ-fwV" secondAttribute="trailing" id="kLU-vk-LJh"/>
                                                     <constraint firstItem="P76-0L-tuK" firstAttribute="top" secondItem="UCf-d2-niS" secondAttribute="bottom" constant="12" id="moE-Nh-Iqd"/>
+                                                    <constraint firstItem="Ge3-C2-HLP" firstAttribute="leading" secondItem="xuJ-bR-vXM" secondAttribute="leading" id="oNj-oz-ode"/>
                                                     <constraint firstItem="mHB-4F-qzu" firstAttribute="top" secondItem="4sm-9n-gGe" secondAttribute="bottom" constant="12" id="p3d-af-Fuc"/>
                                                     <constraint firstItem="4sm-9n-gGe" firstAttribute="top" secondItem="w9p-0U-RJp" secondAttribute="bottom" constant="12" id="sAU-I0-9Os"/>
+                                                    <constraint firstItem="vAc-LJ-fwV" firstAttribute="top" secondItem="Ge3-C2-HLP" secondAttribute="bottom" constant="12" id="tGi-a4-ZvG"/>
                                                     <constraint firstItem="4sm-9n-gGe" firstAttribute="leading" secondItem="w9p-0U-RJp" secondAttribute="leading" id="vRH-O4-OQF"/>
                                                     <constraint firstItem="Tx9-hz-FyE" firstAttribute="trailing" secondItem="qH2-Yz-Grw" secondAttribute="trailing" id="wht-iM-MmZ"/>
                                                 </constraints>

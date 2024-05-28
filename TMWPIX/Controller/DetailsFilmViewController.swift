@@ -19,6 +19,7 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
     var ImageUrl:String?
     var int_aluguel = 0
     var movie: Movie?
+    var str_errorMsg = ""
 
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var filmImage: UIImageView!
@@ -37,6 +38,18 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
         
         self.loadingIndicator.startAnimating()
         FilmAPI.getMovieInfoData(delegate: self)
+        FilmAPI.check_report_Status(film_id: self.FilmID ?? "") { str_report_status in
+            if str_report_status.contains("erro") {
+                var str_error = str_report_status.replacingOccurrences(of: "{", with: "")
+                str_error = str_error.replacingOccurrences(of: "}", with: "")
+                str_error = str_error.replacingOccurrences(of: ":", with: "")
+                str_error = str_error.replacingOccurrences(of: "erro", with: "")
+                self.str_errorMsg = str_error.trimed()
+            }
+            else if str_report_status.contains("status") && str_report_status.contains("aberto") {
+                self.str_errorMsg = "Ticket já aberto"
+            }
+        }
 
         try? AVAudioSession.sharedInstance().setCategory(.playback, mode: .default, options: [])
     }
@@ -74,9 +87,25 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
         popupVC.modalPresentationStyle = .overCurrentContext
         popupVC.modalTransitionStyle = .crossDissolve
         popupVC.FilmID = self.FilmID
+        popupVC.superVC = self
         let pVC = popupVC.popoverPresentationController
         pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
         present(popupVC, animated: true, completion: nil)
+    }
+    
+    
+    @IBAction func btn_resolve_Error_Action(_ sender: Any) {
+        if self.str_errorMsg != "" {
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let popupVC = storyboard.instantiateViewController(withIdentifier: "ErrorResolvedViewController") as! ErrorResolvedViewController
+            popupVC.screenFrom = "error_resolved"
+            popupVC.modalPresentationStyle = .overCurrentContext
+            popupVC.modalTransitionStyle = .crossDissolve
+            popupVC.str_Error = self.str_errorMsg
+            let pVC = popupVC.popoverPresentationController
+            pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
+            present(popupVC, animated: true, completion: nil)
+        }
     }
     
     

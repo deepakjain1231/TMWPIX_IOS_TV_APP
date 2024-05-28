@@ -451,42 +451,94 @@ class FilmAPI{
             }
     }
     
-    static func reportError(delegate: ErrorResolvedViewController) {
+    static func reportError(delegate: ErrorResolvedViewController, completion: @escaping ([String: Any]?) -> Void) {
         let userInfo = UserInfo.getInstance()
         let userProfile = UserProfile.getInstance()
         
-        let params = ["descricao"       : delegate.tfError.text ?? "",
+        let str_url = Constants.baseUrl+Constants.API_METHOD_ERRORTICKET
+        
+        let params = ["descricao"       : "\(delegate.tfError.text)",
                       "setor"           : "filmes",
-                      "idconteudo"      : delegate.FilmID ?? "",
-                      "clientes_id"     : "\(userInfo?.client_id ?? 0)",
+                      "idconteudo"      : delegate.FilmID,
+                      "clientes_id"     : "\(userInfo?.client_id)",
                       "perfis_id"       : "\(userProfile?.id ?? 13349)",
                       "user"            : "",
                       "time"            : "1657390028215",
                       "hash"            : "6b44ce6d55fb47f49a08c4ed436be469",
-                      "dtoken"          : userInfo?.password ?? "",
+                      "dtoken"          : userInfo?.password,
                       "os"              : "ios",
                       "operator"        : "1",
                       "tipo"            : "t",
-                      "usrtoken"        : userInfo?.token ?? "",
+                      "usrtoken"        : userInfo?.token,
                       "hashtoken"       : "fc427b261087b109867e42961ca645ce",
-                      "page"            : "movie"] as [String : Any]
+                      "page"            : "movie"]
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_ERRORTICKET, parameters: params)
-            .response{ [self] response in
-                
-                if let data = response.data {
-                    print(data)
-                    print(response.result)
-                    do {
-                        delegate.handleErrorReport(success: true)
-                        
-                    } catch let error as NSError {
-                        print(error)
-                    }
-                }
-            }
+        var request = URLRequest(url: URL(string: "\(str_url)?descricao=\(delegate.tfError.text ?? "")&setor=filmes&idconteudo=\(delegate.FilmID ?? "")&clientes_id=\(userInfo?.client_id ?? 0)&perfis_id=\(userProfile?.id ?? 13349)&user=&time=1657390028215&hash=6b44ce6d55fb47f49a08c4ed436be469&dtoken=\(userInfo?.password ?? "")&os=ios& operator=1&tipo=t&usrtoken=\(userInfo?.token ?? "")&hashtoken=fc427b261087b109867e42961ca645ce&page=movie")!,timeoutInterval: 60.0)
+        request.httpMethod = "GET"
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          guard let data = data else {
+            print(String(describing: error))
+            return
+          }
+          print(String(data: data, encoding: .utf8)!)
+            let str_response = String(data: data, encoding: .utf8) ?? ""
+            let dict_response = self.convertToDictionary(text: str_response)
+            debugPrint(dict_response)
+            completion(dict_response)
+            delegate.handleErrorReport(success: true)
+        }
+        task.resume()
     }
     
+    
+    static func check_report_Status(film_id: String, completion: @escaping (String) -> Void) {
+        let userInfo = UserInfo.getInstance()
+        let userProfile = UserProfile.getInstance()
+        
+        let str_URL = Constants.baseUrl+Constants.API_METHOD_TICKETSTATUS
+        
+        let params = ["idconteudo": film_id,
+                      "cliente_id": "\(userInfo?.client_id ?? 0)",
+                      "tipoconteudo": "filmes",
+                      "perfis": "\(userProfile?.id ?? 13349)",
+                      "user": "",
+                      "time": "1657390028215",
+                      "hash": "6b44ce6d55fb47f49a08c4ed436be469",
+                      "dtoken": "\(userInfo?.password ?? "")",
+                      "os": "ios",
+                      "operator": "1",
+                      "tipo": "t",
+                      "usrtoken": userInfo?.token,
+                      "hashtoken": "fc427b261087b109867e42961ca645ce"]
+        
+        var request = URLRequest(url: URL(string: "\(str_URL)?idconteudo=\(film_id)&cliente_id=\(userInfo?.client_id ?? 0)&tipoconteudo=filmes&perfis=\(userProfile?.id ?? 13349)&user=&time=1657390028215&hash=6b44ce6d55fb47f49a08c4ed436be469&dtoken=\(userInfo?.password ?? "")&os=ios&operator=1&tipo=t&usrtoken=\(userInfo?.token ?? "")&hashtoken=fc427b261087b109867e42961ca645ce")!,timeoutInterval: 60.0)
+        request.httpMethod = "GET"
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+          guard let data = data else {
+            print(String(describing: error))
+            return
+          }
+          print(String(data: data, encoding: .utf8)!)
+            var str_response = String(data: data, encoding: .utf8) ?? ""
+            str_response = str_response.replacingOccurrences(of: "\\", with: "")
+            str_response = str_response.replacingOccurrences(of: "\"", with: "")
+            completion(str_response)
+        }
+        task.resume()
+    }
+    
+    static func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
+    }
 }
 
 extension [String:String] {

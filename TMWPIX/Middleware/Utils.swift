@@ -310,6 +310,31 @@ class FocusableView: UIView {
     }
 }
 
+class Focusable_NormarView: UIView {
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.isFocused {
+            // Change appearance when focused (e.g., increase size, change border color)
+            self.layer.borderWidth = 0.0
+            self.layer.borderColor = UIColor.clear.cgColor
+        } else {
+            // Reset appearance when unfocused
+            self.layer.borderWidth = 0.0
+        }
+    }
+}
+
 
 class Focusable_Button: UIButton {
     override var canBecomeFocused: Bool {

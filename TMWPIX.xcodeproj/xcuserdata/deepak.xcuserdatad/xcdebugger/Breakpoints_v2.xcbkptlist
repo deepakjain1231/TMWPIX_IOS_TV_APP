@@ -14,8 +14,8 @@
             filePath = "TMWPIX/Middleware/Utils.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "543"
-            endingLineNumber = "543"
+            startingLineNumber = "568"
+            endingLineNumber = "568"
             landmarkName = "didUpdateFocus(in:with:)"
             landmarkType = "7">
             <Locations>
@@ -128,86 +128,6 @@
             startingLineNumber = "81"
             endingLineNumber = "81"
             landmarkName = "collectionView(_:didSelectItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A289EF47-CA4E-4FAA-BCE3-B26FB66510A1"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Controller/ErrorResolvedViewController.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "errorResolvedTapped(_:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "1F69C5E6-ED0D-4E25-9C94-7EEF60184699"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Client/FilmAPI.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "477"
-            endingLineNumber = "477"
-            landmarkName = "reportError(delegate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "35001892-C04E-4B9E-A461-9C8CF0806864"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Client/FilmAPI.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "478"
-            endingLineNumber = "478"
-            landmarkName = "reportError(delegate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "821094C8-7947-4C60-8C42-01EDAA25E72F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Client/FilmAPI.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "484"
-            endingLineNumber = "484"
-            landmarkName = "reportError(delegate:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "5A63928A-85CF-46B5-8578-C0E70822BC30"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Client/FilmAPI.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "474"
-            endingLineNumber = "474"
-            landmarkName = "reportError(delegate:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -358,97 +278,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "D86C58D5-930E-41A1-833C-379802A1FA88"
+            uuid = "80954E23-2636-4BAA-88BA-4A1D78E86C04"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Model/Profile/UserProfile.swift"
+            filePath = "TMWPIX/Controller/DetailsFilmViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "init(coder:)"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "ReportErrorTapped(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "D86C58D5-930E-41A1-833C-379802A1FA88 - 657329d22766375b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TMWPIXtvOS.UserProfile.init(coder: __C.NSCoder) -&gt; TMWPIXtvOS.UserProfile"
-                  moduleName = "TMWPIXtvOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/deepak/Documents/UPWORK_PROJECTS/Dinesh%20Project/APPLE%20TV/TMWPIX_IOS-bef77d9b99bbae32ba834dd80b12c7e0be267dcd-2%202/TMWPIX/Model/Profile/UserProfile.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
-                  offsetFromSymbolStart = "2792">
-               </Location>
-               <Location
-                  uuid = "D86C58D5-930E-41A1-833C-379802A1FA88 - 657329d22766375b"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TMWPIXtvOS.UserProfile.init(coder: __C.NSCoder) -&gt; TMWPIXtvOS.UserProfile"
-                  moduleName = "TMWPIXtvOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/deepak/Documents/UPWORK_PROJECTS/Dinesh%20Project/APPLE%20TV/TMWPIX_IOS-bef77d9b99bbae32ba834dd80b12c7e0be267dcd-2%202/TMWPIX/Model/Profile/UserProfile.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "80"
-                  endingLineNumber = "80"
-                  offsetFromSymbolStart = "2836">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "BF11A9CB-676C-49E0-B9C3-C6DA9E96ECA0"
+            uuid = "571CA262-B116-49B1-88FA-F72299A29FCC"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Model/Profile/UserProfile.swift"
+            filePath = "TMWPIX/Controller/ErrorResolvedViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "81"
-            endingLineNumber = "81"
-            landmarkName = "init(coder:)"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "errorResolvedTapped(_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "BF11A9CB-676C-49E0-B9C3-C6DA9E96ECA0 - 657329d227663778"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TMWPIXtvOS.UserProfile.init(coder: __C.NSCoder) -&gt; TMWPIXtvOS.UserProfile"
-                  moduleName = "TMWPIXtvOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/deepak/Documents/UPWORK_PROJECTS/Dinesh%20Project/APPLE%20TV/TMWPIX_IOS-bef77d9b99bbae32ba834dd80b12c7e0be267dcd-2%202/TMWPIX/Model/Profile/UserProfile.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "3212">
-               </Location>
-               <Location
-                  uuid = "BF11A9CB-676C-49E0-B9C3-C6DA9E96ECA0 - 657329d227663778"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "TMWPIXtvOS.UserProfile.init(coder: __C.NSCoder) -&gt; TMWPIXtvOS.UserProfile"
-                  moduleName = "TMWPIXtvOS"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/deepak/Documents/UPWORK_PROJECTS/Dinesh%20Project/APPLE%20TV/TMWPIX_IOS-bef77d9b99bbae32ba834dd80b12c7e0be267dcd-2%202/TMWPIX/Model/Profile/UserProfile.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "81"
-                  endingLineNumber = "81"
-                  offsetFromSymbolStart = "3280">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "8515A3F7-E998-4F2D-B174-FEB2DA838D66"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TMWPIX/Controller/ErrorResolvedViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "errorResolvedTapped(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D3E020CB-44F9-4AB6-9283-CB7C328F443F"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TMWPIX/Controller/ErrorResolvedViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
