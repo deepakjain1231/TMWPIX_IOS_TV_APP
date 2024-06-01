@@ -64,6 +64,21 @@
                   endingLineNumber = "543"
                   offsetFromSymbolStart = "64">
                </Location>
+               <Location
+                  uuid = "8DA060BC-F8DE-4204-9D65-C3C02D7A16B8 - 90849187b7160d67"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TMWPIXtvOS.Focusable_CloseLarge_Button.didUpdateFocus(in: __C.UIFocusUpdateContext, with: __C.UIFocusAnimationCoordinator) -&gt; ()"
+                  moduleName = "TMWPIXtvOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/deepak/Documents/UPWORK_PROJECTS/Dinesh%20Project/APPLE%20TV/TMWPIX_IOS-bef77d9b99bbae32ba834dd80b12c7e0be267dcd-2%202/TMWPIX/Middleware/Utils.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "568"
+                  endingLineNumber = "568"
+                  offsetFromSymbolStart = "64">
+               </Location>
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
@@ -336,6 +351,70 @@
             startingLineNumber = "29"
             endingLineNumber = "29"
             landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "9D958E11-B6FB-434E-8EFE-978593D67CFE"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TMWPIX/Controller/CPFVerifiedVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "49"
+            endingLineNumber = "49"
+            landmarkName = "btn_confirm_Action(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "9D958E11-B6FB-434E-8EFE-978593D67CFE - d7decf955efa7b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TMWPIXtvOS.CPFVerifiedVC.btn_confirm_Action(__C.UIButton) -&gt; ()"
+                  moduleName = "TMWPIXtvOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/deepak/Documents/UPWORK_PROJECTS/Dinesh%20Project/APPLE%20TV/TMWPIX_IOS-bef77d9b99bbae32ba834dd80b12c7e0be267dcd-2%202/TMWPIX/Controller/CPFVerifiedVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "112">
+               </Location>
+               <Location
+                  uuid = "9D958E11-B6FB-434E-8EFE-978593D67CFE - d7decf955efa7b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "TMWPIXtvOS.CPFVerifiedVC.btn_confirm_Action(__C.UIButton) -&gt; ()"
+                  moduleName = "TMWPIXtvOS"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/deepak/Documents/UPWORK_PROJECTS/Dinesh%20Project/APPLE%20TV/TMWPIX_IOS-bef77d9b99bbae32ba834dd80b12c7e0be267dcd-2%202/TMWPIX/Controller/CPFVerifiedVC.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "49"
+                  endingLineNumber = "49"
+                  offsetFromSymbolStart = "476">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A829705-E80C-40A9-951B-199A2624ED22"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "TMWPIX/Controller/MediaViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "205"
+            endingLineNumber = "205"
+            landmarkName = "didUpdateFocus(in:with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

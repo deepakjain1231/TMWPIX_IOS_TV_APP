@@ -24,6 +24,7 @@ class SearchViewController: TMWViewController, UITextFieldDelegate {
         self.searchBar.delegate = self
         self.hideKeyboardWhenTappedAround()
         
+        self.searchBar.textColor = UIColor.black
         self.searchBar.text = self.str_search_Text
         self.searchView.layer.borderWidth = 2
         self.searchView.layer.borderColor = UIColor(red:0/255, green:0/255, blue:10/255, alpha: 1).cgColor
@@ -31,6 +32,7 @@ class SearchViewController: TMWViewController, UITextFieldDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.searchBar.textColor = UIColor.black
         self.searchBar.becomeFirstResponder()
     }
     

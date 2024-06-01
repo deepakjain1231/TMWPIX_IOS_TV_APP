@@ -14,6 +14,7 @@ import PlayKit
 
 class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, delegateChange_Language {
     
+    var counter = 5
     @IBOutlet weak var MediaView: PlayerView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var footerView: UIView!
@@ -35,7 +36,9 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     var audio_Tracks: [Track] = []
     var selectedTracks: [Track] = []
     var is_epg = false
-
+    var timerr: Timer?
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         channelImage.sd_setImage(with: URL(string: ImageUrl!))
@@ -58,14 +61,41 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
 
         player.addObserver(self, events: [PlayerEvent.canPlay]) { event in
             self.player.play()
+            self.startTimer()
         }
         
+    }
+    
+    func startTimer() {
+        self.stopTimer()
+        self.timerr = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateCounter), userInfo: nil, repeats: true)
+    }
+    
+    func stopTimer() {
+        self.counter = 5
+        self.footerView.isHidden = false
+        self.timerr?.invalidate()
+        self.timerr = nil
+    }
+    
+    @objc func updateCounter() {
+        //example functionality
+        debugPrint(counter)
+        if counter > 0 {
+            counter -= 1
+        }
+        else {
+            self.footerView.isHidden = true
+            self.timerr?.invalidate()
+            self.timerr = nil
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if self.player != nil {
             self.player.stop()
+            self.stopTimer()
         }
     }
     
@@ -160,6 +190,21 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     }
     
 
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        let touch = touches.first
+        if touch?.view != self.footerView {
+            self.footerView.isHidden = false
+            self.startTimer()
+        }
+    }
+    
+    
+    
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        self.startTimer()
+    }
+    
 
     // MARK: - IBAction
 
@@ -197,6 +242,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     @IBAction func ViewDismissed(_ sender: Any) {
         if self.player != nil {
             self.player.stop()
+            self.stopTimer()
         }
         dismiss(animated: true)
     }
@@ -228,6 +274,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     
     func did_changeLanguage(changed_track: Track) {
         self.selectTrack(changed_track)
+        self.startTimer()
     }
 }
 
