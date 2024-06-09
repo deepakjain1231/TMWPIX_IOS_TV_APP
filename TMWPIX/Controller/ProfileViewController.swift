@@ -159,11 +159,19 @@ extension ProfileViewController : UICollectionViewDataSource{
             cell.profilePic.image = UIImage(named:"perfil")
             cell.profilePic.layer.borderColor = UIColor.white.cgColor
             cell.name.text = userProfiles[indexPath.row].name
+            
+            if self.isFromLogin == false {
+                if (UserProfile.getInstance()?.id ?? 0) == (userProfiles[indexPath.row].id ?? 0) {
+                    cell.backgorundView.layer.borderWidth = 3
+                    cell.backgorundView.layer.borderColor = UIColor.fromHex(hexString: "#DE003F").cgColor
+                }
+                else {
+                    cell.backgorundView.layer.borderWidth = 1
+                    cell.backgorundView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+                }
+            }
         }
-        
-        //cell.profilePic.adjustsImageWhenAncestorFocused = true
-        
-        
+
         cell.did_completation_Focus = { (indx_tag) in
             guard let indx = indx_tag else {
                 return
@@ -186,6 +194,16 @@ extension ProfileViewController : UICollectionViewDataSource{
         
         
         return cell
+    }
+    
+    
+    override func shouldUpdateFocus(in context: UIFocusUpdateContext) -> Bool {
+        // Condition
+        return true
+    }
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        // Condition
+        debugPrint(context)
     }
 }
 

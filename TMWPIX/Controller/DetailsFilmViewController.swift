@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import AVFoundation
 import AVKit
-
+import Alamofire
 
 class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, delegate_cpfVerified {
     
@@ -18,7 +18,7 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
     var FilmID:String?
     var ImageUrl:String?
     var int_aluguel = 0
-    var movie: Movie?
+    var dic_movieData: Movie?
     var str_errorMsg = ""
 
     @IBOutlet weak var name: UILabel!
@@ -110,20 +110,20 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
     
     
     @IBAction func RentalDetailTapped(_ sender: Any) {
-        if self.int_aluguel == 2 {
+        if self.dic_movieData?.movies?.aluguel == "2" {
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let popupVC = storyboard.instantiateViewController(withIdentifier: "RentalDetailViewController") as! RentalDetailViewController
             popupVC.delegate = self
             popupVC.modalPresentationStyle = .overCurrentContext
             popupVC.modalTransitionStyle = .crossDissolve
-            if self.movie == nil {
+            if self.dic_movieData == nil {
                 return
             }
-            if let price = self.movie!.movies?.precoaluguel {
+            if let price = self.dic_movieData!.movies?.precoaluguel {
                 popupVC.price = price
             }
-            if self.movie!.movies?.duration != nil {
-                if let sec = Int((self.movie!.movies?.duration)!) {
+            if self.dic_movieData!.movies?.duration != nil {
+                if let sec = Int((self.dic_movieData!.movies?.duration)!) {
                     if sec / 60 >= 1 {
                         popupVC.hour = "\(sec/60) HORA E \(sec%60) MINUTOS"
                     } else {
@@ -137,14 +137,13 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
             present(popupVC, animated: true, completion: nil)
             
         } else {
-            
             self.play_video()
             
         }
     }
     
     func play_video() {
-        guard let url = URL(string: self.movie?.movies?.url ?? "") else {
+        guard let url = URL(string: self.dic_movieData?.movies?.url ?? "") else {
             debugPrint("Invalid URL")
             return
         }
@@ -188,16 +187,42 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
         }
     }
     
-    func cpf_verified_play_moview(_ success: Bool) {
+    func cpf_verified_play_moview(_ success: Bool, str_cpf_value: String) {
         if success {
             self.play_video()
+            self.callAPIforUpdateStatus(verified_cpf: str_cpf_value)
+        }
+    }
+    
+    func callAPIforUpdateStatus(verified_cpf: String) {
+        
+        let userInfo = UserInfo.getInstance()
+        let userProfile = UserProfile.getInstance()
+        let userToken: String = userInfo?.token ?? ""
+        
+        let strURL = Constants.baseUrl + "/alugafilme?appversion=\(utils.getAppVersion())&email=\(userInfo?.email ?? "")&confirma=\(verified_cpf)&cpf=\(appDelegate.str_cpfValue)&cliente_id=\(userInfo?.client_id ?? 0)&filme_id=\(self.FilmID ?? "")&user=&time=\(utils.getTime())&hash=\(utils.getHash())&dtoken=\(utils.getDToken())&os=ios&operator=1&tipo=t&usrtoken=\(userToken)&hashtoken=\(utils.getHashToken(token: userToken))"
+        
+        AF.request(strURL, method: .get).response{ response in
+            
+            if let data = response.data {
+                print(data)
+                print(response.result)
+                do {
+                    let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
+
+                    FilmAPI.getMovieInfoData(delegate: self)
+                    
+                } catch let error as NSError {
+                    print(error)
+                }
+            }
         }
     }
 }
 
 extension DetailsFilmViewController {
     func handleFilmInfoData(movie: Movie) {
-        self.movie = movie
+        self.dic_movieData = movie
         
         self.loadingIndicator.stopAnimating()
         self.filmDiscription.text = movie.movies?.description

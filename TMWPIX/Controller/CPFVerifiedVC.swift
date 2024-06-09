@@ -6,7 +6,7 @@
 //
 
 protocol delegate_cpfVerified {
-    func cpf_verified_play_moview(_ success: Bool)
+    func cpf_verified_play_moview(_ success: Bool, str_cpf_value: String)
 }
 
 import UIKit
@@ -54,7 +54,7 @@ class CPFVerifiedVC: UIViewController, UITextFieldDelegate {
                 if last5 == str_cpf {
                     self.lbl_validation.text = ""
                     self.dismiss(animated: true) {
-                        self.delegate?.cpf_verified_play_moview(true)
+                        self.delegate?.cpf_verified_play_moview(true, str_cpf_value: str_cpf)
                     }
                 }
                 else {

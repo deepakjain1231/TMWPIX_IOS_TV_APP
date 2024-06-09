@@ -290,9 +290,9 @@ class FilmAPI{
                       "platform" : "apple",
                       "appversion" : "1.3.1"]
         
+        let str_URl = Constants.baseUrl+Constants.API_METHOD_MOVIEINFOFULL + "?id=\(delegate.FilmID ?? "")&time=1657435701486&os=ios&operator=1&tipo=t&usrtoken=\(UserInfo.getInstance()?.token ?? "")&perfis=\(userProfile?.id ?? 13349)"
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_MOVIEINFOFULL, parameters: params)
-            .response{ [self] response in
+        AF.request(str_URl, parameters: nil).response{ [self] response in
                 
                 if let data = response.data {
                     print(data)
