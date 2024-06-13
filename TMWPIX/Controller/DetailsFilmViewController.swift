@@ -27,6 +27,7 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
     @IBOutlet weak var lblYear: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblAluguel: UILabel!
+    
     var player: AVPlayer!
     var playerController: AVPlayerViewController!
     
@@ -69,6 +70,8 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let player = object as? AVPlayer, player == self.player, keyPath == "status" {
             if player.status == .readyToPlay {
+                let currentTime = utils.getMovieSec_Data(str_type: "film", str_id: self.FilmID ?? "")
+                self.player?.seek(to: CMTimeMake(value: Int64(currentTime), timescale: 1))
                 self.player?.play()
             } else if player.status == .failed {
                 debugPrint("failed_player")
@@ -154,7 +157,8 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
         self.player?.addObserver(self, forKeyPath: "status", options: [], context: nil)// listen the current time of playing video
         self.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: Double(1), preferredTimescale: 2), queue: DispatchQueue.main) { [weak self] (sec) in
             guard let self = self else { return }
-
+            debugPrint(sec.seconds)
+            utils.setMovieData_globally(str_type: "film", str_id: self.FilmID ?? "", time: sec.seconds)
         }
         self.player?.volume = 1.0
 

@@ -1,24 +1,24 @@
 //
-//  EpisodeViewCell.swift
-//  TMWPIX
+//  SeriesNameCollectionCell.swift
+//  TMWPIXtvOS
 //
-//  Created by Apple on 24/08/2022.
+//  Created by DEEPAK JAIN on 12/06/24.
 //
-
-import Foundation
-
 
 import UIKit
 
-class EpisodeViewCell: UICollectionViewCell {
-   
-    @IBOutlet weak var episodeNumber: UILabel!
-    var did_completation_Focus: ((Int?)->Void)? = nil
+class SeriesNameCollectionCell: UICollectionViewCell {
     
+    @IBOutlet weak var view_Base: UIView!
+    @IBOutlet weak var lbl_Title: UILabel!
+    
+    var did_completation_Focus: ((Int?)->Void)? = nil
     
     override class func awakeFromNib() {
         super.awakeFromNib()
     }
+    
+    
     
     override func shouldUpdateFocus(in context: UIFocusUpdateContext) -> Bool {
         // Condition

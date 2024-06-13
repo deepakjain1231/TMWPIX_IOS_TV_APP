@@ -205,6 +205,12 @@ extension ProfileViewController : UICollectionViewDataSource{
         // Condition
         debugPrint(context)
     }
+    
+    override var preferredFocusedView: UIView? {
+        get {
+            return self.collectionView
+        }
+    }
 }
 
 

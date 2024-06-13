@@ -284,24 +284,26 @@ class SeriesAPI{
                         let profileData = dictonary!["seasons"]
                         if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
                             
-                            var seasonData: SeasonData = SeasonData()
+                            var seasonData: [SeasonData] = [SeasonData]()
                             for aDic in arrayOfDic{
-                                if let id = aDic["id"] as? Int{
-                                    seasonData.id = id
+                                var dic_season: SeasonData = SeasonData()
+                                
+                                if let id = aDic["id"] as? Int {
+                                    dic_season.id = id
                                 }
                                 
                                 if let name = aDic["name"] as? String{
-                                    seasonData.name = name
+                                    dic_season.name = name
                                 }
                                 
                                 if let year = aDic["year"] as? Int{
-                                    seasonData.year = year
+                                    dic_season.year = year
                                 }
                                 
                                 if let series_id = aDic["series_id"] as? Int{
-                                    seasonData.series_id = series_id
+                                    dic_season.series_id = series_id
                                 }
-                                
+                                seasonData.append(dic_season)
                             }
                             delegate.seasonResponseHandler(season: seasonData)
                         }

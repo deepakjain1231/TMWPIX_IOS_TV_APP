@@ -36,7 +36,7 @@ extension Date {
     }
 }
 
-class utils{
+class utils {
     
     static func MD5(string: String) -> Data {
         let length = Int(CC_MD5_DIGEST_LENGTH)
@@ -228,9 +228,64 @@ class utils{
     
     
     
+    static func setMovieData_globally(str_type: String, str_id: String, time: Double) {
+        let dic_Save = ["id": str_id,
+                        "time": time,
+                        "type": str_type,] as [String : Any]
+        
+        var tempData = [[String: Any]]()
+        let arr_Data = utils.stored_moview_timing
+        if arr_Data.count != 0 {
+            if let indx = arr_Data.firstIndex(where: { dic in
+                return (dic["type"] as? String ?? "" == str_type) && (dic["id"] as? String ?? "" == str_id)
+            }) {
+                tempData = arr_Data
+                tempData[indx] = dic_Save
+            }
+            else {
+                tempData.removeAll()
+                tempData.append(dic_Save)
+            }
+        }
+        else {
+            tempData.removeAll()
+            tempData.append(dic_Save)
+        }
+        utils.set_stored_moview_timing(data: tempData)
+    }
+    
+    static func getMovieSec_Data(str_type: String, str_id: String) -> Double {
+        var current_time: Double = 0
+
+        let arr_Data = utils.stored_moview_timing
+        if arr_Data.count != 0 {
+            if let indx = arr_Data.firstIndex(where: { dic in
+                return (dic["type"] as? String ?? "" == str_type) && (dic["id"] as? String ?? "" == str_id)
+            }) {
+                current_time = (arr_Data[indx]["time"] as? Double ?? 0)
+            }
+            else {
+                current_time = 0
+            }
+        }
+        return current_time
+    }
     
     
+    // MARK: - Store Movie Timeing
+    static var stored_moview_timing: [[String:Any]] {
+        let storedValue = UserDefaults.standard.array(forKey: "stoped_movie_Timing")
+        if let _ = storedValue {
+            return storedValue as! [[String:Any]]
+        }
+        return []
+    }
     
+    static func set_stored_moview_timing(data: [[String:Any]]) {
+        UserDefaults.standard.set(data, forKey: "stoped_movie_Timing")
+    }
+    
+
 }
 
 
