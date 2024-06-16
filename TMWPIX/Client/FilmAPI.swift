@@ -313,6 +313,9 @@ class FilmAPI{
                                 if let id = aDic["id"] as? String {
                                     movieData.movies?.id = id
                                 }
+                                if let id = aDic["id"] as? Int {
+                                    movieData.movies?.id = "\(id)"
+                                }
                                 if let name = aDic["name"] as? String {
                                     movieData.movies?.name = name
                                 }
@@ -321,6 +324,9 @@ class FilmAPI{
                                 }
                                 if let year = aDic["year"] as? String {
                                     movieData.movies?.year = year
+                                }
+                                if let year = aDic["year"] as? Int {
+                                    movieData.movies?.year = "\(year)"
                                 }
                                 if let duration = aDic["duration"] as? String {
                                     movieData.movies?.duration = duration
@@ -346,11 +352,20 @@ class FilmAPI{
                                 if let aluguel = aDic["aluguel"] as? String {
                                     movieData.movies?.aluguel = aluguel
                                 }
+                                if let aluguel = aDic["aluguel"] as? Int {
+                                    movieData.movies?.aluguel = "\(aluguel)"
+                                }
                                 if let preco = aDic["preco"] as? String {
                                     movieData.movies?.preco = preco
                                 }
+                                if let preco = aDic["preco"] as? Double {
+                                    movieData.movies?.preco = "\(preco)"
+                                }
                                 if let alugado = aDic["alugado"] as? String {
                                     movieData.movies?.alugado = alugado
+                                }
+                                if let alugado = aDic["alugado"] as? Int {
+                                    movieData.movies?.alugado = "\(alugado)"
                                 }
                                 if let restoaluguel = aDic["restoaluguel"] as? String {
                                     movieData.movies?.restoaluguel = restoaluguel

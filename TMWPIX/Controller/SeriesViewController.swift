@@ -48,6 +48,12 @@ class SeriesViewController: TMWViewController {
     //======================================
 #endif
     
+    override var preferredFocusedView: UIView? {
+        get {
+            return self.collectionView
+        }
+    }
+    
     @IBAction func viewDismissed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }

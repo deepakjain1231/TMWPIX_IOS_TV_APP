@@ -27,12 +27,16 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
     @IBOutlet weak var lblYear: UILabel!
     @IBOutlet weak var lblDuration: UILabel!
     @IBOutlet weak var lblAluguel: UILabel!
+    @IBOutlet weak var btn_Reset: UIButton!
+    @IBOutlet weak var btn_Play: UIButton!
     
     var player: AVPlayer!
     var playerController: AVPlayerViewController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.btn_Play.isHidden = true
+        self.btn_Reset.isHidden = true
         
         name.text = FilmName
         filmImage.sd_setImage(with: URL(string: ImageUrl!))
@@ -111,9 +115,19 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
         }
     }
     
+    @IBAction func btn_ResetTapped(_ sender: Any) {
+        utils.setMovieData_globally(str_type: "film", str_id: self.FilmID ?? "", time: 0)
+        self.play_video()
+    }
+    
     
     @IBAction func RentalDetailTapped(_ sender: Any) {
-        if self.dic_movieData?.movies?.aluguel == "2" {
+        
+        if (self.dic_movieData?.movies?.alugado ?? "") == "1" ||
+            (self.dic_movieData?.movies?.preco ?? "") == "0" {
+            self.play_video()
+        }
+        else {
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let popupVC = storyboard.instantiateViewController(withIdentifier: "RentalDetailViewController") as! RentalDetailViewController
             popupVC.delegate = self
@@ -138,9 +152,6 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
             let pVC = popupVC.popoverPresentationController
             pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
             present(popupVC, animated: true, completion: nil)
-            
-        } else {
-            self.play_video()
             
         }
     }
@@ -247,5 +258,31 @@ extension DetailsFilmViewController {
         if let price = movie.movies?.precoaluguel {
             self.lblAluguel.text = "R$ \(price)"
         }
+        
+        self.setupButtonText()
+    }
+    
+    func setupButtonText() {
+        //Load movie Info in Screen
+        self.btn_Reset.isHidden = true
+        self.btn_Play.isHidden = false
+        
+        if (self.dic_movieData?.movies?.alugado ?? "") == "1" ||
+            (self.dic_movieData?.movies?.preco ?? "") == "0" {
+            
+            let currentTime = utils.getMovieSec_Data(str_type: "film", str_id: self.FilmID ?? "")
+            
+            if currentTime != 0 {
+                self.btn_Reset.isHidden = false
+                self.btn_Play.setTitle("Continuar Assistindo", for: .normal)
+            }
+            else {
+                self.btn_Play.setTitle("Assistir!", for: .normal)
+            }
+        }
+        else {
+            self.btn_Play.setTitle("Alugue esse filme!", for: .normal)
+        }
+
     }
 }

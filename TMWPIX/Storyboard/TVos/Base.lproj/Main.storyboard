@@ -3466,10 +3466,10 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gyj-ov-lu2" customClass="Focusable_Button" customModule="TMWPIXtvOS" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="732" width="300" height="70"/>
+                                                        <rect key="frame" x="0.0" y="732" width="375" height="70"/>
                                                         <color key="backgroundColor" red="0.87058823529999996" green="0.0" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="300" id="DVn-a2-M9C"/>
+                                                            <constraint firstAttribute="width" constant="375" id="DVn-a2-M9C"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3483,6 +3483,26 @@
                                                         </userDefinedRuntimeAttributes>
                                                         <connections>
                                                             <action selector="RentalDetailTapped:" destination="rTK-Jd-GeU" eventType="primaryActionTriggered" id="adr-1Z-mfk"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J09-lb-uEQ" customClass="Focusable_Button" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                                        <rect key="frame" x="397" y="732" width="300" height="70"/>
+                                                        <color key="backgroundColor" red="0.87058823529999996" green="0.0" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="300" id="P4N-na-Bma"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                        <state key="normal" title="Reiniciar"/>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="5"/>
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <action selector="btn_ResetTapped:" destination="rTK-Jd-GeU" eventType="primaryActionTriggered" id="y3i-fc-EtU"/>
                                                         </connections>
                                                     </button>
                                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gva-DT-7Jy">
@@ -3499,11 +3519,13 @@
                                                     <constraint firstItem="gva-DT-7Jy" firstAttribute="top" secondItem="r7b-II-vQR" secondAttribute="bottom" constant="12" id="2Pa-nP-EMh"/>
                                                     <constraint firstAttribute="trailing" secondItem="r7b-II-vQR" secondAttribute="trailing" id="7xv-cS-t9a"/>
                                                     <constraint firstAttribute="bottom" secondItem="Gyj-ov-lu2" secondAttribute="bottom" constant="16" id="A6c-X5-Ku6"/>
+                                                    <constraint firstItem="J09-lb-uEQ" firstAttribute="leading" secondItem="Gyj-ov-lu2" secondAttribute="trailing" constant="22" id="Dd8-4J-mD6"/>
                                                     <constraint firstAttribute="trailing" secondItem="gva-DT-7Jy" secondAttribute="trailing" constant="12" id="FHU-18-KBD"/>
                                                     <constraint firstItem="gva-DT-7Jy" firstAttribute="leading" secondItem="Dw2-A7-eNY" secondAttribute="leading" id="Idg-2r-rml"/>
                                                     <constraint firstItem="Gyj-ov-lu2" firstAttribute="top" secondItem="gva-DT-7Jy" secondAttribute="bottom" constant="22" id="NIj-ok-fvb"/>
                                                     <constraint firstItem="r7b-II-vQR" firstAttribute="top" secondItem="Dw2-A7-eNY" secondAttribute="top" id="Njc-1x-oAw"/>
                                                     <constraint firstItem="r7b-II-vQR" firstAttribute="leading" secondItem="Dw2-A7-eNY" secondAttribute="leading" id="RSF-2e-Qkt"/>
+                                                    <constraint firstItem="J09-lb-uEQ" firstAttribute="centerY" secondItem="Gyj-ov-lu2" secondAttribute="centerY" id="Yz9-FA-p1R"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xuJ-bR-vXM">
@@ -3668,6 +3690,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btn_Play" destination="Gyj-ov-lu2" id="dQd-qv-gRS"/>
+                        <outlet property="btn_Reset" destination="J09-lb-uEQ" id="Y8x-HC-LTW"/>
                         <outlet property="filmDiscription" destination="gva-DT-7Jy" id="Qxf-cJ-4yx"/>
                         <outlet property="filmImage" destination="2vw-yp-M6K" id="XbV-xH-R3M"/>
                         <outlet property="lblAluguel" destination="mHB-4F-qzu" id="PSN-gL-Gro"/>
