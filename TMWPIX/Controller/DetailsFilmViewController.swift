@@ -170,6 +170,7 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
             guard let self = self else { return }
             debugPrint(sec.seconds)
             utils.setMovieData_globally(str_type: "film", str_id: self.FilmID ?? "", time: sec.seconds)
+            self.setupButtonText()
         }
         self.player?.volume = 1.0
 
