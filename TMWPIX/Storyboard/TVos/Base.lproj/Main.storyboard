@@ -3755,7 +3755,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0Q-cL-wG4">
                                         <rect key="frame" x="0.0" y="863" width="1760" height="100"/>
                                         <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBt-y3-4DX" customClass="FocusableView" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                            <view tag="1001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBt-y3-4DX" customClass="FocusableView" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                 <rect key="frame" x="22" y="15" width="100" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAn-44-4Oj">
@@ -3802,7 +3802,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JBx-co-Pmq">
                                                 <rect key="frame" x="1338" y="0.0" width="400" height="96"/>
                                                 <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0H-yy-L3O">
+                                                    <view tag="1001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z0H-yy-L3O">
                                                         <rect key="frame" x="276" y="15" width="112" height="70"/>
                                                         <subviews>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="3fK-d4-UD6">
@@ -3921,12 +3921,17 @@
                     </view>
                     <connections>
                         <outlet property="MediaView" destination="v2w-YI-vFN" id="Dd1-pf-I1V"/>
+                        <outlet property="btn_Back" destination="Njp-pc-H9R" id="9f1-02-Qcq"/>
                         <outlet property="channelDesc" destination="c5x-2j-vgN" id="9xa-R7-wxy"/>
                         <outlet property="channelImage" destination="3fK-d4-UD6" id="P1Y-go-PZW"/>
                         <outlet property="channelName" destination="pVU-pk-dWw" id="T5K-Jr-rrL"/>
                         <outlet property="channelNumber" destination="yAn-44-4Oj" id="xau-Nc-vQr"/>
                         <outlet property="channelTitle" destination="pVU-pk-dWw" id="SHF-6W-czT"/>
                         <outlet property="footerView" destination="D0Q-cL-wG4" id="3US-XA-DWl"/>
+                        <outlet property="indicate_1" destination="L8v-bv-XYW" id="w0e-hD-Xpe"/>
+                        <outlet property="indicate_2" destination="dLl-l4-26O" id="Pxo-eh-0gR"/>
+                        <outlet property="indicate_3" destination="kQH-cu-ehn" id="Ct7-Hh-ur6"/>
+                        <outlet property="indicate_4" destination="z0H-yy-L3O" id="RnK-D3-tuv"/>
                         <outlet property="titleView" destination="nBt-y3-4DX" id="r7I-D3-YKa"/>
                     </connections>
                 </viewController>

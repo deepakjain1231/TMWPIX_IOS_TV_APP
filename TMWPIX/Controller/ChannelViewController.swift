@@ -110,6 +110,8 @@ extension ChannelViewController : UICollectionViewDelegate {
             nextViewController.channelID = "\(channels[indexPath.row].id ?? 0)"
             nextViewController.Channeltext = String(channels[indexPath.row].number ?? 0)
             nextViewController.is_epg = false
+            nextViewController.arr_channels = self.channels
+            nextViewController.selected_Indx = indexPath.row
             self.present(nextViewController, animated:true, completion:nil)
             
         } else {
@@ -122,6 +124,8 @@ extension ChannelViewController : UICollectionViewDelegate {
             nextViewController.Channeltext = String(channels[indexPath.row].number!)
             nextViewController.is_epg = true
             nextViewController.reloadPlayer()
+            nextViewController.arr_channels = self.channels
+            nextViewController.selected_Indx = indexPath.row
             self.dismiss(animated: true, completion: nil)
 
         }
@@ -140,6 +144,8 @@ extension ChannelViewController : UICollectionViewDelegate {
                 nextViewController.channelID = "\(channels[0].id ?? 0)"
                 nextViewController.Channeltext = String(channels[0].number ?? 0)
                 nextViewController.is_epg = false
+                nextViewController.arr_channels = self.channels
+                nextViewController.selected_Indx = 0
                 self.present(nextViewController, animated:true, completion:nil)
             }
         }

@@ -15,15 +15,27 @@ import PlayKit
 class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, delegateChange_Language {
     
     var counter = 5
+    var current_focusItemHint: String?
     @IBOutlet weak var MediaView: PlayerView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var footerView: UIView!
     @IBOutlet weak var titleView: UIView!
+    
+    @IBOutlet weak var btn_Back: UIButton!
+    
+    @IBOutlet weak var indicate_1: UIButton!
+    @IBOutlet weak var indicate_2: UIButton!
+    @IBOutlet weak var indicate_3: UIButton!
+    @IBOutlet weak var indicate_4: UIView!
+    
     @IBOutlet weak var channelNumber: UILabel!
     @IBOutlet weak var channelImage: UIImageView!
     @IBOutlet weak var channelTitle: UILabel!
     @IBOutlet weak var channelName: UILabel!
     @IBOutlet weak var channelDesc: UILabel!
+    
+    var selected_Indx = 0
+    var arr_channels : [Channel] = []
     
     var Channeltext:String?
     var ImageUrl:String?
@@ -41,16 +53,15 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        channelImage.sd_setImage(with: URL(string: ImageUrl!))
-        channelNumber.text = Channeltext
-        channelName.text = name
+        self.btn_Back.accessibilityHint = "up"
+        self.titleView.accessibilityHint = "bottom"
+        self.indicate_1.accessibilityHint = "bottom"
+        self.indicate_2.accessibilityHint = "bottom"
+        self.indicate_3.accessibilityHint = "bottom"
+        self.indicate_4.accessibilityHint = "bottom"
         
-        self.loadingIndicator.startAnimating()
+        self.setupInitialSetup()
         
-        if channelID != nil {
-            ChannelAPI.getNowPlayingData(id: channelID!, delegate: self)
-        }
-
         // Video Streaming
         player = PlayKitManager.shared.loadPlayer(pluginConfig: nil)
         handleTracks()
@@ -64,6 +75,24 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             self.startTimer()
         }
         
+    }
+    
+    func setupInitialSetup() {
+        channelImage.sd_setImage(with: URL(string: ImageUrl ?? ""))
+        channelNumber.text = Channeltext
+        channelName.text = name
+        
+        self.loadingIndicator.startAnimating()
+        
+        if channelID != nil {
+            ChannelAPI.getNowPlayingData(id: channelID!, delegate: self)
+        }
+    }
+    
+    override var preferredFocusedView: UIView? {
+        get {
+            return self.titleView
+        }
     }
     
     func startTimer() {
@@ -203,7 +232,39 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
 
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         self.startTimer()
+        self.current_focusItemHint = context.nextFocusedView?.accessibilityHint ?? nil
     }
+    
+    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+        let anyPress: UIPress? = presses.first
+        if self.current_focusItemHint == "up" && anyPress?.key?.characters == "UIKeyInputUpArrow" {
+            selected_Indx -= 1
+            self.nextChannel()
+        }
+        else if self.current_focusItemHint == "bottom" && anyPress?.key?.characters == "UIKeyInputDownArrow" {
+            selected_Indx += 1
+            self.nextChannel()
+        }
+    }
+    
+    func nextChannel () {
+        if self.selected_Indx == -1 {
+            self.selected_Indx = 0
+            return
+        }
+
+        if (self.arr_channels.count - 1) >= self.selected_Indx {
+            self.ImageUrl = self.arr_channels[self.selected_Indx].image ?? ""
+            self.VideoURl = self.arr_channels[self.selected_Indx].url ?? ""
+            self.name = self.arr_channels[self.selected_Indx].name ?? ""
+            self.desc = self.arr_channels[self.selected_Indx].description ?? ""
+            self.channelID = "\(self.arr_channels[self.selected_Indx].id ?? 0)"
+            self.Channeltext = String(self.arr_channels[self.selected_Indx].number ?? 0)
+            self.setupInitialSetup()
+            self.reloadPlayer()
+        }
+    }
+    
     
 
     // MARK: - IBAction

@@ -7,80 +7,80 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "CDB68639-7953-4C81-A42B-03FA5ACA135C"
+            uuid = "FD9D6379-7BDC-406C-B7F8-C24AB2177216"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Controller/DetailsFilmViewController.swift"
+            filePath = "TMWPIX/Controller/MediaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
-            landmarkName = "callAPIforUpdateStatus(verified_cpf:)"
+            startingLineNumber = "223"
+            endingLineNumber = "223"
+            landmarkName = "touchesBegan(_:with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C52915E3-1D89-4856-ABA4-2597C01F3EA5"
+            uuid = "FC0C085A-F65D-4624-86BE-88769408CDD9"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Controller/DetailsFilmViewController.swift"
+            filePath = "TMWPIX/Controller/MediaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
-            landmarkName = "callAPIforUpdateStatus(verified_cpf:)"
+            startingLineNumber = "251"
+            endingLineNumber = "251"
+            landmarkName = "nextChannel()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "54D0E226-FE3A-4304-8673-378A406D8A74"
+            uuid = "BA799897-CD19-411F-9E5E-DD1976235414"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Controller/DetailsFilmViewController.swift"
+            filePath = "TMWPIX/Controller/MediaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "setupButtonText()"
+            startingLineNumber = "256"
+            endingLineNumber = "256"
+            landmarkName = "nextChannel()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "AF97E344-FD49-4F00-B82F-3C55623E0606"
+            uuid = "9190BB6C-34BB-4B13-8AF8-8CECBDDA63F8"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Controller/DetailsFilmViewController.swift"
+            filePath = "TMWPIX/Controller/MediaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "285"
-            endingLineNumber = "285"
-            landmarkName = "setupButtonText()"
+            startingLineNumber = "81"
+            endingLineNumber = "81"
+            landmarkName = "setupInitialSetup()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0AD07E96-970E-418C-BB8B-3D173FA64F12"
+            uuid = "7EE4B63A-9C37-479D-918E-007141950572"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TMWPIX/Controller/DetailsFilmViewController.swift"
+            filePath = "TMWPIX/Controller/MediaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "276"
-            endingLineNumber = "276"
-            landmarkName = "setupButtonText()"
+            startingLineNumber = "82"
+            endingLineNumber = "82"
+            landmarkName = "setupInitialSetup()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
