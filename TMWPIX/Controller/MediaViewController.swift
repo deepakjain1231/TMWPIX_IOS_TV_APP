@@ -62,6 +62,11 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
         
         self.setupInitialSetup()
         
+        self.setupPlayer()
+        
+    }
+
+    func setupPlayer() {
         // Video Streaming
         player = PlayKitManager.shared.loadPlayer(pluginConfig: nil)
         handleTracks()
@@ -74,7 +79,6 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             self.player.play()
             self.startTimer()
         }
-        
     }
     
     func setupInitialSetup() {
@@ -237,13 +241,24 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     
     override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
         let anyPress: UIPress? = presses.first
-        if self.current_focusItemHint == "up" && anyPress?.key?.characters == "UIKeyInputUpArrow" {
-            selected_Indx -= 1
-            self.nextChannel()
-        }
-        else if self.current_focusItemHint == "bottom" && anyPress?.key?.characters == "UIKeyInputDownArrow" {
-            selected_Indx += 1
-            self.nextChannel()
+//        if self.current_focusItemHint == "up" && anyPress?.key?.characters == "UIKeyInputUpArrow" {
+//            DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
+//                guard let self = self else { return }
+//                
+//                selected_Indx -= 1
+//                self.nextChannel()
+//            }
+//            
+//        }
+//        else 
+        if self.current_focusItemHint == "bottom" && anyPress?.key?.characters == "UIKeyInputDownArrow" {
+            DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
+                guard let self = self else { return }
+                
+                selected_Indx += 1
+                self.nextChannel()
+            }
+            
         }
     }
     
@@ -261,7 +276,8 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             self.channelID = "\(self.arr_channels[self.selected_Indx].id ?? 0)"
             self.Channeltext = String(self.arr_channels[self.selected_Indx].number ?? 0)
             self.setupInitialSetup()
-            self.reloadPlayer()
+            self.setupPlayer()
+            //self.reloadPlayer()
         }
     }
     

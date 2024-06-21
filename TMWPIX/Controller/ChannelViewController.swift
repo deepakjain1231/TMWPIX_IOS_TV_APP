@@ -23,8 +23,26 @@ class ChannelViewController: TMWViewController {
         self.loadingIndicator.startAnimating()
         ChannelAPI.getChannelData(delegate: self)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setNeedsFocusUpdate()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNeedsFocusUpdate()
+    }
+    
+    
     @IBAction func goBack(_ sender: Any) {
         self.dismiss(animated: true)
+    }
+    
+    override var preferredFocusedView: UIView? {
+        get {
+            return self.collectionView
+        }
     }
     
     
@@ -49,7 +67,10 @@ extension ChannelViewController {
         self.loadingIndicator.stopAnimating()
         channels = ChannelData
         self.collectionView.reloadData()
-        self.open_firstChannel()
+        setNeedsFocusUpdate()
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+            self.open_firstChannel()
+        }
     }
 }
 

@@ -33,6 +33,11 @@ class OptionViewController: TMWViewController {
         self.lbl_device.text = "Dispositivo: \(utils.getDeviceId())"
     }
     
+    override var preferredFocusedView: UIView? {
+        get {
+            return self.btn_profile
+        }
+    }
     
     @IBAction func viewDismissed(_ sender: Any) {
         dismiss(animated: true, completion: nil)

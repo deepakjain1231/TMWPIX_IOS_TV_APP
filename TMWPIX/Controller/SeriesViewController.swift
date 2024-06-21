@@ -36,6 +36,8 @@ class SeriesViewController: TMWViewController {
         
     }
     
+    
+    
 #if TARGET_OS_IOS
     //======= Orientation Control ===========
     override var shouldAutorotate: Bool{
@@ -176,6 +178,7 @@ extension SeriesViewController{
         self.loadingIndicator.stopAnimating()
         self.allSeries = series
         self.series = series
+        setNeedsFocusUpdate()
         collectionView.reloadData()
     }
     
@@ -183,6 +186,7 @@ extension SeriesViewController{
         self.loadingIndicator.stopAnimating()
         self.films = films
         self.allFilms = films
+        setNeedsFocusUpdate()
         collectionView.reloadData()
     }
     

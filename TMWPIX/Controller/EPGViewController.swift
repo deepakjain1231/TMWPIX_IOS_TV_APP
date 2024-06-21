@@ -11,6 +11,8 @@ import UIKit
 import SDWebImage
 
 class EPGViewController: TMWViewController {
+    
+    var indx_channel = 0
     let contentCellIdentifier = "ContentCellIdentifier"
     let numerOfcolumns = 96
     
@@ -20,30 +22,30 @@ class EPGViewController: TMWViewController {
     //    @IBOutlet weak var channelCollectionViewController: UICollectionView!
     //    @IBOutlet weak var programCollectionViewController: UICollectionView!
     
-    var time:[String] = ["00:00AM","12:15AM","12:30AM","12:45AM",
-                         "1:00AM","1:15AM","1:30AM","1:45AM",
-                         "2:00AM","2:15AM","2:30AM","2:45AM",
-                         "3:00AM", "3:15AM","3:30AM","3:45AM",
-                         "4:00AM","4:15AM","4:30AM","4:45AM",
-                         "5:00AM","5:15AM","5:30AM","5:45AM",
-                         "6:00AM","6:15AM","6:30AM","6:45AM",
-                         "7:00AM", "7:15AM","7:30AM","7:45AM",
-                         "8:00AM","8:15AM","8:30AM","8:45AM",
-                         "9:00AM", "9:15AM","9:30AM","9:45AM",
-                         "10:00AM","10:15AM","10:30AM","10:45AM",
-                         "11:00AM", "11:15AM","11:30AM","11:45AM",
-                         "12:00PM","12:15PM","12:30PM","12:45PM",
-                         "1:00PM","1:15PM", "1:30PM", "1:45PM",
-                         "2:00PM","2:15PM", "2:30PM", "2:45PM",
-                         "3:00PM","3:15PM", "3:30PM", "3:45PM",
-                         "4:00PM","4:15PM", "4:30PM", "4:45PM",
-                         "5:00PM","5:15PM", "5:30PM", "5:45PM",
-                         "6:00PM","6:15PM", "6:30PM", "6:45PM",
-                         "7:00PM","7:15PM", "7:30PM", "7:45PM",
-                         "8:00PM","8:15PM", "8:30PM", "8:45PM",
-                         "9:00PM","9:15PM", "9:30PM", "9:45PM",
-                         "10:00PM","10:15PM", "10:30PM", "10:45PM",
-                         "11:00PM","11:15PM", "11:30PM", "11:45PM",
+    var arr_time:[String] = ["00:00 AM","12:15 AM","12:30 AM","12:45 AM",
+                         "1:00 AM","1:15 AM","1:30 AM","1:45 AM",
+                         "2:00 AM","2:15 AM","2:30 AM","2:45 AM",
+                         "3:00 AM", "3:15 AM","3:30 AM","3:45 AM",
+                         "4:00 AM","4:15 AM","4:30 AM","4:45 AM",
+                         "5:00 AM","5:15 AM","5:30 AM","5:45 AM",
+                         "6:00 AM","6:15 AM","6:30 AM","6:45 AM",
+                         "7:00 AM", "7:15 AM","7:30 AM","7:45 AM",
+                         "8:00 AM","8:15 AM","8:30 AM","8:45 AM",
+                         "9:00 AM", "9:15 AM","9:30 AM","9:45 AM",
+                         "10:00 AM","10:15 AM","10:30 AM","10:45 AM",
+                         "11:00 AM", "11:15 AM","11:30 AM","11:45 AM",
+                         "12:00  PM","12:15 PM","12:30 PM","12:45 PM",
+                         "1:00 PM","1:15 PM", "1:30 PM", "1:45 PM",
+                         "2:00 PM","2:15 PM", "2:30 PM", "2:45 PM",
+                         "3:00 PM","3:15 PM", "3:30 PM", "3:45 PM",
+                         "4:00 PM","4:15 PM", "4:30 PM", "4:45 PM",
+                         "5:00 PM","5:15 PM", "5:30 PM", "5:45 PM",
+                         "6:00 PM","6:15 PM", "6:30 PM", "6:45 PM",
+                         "7:00 PM","7:15 PM", "7:30 PM", "7:45 PM",
+                         "8:00 PM","8:15 PM", "8:30 PM", "8:45 PM",
+                         "9:00 PM","9:15 PM", "9:30 PM", "9:45 PM",
+                         "10:00 PM","10:15 PM", "10:30 PM", "10:45 PM",
+                         "11:00 PM","11:15 PM", "11:30 PM", "11:45 PM",
     ]
     var epgData = [EPGInfo]()
     
@@ -67,6 +69,24 @@ class EPGViewController: TMWViewController {
         formatter.locale = Locale(identifier: "en_US_POSIX")
         lblToday.text = formatter.string(from: nowDateValue)
         
+        let current_time = Date().nextHalfHour // "May 23, 2020 at 1:00  AM"
+        formatter.dateFormat = "h:mm a"
+        let str_currentttime = formatter.string(from: current_time)
+        debugPrint(str_currentttime)
+        if let indx = self.arr_time.firstIndex(where: { dic_time in
+            return dic_time == str_currentttime
+        }) {
+            debugPrint("selected_indx====>>\(indx)")
+            self.indx_channel = indx
+        }
+    }
+    
+    
+    
+    override var preferredFocusedView: UIView? {
+        get {
+            return self.collectionView
+        }
     }
     
 #if TARGET_OS_IOS
@@ -232,15 +252,15 @@ extension EPGViewController: UICollectionViewDataSource {
             if indexPath.row == 0 {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "hh:mm a"
-                dateFormatter.amSymbol = "AM"
-                dateFormatter.pmSymbol = "PM"
+                dateFormatter.amSymbol = " AM"
+                dateFormatter.pmSymbol = " PM"
                 dateFormatter.calendar = Calendar(identifier: .gregorian)
                 dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
                 dateFormatter.locale = Locale(identifier: "en_US_POSIX")
                 cell.contentLabel.text = dateFormatter.string(from: utils.getLocalTime())
                 //                cell.contentLabel.text = "Today"
             } else {
-                cell.contentLabel.text = time[indexPath.row-1]
+                cell.contentLabel.text = self.arr_time[indexPath.row-1]
             }
         } else {
             if indexPath.row == 0 {
@@ -327,10 +347,21 @@ extension EPGViewController{
         //        self.channelCollectionViewController.reloadData()
         //        self.programCollectionViewController.reloadData()
         
-        let index = utils.getCurrentTimeDifferenceInMins() / 15 + 1
-        let indexPath = IndexPath(item: index, section: 0)
-        self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        //let index = utils.getCurrentTimeDifferenceInMins() / 15 + 1
+        let indexPath = IndexPath(item: self.indx_channel, section: 0)
+        //self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         
+        self.collectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredVertically, animated: true)
+        
+        setNeedsFocusUpdate()
     }
 }
 
+
+
+extension Date {
+    var minute: Int { Calendar.current.component(.minute, from: self) }
+    var nextHalfHour: Date {
+        Calendar.current.nextDate(after: self, matching: DateComponents(minute: minute >= 30 ? 0 : 30), matchingPolicy: .strict)!
+    }
+}

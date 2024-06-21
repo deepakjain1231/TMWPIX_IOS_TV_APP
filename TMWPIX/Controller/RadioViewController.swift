@@ -37,6 +37,12 @@ class RadioViewController: TMWViewController {
         RadioAPI.getRadioData(delegate: self);
     }
     
+    override var preferredFocusedView: UIView? {
+        get {
+            return self.collectionView
+        }
+    }
+    
     
     @IBAction func viewDismissed(_ sender: Any) {
         dismiss(animated: true, completion: nil)
@@ -104,6 +110,7 @@ extension RadioViewController {
         RadioImage.sd_setImage(with: url)
         
         self.collectionView.reloadData()
+        setNeedsFocusUpdate()
         self.click_playButton()
     }
 }

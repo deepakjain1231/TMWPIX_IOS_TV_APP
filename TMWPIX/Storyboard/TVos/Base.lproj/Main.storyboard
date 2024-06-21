@@ -1126,7 +1126,7 @@
                                             <action selector="goBack:" destination="1Lv-b7-o8s" eventType="primaryActionTriggered" id="PNa-1Q-Wph"/>
                                         </connections>
                                     </button>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logotmwpix" translatesAutoresizingMaskIntoConstraints="NO" id="dJn-rf-XjP" customClass="FocusableImgView_NotSelected" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logotmwpix" translatesAutoresizingMaskIntoConstraints="NO" id="dJn-rf-XjP" customClass="FocusableImgView_NotSelected" customModule="TMWPIXtvOS" customModuleProvider="target">
                                         <rect key="frame" x="1460" y="0.0" width="300" height="60"/>
                                     </imageView>
                                 </subviews>
@@ -4020,16 +4020,10 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="C3i-xL-INY">
                                         <rect key="frame" x="22" y="186" width="1108" height="70"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Pesquise..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nMA-cx-051" customClass="Focusable_TextField" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pesquise" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Nk3-83-Kxe" customClass="Focusable_TextField" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                 <rect key="frame" x="66" y="6" width="1024" height="58"/>
-                                                <color key="textColor" white="0.016522381756756757" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                                 <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="8"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </textField>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search_gray" translatesAutoresizingMaskIntoConstraints="NO" id="rjl-kZ-TyK">
                                                 <rect key="frame" x="22" y="22" width="26" height="26"/>
@@ -4041,14 +4035,14 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="Nk3-83-Kxe" secondAttribute="bottom" constant="6" id="0ci-Qo-hLf"/>
+                                            <constraint firstItem="Nk3-83-Kxe" firstAttribute="top" secondItem="C3i-xL-INY" secondAttribute="top" constant="6" id="0pO-nj-BKR"/>
                                             <constraint firstItem="rjl-kZ-TyK" firstAttribute="top" secondItem="C3i-xL-INY" secondAttribute="top" constant="22" id="4CQ-gF-CJU"/>
+                                            <constraint firstAttribute="trailing" secondItem="Nk3-83-Kxe" secondAttribute="trailing" constant="18" id="7hq-J1-koG"/>
+                                            <constraint firstItem="Nk3-83-Kxe" firstAttribute="leading" secondItem="rjl-kZ-TyK" secondAttribute="trailing" constant="18" id="H8e-FO-lbA"/>
                                             <constraint firstAttribute="height" constant="70" id="RlX-Rb-ilb"/>
-                                            <constraint firstItem="nMA-cx-051" firstAttribute="leading" secondItem="rjl-kZ-TyK" secondAttribute="trailing" constant="18" id="YxE-KB-DCf"/>
-                                            <constraint firstItem="nMA-cx-051" firstAttribute="top" secondItem="C3i-xL-INY" secondAttribute="top" constant="6" id="gUX-ZR-hFh"/>
                                             <constraint firstAttribute="bottom" secondItem="rjl-kZ-TyK" secondAttribute="bottom" constant="22" id="lZh-0G-ZoJ"/>
                                             <constraint firstItem="rjl-kZ-TyK" firstAttribute="leading" secondItem="C3i-xL-INY" secondAttribute="leading" constant="22" id="meX-AT-Doa"/>
-                                            <constraint firstAttribute="trailing" secondItem="nMA-cx-051" secondAttribute="trailing" constant="18" id="rdq-gJ-aQx"/>
-                                            <constraint firstAttribute="bottom" secondItem="nMA-cx-051" secondAttribute="bottom" constant="6" id="yAe-cG-3AK"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -4091,7 +4085,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="searchBar" destination="nMA-cx-051" id="JYk-vc-vJE"/>
+                        <outlet property="searchBar" destination="Nk3-83-Kxe" id="Hqv-bu-9Zu"/>
                         <outlet property="searchView" destination="IZ2-uy-SgC" id="VPo-mB-0xn"/>
                         <outlet property="selectBtn" destination="nXf-oR-18o" id="s7q-1J-TdI"/>
                     </connections>
