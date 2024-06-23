@@ -60,9 +60,32 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
         self.indicate_3.accessibilityHint = "bottom"
         self.indicate_4.accessibilityHint = "bottom"
         
-        self.setupInitialSetup()
+//        self.setupInitialSetup()
+//        
+//        self.setupPlayer()
         
-        self.setupPlayer()
+        channelImage.sd_setImage(with: URL(string: ImageUrl!))
+        channelNumber.text = Channeltext
+        channelName.text = name
+        
+        self.loadingIndicator.startAnimating()
+        
+        if channelID != nil {
+            ChannelAPI.getNowPlayingData(id: channelID!, delegate: self)
+        }
+
+        // Video Streaming
+        player = PlayKitManager.shared.loadPlayer(pluginConfig: nil)
+        handleTracks()
+        handlePlaybackInfo()
+        handlePlayheadUpdate()
+
+        preparePlayer()
+
+        player.addObserver(self, events: [PlayerEvent.canPlay]) { event in
+            self.player.play()
+            self.startTimer()
+        }
         
     }
 
@@ -100,6 +123,8 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     }
     
     func startTimer() {
+        guard self.timerr == nil else { return }
+        
         self.stopTimer()
         self.timerr = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(self.updateCounter), userInfo: nil, repeats: true)
     }
@@ -223,24 +248,25 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     }
     
 
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        let touch = touches.first
-        if touch?.view != self.footerView {
-            self.footerView.isHidden = false
-            self.startTimer()
-        }
-    }
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        let touch = touches.first
+//        if touch?.view != self.footerView {
+//            self.footerView.isHidden = false
+//            self.startTimer()
+//        }
+//    }
     
     
     
 
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        self.startTimer()
-        self.current_focusItemHint = context.nextFocusedView?.accessibilityHint ?? nil
+        //self.startTimer()
+        //self.current_focusItemHint = context.nextFocusedView?.accessibilityHint ?? nil
     }
     
     override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
         let anyPress: UIPress? = presses.first
+        self.startTimer()
 //        if self.current_focusItemHint == "up" && anyPress?.key?.characters == "UIKeyInputUpArrow" {
 //            DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
 //                guard let self = self else { return }
@@ -251,35 +277,35 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
 //            
 //        }
 //        else 
-        if self.current_focusItemHint == "bottom" && anyPress?.key?.characters == "UIKeyInputDownArrow" {
-            DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
-                guard let self = self else { return }
-                
-                selected_Indx += 1
-                self.nextChannel()
-            }
-            
-        }
+//        if self.current_focusItemHint == "bottom" && anyPress?.key?.characters == "UIKeyInputDownArrow" {
+//            DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
+//                guard let self = self else { return }
+//                
+//                selected_Indx += 1
+//                self.nextChannel()
+//            }
+//            
+//        }
     }
     
-    func nextChannel () {
-        if self.selected_Indx == -1 {
-            self.selected_Indx = 0
-            return
-        }
-
-        if (self.arr_channels.count - 1) >= self.selected_Indx {
-            self.ImageUrl = self.arr_channels[self.selected_Indx].image ?? ""
-            self.VideoURl = self.arr_channels[self.selected_Indx].url ?? ""
-            self.name = self.arr_channels[self.selected_Indx].name ?? ""
-            self.desc = self.arr_channels[self.selected_Indx].description ?? ""
-            self.channelID = "\(self.arr_channels[self.selected_Indx].id ?? 0)"
-            self.Channeltext = String(self.arr_channels[self.selected_Indx].number ?? 0)
-            self.setupInitialSetup()
-            self.setupPlayer()
-            //self.reloadPlayer()
-        }
-    }
+//    func nextChannel () {
+//        if self.selected_Indx == -1 {
+//            self.selected_Indx = 0
+//            return
+//        }
+//
+//        if (self.arr_channels.count - 1) >= self.selected_Indx {
+//            self.ImageUrl = self.arr_channels[self.selected_Indx].image ?? ""
+//            self.VideoURl = self.arr_channels[self.selected_Indx].url ?? ""
+//            self.name = self.arr_channels[self.selected_Indx].name ?? ""
+//            self.desc = self.arr_channels[self.selected_Indx].description ?? ""
+//            self.channelID = "\(self.arr_channels[self.selected_Indx].id ?? 0)"
+//            self.Channeltext = String(self.arr_channels[self.selected_Indx].number ?? 0)
+//            self.setupInitialSetup()
+//            self.setupPlayer()
+//            //self.reloadPlayer()
+//        }
+//    }
     
     
 
@@ -316,13 +342,16 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
 //
 //        self.present(nextViewController, animated:true, completion:nil)
 //    }
-    @IBAction func ViewDismissed(_ sender: Any) {
-        if self.player != nil {
-            self.player.stop()
-            self.stopTimer()
+    
+    @IBAction func btn_Dismiss_Action(_ sender: Any) {
+        self.dismiss(animated: true) {
+            if self.player != nil {
+                self.player.stop()
+                self.stopTimer()
+            }
         }
-        dismiss(animated: true)
     }
+
     
     @IBAction func menuClicked(_ sender: Any) {
         if is_epg {
