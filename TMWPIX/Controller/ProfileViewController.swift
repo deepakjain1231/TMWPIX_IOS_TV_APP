@@ -31,17 +31,25 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
     var userProfiles : [UserProfile] = []
     var sel_index = -1
     
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.tfPassword.delegate = self
+        self.view_Header_title.isHidden = true
+        self.view_Header_title_Short.isHidden = false
+        self.passwordView.isHidden = true
+    }
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.view_Header_title.isHidden = true
         self.view_Header_title_Short.isHidden = false
         self.passwordView.isHidden = true
-        getProfileList()
         
-//        tfPassword.becomeFirstResponder()
-        tfPassword.delegate = self
-        
-        
+        DispatchQueue.main.async {
+            self.getProfileList()
+        }
     }
     
     @IBAction func ViewDismissed(_ sender: Any) {
@@ -68,11 +76,13 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
     @IBAction func EditProfileTapped(_ sender: Any) {
         isProfileState = .editProfileList
         handleBackButton()
+        setNeedsFocusUpdate()
     }
     
     @IBAction func RemoveProfileTapped(_ sender: Any) {
         isProfileState = .deleteProfileList
         handleBackButton()
+        setNeedsFocusUpdate()
     }
     
     private func moveToNext() {
@@ -215,16 +225,20 @@ extension ProfileViewController : UICollectionViewDataSource{
 
 
 extension ProfileViewController {
-    func ProfileResponseHandler(profileData:[UserProfile]){
-        self.loadingIndicator.stopAnimating()
-        self.userProfiles = profileData
-        
-        self.collectionView.reloadData()
+
+    func ProfileResponseHandler(profileData:[UserProfile]) {
+        DispatchQueue.main.async {
+            self.loadingIndicator.stopAnimating()
+            self.userProfiles = profileData
+            self.collectionView.reloadData()
+        }
     }
     
-    func deleteProfileResponseHandler(errorMessage:String){
-        if errorMessage == "" {
-            getProfileList()
+    func deleteProfileResponseHandler(errorMessage:String) {
+        DispatchQueue.main.async {
+            if errorMessage == "" {
+                self.getProfileList()
+            }
         }
     }
 }

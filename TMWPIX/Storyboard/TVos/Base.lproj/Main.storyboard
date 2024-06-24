@@ -4419,7 +4419,7 @@
                     </view>
                     <connections>
                         <outlet property="ProfilePic" destination="eOh-Gf-CIC" id="fXB-X8-8eI"/>
-                        <outlet property="nameText" destination="bue-69-GDD" id="uIp-qC-lJd"/>
+                        <outlet property="nameText" destination="bue-69-GDD" id="POA-ly-o63"/>
                         <outlet property="passwordText" destination="1m8-6W-Iz9" id="ay0-7P-l5i"/>
                         <outlet property="scrollView" destination="bBe-RB-piC" id="BHE-Ml-tlE"/>
                         <outlet property="stateText" destination="Ug3-TM-nvz" id="LKb-UE-FDu"/>

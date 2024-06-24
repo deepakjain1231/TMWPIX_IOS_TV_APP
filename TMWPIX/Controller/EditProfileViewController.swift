@@ -20,6 +20,8 @@ class EditProfileViewController: TMWViewController, UITextFieldDelegate {
     var isAddProfile = false
     var userProfile : UserProfile = UserProfile()
     var state:String? = "normal"
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
@@ -29,10 +31,7 @@ class EditProfileViewController: TMWViewController, UITextFieldDelegate {
         ProfilePic.layer.borderColor = UIColor.white.cgColor
         ProfilePic.layer.cornerRadius = ProfilePic.frame.size.width / 2
         ProfilePic.clipsToBounds = true
-        
     }
-
-
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -44,9 +43,8 @@ class EditProfileViewController: TMWViewController, UITextFieldDelegate {
             }else{
                 stateSelection(stateSelection: "normal")
             }
-            
         }
-       scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     }
     
     @IBAction func genderBtnTapped(_ sender: Any) {
@@ -98,17 +96,27 @@ class EditProfileViewController: TMWViewController, UITextFieldDelegate {
 }
 
 extension EditProfileViewController {
-    func addProfileResponseHandler(errorMessage:String){
-        if errorMessage == "" {
-            self.ViewDismissed(NSNull.self)
+    
+    func addProfileResponseHandler(errorMessage:String) {
+        DispatchQueue.main.async {
+            if errorMessage == "" {
+                self.dismiss(animated: true) {
+                }
+            }
         }
     }
-    func editProfileResponseHandler(errorMessage:String){
-        if errorMessage == "" {
-            self.ViewDismissed(NSNull.self)
+
+    func editProfileResponseHandler(errorMessage:String) {
+        DispatchQueue.main.async {
+            if errorMessage == "" {
+                self.dismiss(animated: true) {
+                }
+            }
         }
     }
+    
 }
+
 extension EditProfileViewController {
     func stateSelection(stateSelection:String){
         if stateSelection == "normal" {
