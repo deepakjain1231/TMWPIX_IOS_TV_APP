@@ -116,9 +116,17 @@ class HomeViewController: TMWViewController {
     }
     @IBAction func ChannelBtnTapped(_ sender: Any) {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MediaViewController") as! MediaViewController
+        nextViewController.superVC = self
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+        //Temp comment//self.present(nextViewController, animated:true, completion:nil)
+        
+        /*
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
         nextViewController.is_home = true
         self.present(nextViewController, animated:true, completion:nil)
+        */
     }
     
     @objc func changeBackgroundImage(){

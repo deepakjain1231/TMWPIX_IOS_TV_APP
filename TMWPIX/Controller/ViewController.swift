@@ -86,7 +86,8 @@ extension ViewController {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
         nextViewController.isFromLogin = true
-        self.present(nextViewController, animated:animated, completion:nil)
+        self.navigationController?.pushViewController(nextViewController, animated: true)
+        //Temp comment//self.present(nextViewController, animated:animated, completion:nil)
     }
     func loginResponseHandler(userInfo: UserInfo, errorMessage: String){
         self.loadingIndicator.stopAnimating()

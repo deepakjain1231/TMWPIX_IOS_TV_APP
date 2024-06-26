@@ -99,7 +99,8 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
 
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let nextViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                self.present(nextViewController, animated:true, completion:nil)
+                self.navigationController?.pushViewController(nextViewController, animated: true)
+                //Temp Comment//self.present(nextViewController, animated:true, completion:nil)
             }
         }else{
             if isProfileState == .deleteProfileList {

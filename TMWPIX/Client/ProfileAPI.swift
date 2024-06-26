@@ -181,7 +181,7 @@ class ProfileAPI{
         
         let userInfo = UserInfo.getInstance()
         
-        let methodString = "/profileedit?user=\("")&time=\(utils.getTime())&hash=\(utils.getHash())&dtoken=\(utils.getDToken())&os=\("ios")&operator=1&tipo=\("t")&usrtoken=\(userInfo?.token! ?? "")&hashtoken=\(utils.getHashToken(token: (userInfo?.token)!))"
+        let methodString = "/profileedit?user=&time=\(utils.getTime())&hash=\(utils.getHash())&dtoken=\(utils.getDToken())&os=ios&operator=1&tipo=t&usrtoken=\(userInfo?.token ?? "")&hashtoken=\(utils.getHashToken(token: (userInfo?.token)!))"
         
         var params = ["nome" : name.trimed(),
                       "status" : "ativo",

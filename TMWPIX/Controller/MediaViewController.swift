@@ -14,6 +14,9 @@ import PlayKit
 
 class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, delegateChange_Language {
     
+    var superVC = UIViewController()
+    var arr_channels : [Channel] = []
+    
     var counter = 10
     var is_openinfo = false
     var current_focusItemHint: String?
@@ -38,7 +41,6 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     @IBOutlet weak var Indicator_view: UIActivityIndicatorView!
     
     var selected_Indx = 0
-    var arr_channels : [Channel] = []
     
     var Channeltext:String?
     var ImageUrl:String?
@@ -56,20 +58,25 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.btn_Back.accessibilityHint = "back"
+        self.footerView.isHidden = true
+        //self.btn_Back.accessibilityHint = "back"
         self.titleView.accessibilityHint = "titleView"
         self.indicate_1.accessibilityHint = "indicate_1"
         self.indicate_2.accessibilityHint = "indicate_2"
         self.indicate_3.accessibilityHint = "indicate_3"
         self.indicate_4.accessibilityHint = "indicate_4"
 
-        self.setupFocusButton("back")
+        self.setupFocusButton("titleView")
         
+        
+        self.loadingIndicator.startAnimating()
+        ChannelAPI.getChannelData(delegate: self)
         
 //        self.setupInitialSetup()
 //        
 //        self.setupPlayer()
         
+        /*
         channelImage.sd_setImage(with: URL(string: ImageUrl!))
         channelNumber.text = Channeltext
         channelName.text = name
@@ -92,6 +99,15 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             self.player.play()
             self.startTimer()
         }
+        */
+        
+        let tap_up = UITapGestureRecognizer(target: self, action: #selector(self.tapped_upClick(gesture:)))
+        tap_up.allowedPressTypes = [NSNumber(value: UIPress.PressType.downArrow.rawValue)]
+        self.view.addGestureRecognizer(tap_up)
+        
+        let tap_down = UITapGestureRecognizer(target: self, action: #selector(self.tapped_downClick(gesture:)))
+        tap_down.allowedPressTypes = [NSNumber(value: UIPress.PressType.downArrow.rawValue)]
+        self.view.addGestureRecognizer(tap_down)
         
     }
     
@@ -282,48 +298,69 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             guard let self = self else { return }
         })
     }
-
-    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-        let anyPress: UIPress? = presses.first
+    
+    
+    
+    @objc func tapped_downClick(gesture: UITapGestureRecognizer) {
+            // do something
+        debugPrint("Next Channel")
+        
+        self.selected_Indx += 1
+        self.nextChannel()
+    }
+    
+    @objc func tapped_upClick(gesture: UITapGestureRecognizer) {
+            // do something
+        self.selected_Indx -= 1
+        self.nextChannel()
+    }
+    
+//    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
+//        DispatchQueue.main.async {
+//            let anyPress: UIPress? = presses.first
+//            self.manageButtonClickEvent(click_type: anyPress?.key?.characters ?? "")
+//        }
+//    }
+    private func manageButtonClickEvent(click_type: String) {
         if self.is_openinfo == false {
             self.startTimer()
-            if anyPress?.key?.characters == "UIKeyInputUpArrow" {
-                if self.current_focusItemHint == "back" {
-                    
-                    debugPrint("Previous Channel")
-                    
-                    DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
-                        guard let self = self else { return }
-                        selected_Indx -= 1
-                        self.nextChannel()
-                    }
-                    
-                }
-                else if self.current_focusItemHint == "titleView" ||
-                            self.current_focusItemHint == "indicate_1" ||
-                            self.current_focusItemHint == "indicate_2" ||
-                            self.current_focusItemHint == "indicate_3" {
-                    self.setupFocusButton("back")
+            if click_type == "UIKeyInputUpArrow" {
+                //                if self.current_focusItemHint == "back" {
+                //
+                //                    debugPrint("Previous Channel")
+                //
+                //                    DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
+                //                        guard let self = self else { return }
+                //                        selected_Indx -= 1
+                //                        self.nextChannel()
+                //                    }
+                //
+                //                }
+                //else
+                if self.current_focusItemHint == "titleView" ||
+                    self.current_focusItemHint == "indicate_1" ||
+                    self.current_focusItemHint == "indicate_2" ||
+                    self.current_focusItemHint == "indicate_3" {
+                    self.selected_Indx -= 1
+                    self.nextChannel()
                 }
             }
-            else if anyPress?.key?.characters == "UIKeyInputDownArrow" {
-                if self.current_focusItemHint == "back" {
-                    self.setupFocusButton("titleView")
-                }
-                else if self.current_focusItemHint == "titleView" ||
-                            self.current_focusItemHint == "indicate_1" ||
-                            self.current_focusItemHint == "indicate_2" ||
-                            self.current_focusItemHint == "indicate_3" {
+            else if click_type == "UIKeyInputDownArrow" {
+                //                if self.current_focusItemHint == "back" {
+                //                    self.setupFocusButton("titleView")
+                //                }
+                //else
+                if self.current_focusItemHint == "titleView" ||
+                    self.current_focusItemHint == "indicate_1" ||
+                    self.current_focusItemHint == "indicate_2" ||
+                    self.current_focusItemHint == "indicate_3" {
                     debugPrint("Next Channel")
                     
-                    DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
-                        guard let self = self else { return }
-                        selected_Indx += 1
-                        self.nextChannel()
-                    }
+                    self.selected_Indx += 1
+                    self.nextChannel()
                 }
             }
-            else if anyPress?.key?.characters == "UIKeyInputLeftArrow" {
+            else if click_type == "UIKeyInputLeftArrow" {
                 if self.current_focusItemHint == "indicate_1" {
                     self.setupFocusButton("indicate_2")
                 }
@@ -334,7 +371,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
                     self.setupFocusButton("titleView")
                 }
             }
-            else if anyPress?.key?.characters == "UIKeyInputRightArrow" {
+            else if click_type == "UIKeyInputRightArrow" {
                 if self.current_focusItemHint == "titleView" {
                     self.setupFocusButton("indicate_3")
                 }
@@ -346,7 +383,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
                 }
             }
             else {
-                if anyPress?.key?.characters == "\r" {
+                if click_type == "\r" {
                     if self.current_focusItemHint == "back" {
                         self.back_action()
                     }
@@ -369,7 +406,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             }
         }
         
-        
+
         
         
         
@@ -394,6 +431,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
 //            }
 //            
 //        }
+        
     }
     
     func nextChannel () {
@@ -414,8 +452,12 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             self.channelNumber.text = Channeltext
             self.channelName.text = name
             
-            self.setupInitialSetup()
-            self.setupPlayer()
+            DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
+                guard let self = self else { return }
+                self.setupScreenData()
+            }
+            //self.setupInitialSetup()
+            //self.setupPlayer()
             //self.reloadPlayer()
         }
     }
@@ -454,7 +496,23 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             self.present(nextViewController, animated:true, completion:nil)
         } else {
             if self.player != nil { self.player.stop() }
-            dismiss(animated: true)
+            
+            self.is_openinfo = true
+            
+            //self.dismiss(animated: false) {
+                let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let popupVC = storyboard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
+                popupVC.channels = self.arr_channels
+                popupVC.is_home = true
+                self.navigationController?.pushViewController(popupVC, animated: true)
+                //Temp comment
+//                popupVC.modalPresentationStyle = .fullScreen
+//                let pVC = popupVC.popoverPresentationController
+//                pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
+//                self.superVC.present(popupVC, animated: true, completion: nil)
+            //}
+            
+                
         }
     }
     
@@ -520,6 +578,58 @@ extension MediaViewController {
         if playingData.count > 0 {
             channelDesc.text = "Atual: \(playingData[0].agoratitulo!)\nPróximo: \(playingData[0].depoistitulo!)"
             self.desc = playingData[0].descricao
+        }
+    }
+}
+
+
+//MARK: - API CALL and Handle Response
+extension MediaViewController {
+    func channelResponseHandler(ChannelData:[Channel]){
+        self.loadingIndicator.stopAnimating()
+        self.arr_channels = ChannelData
+        self.footerView.isHidden = false
+        self.open_firstChannel()
+    }
+    
+    func open_firstChannel() {
+        if self.arr_channels.count != 0 {
+            self.ImageUrl = self.arr_channels[0].image ?? ""
+            self.VideoURl = self.arr_channels[0].url ?? ""
+            self.name = self.arr_channels[0].name ?? ""
+            self.desc = self.arr_channels[0].description ?? ""
+            self.channelID = "\(self.arr_channels[0].id ?? 0)"
+            self.Channeltext = String(self.arr_channels[0].number ?? 0)
+            self.is_epg = false
+            self.selected_Indx = 0
+            
+            self.channelImage.sd_setImage(with: URL(string: ImageUrl ?? ""))
+            self.channelNumber.text = self.Channeltext
+            self.channelName.text = self.name
+            
+            self.setupScreenData()
+        }
+    }
+    
+    func setupScreenData() {
+
+        self.Indicator_view.isHidden = false
+        
+        if let str_channel_id = channelID, str_channel_id != "" {
+            ChannelAPI.getNowPlayingData(id: str_channel_id, delegate: self)
+        }
+
+        // Video Streaming
+        player = PlayKitManager.shared.loadPlayer(pluginConfig: nil)
+        handleTracks()
+        handlePlaybackInfo()
+        handlePlayheadUpdate()
+
+        preparePlayer()
+
+        player.addObserver(self, events: [PlayerEvent.canPlay]) { event in
+            self.player.play()
+            self.startTimer()
         }
     }
 }

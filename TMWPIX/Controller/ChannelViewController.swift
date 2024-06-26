@@ -12,6 +12,7 @@ import UIKit
 
 class ChannelViewController: TMWViewController {
 
+    var selected_channel = 0
     @IBOutlet weak var collectionView: UICollectionView!
     var channels : [Channel] = []
     var is_home = true
@@ -22,16 +23,21 @@ class ChannelViewController: TMWViewController {
         
         self.loadingIndicator.startAnimating()
         ChannelAPI.getChannelData(delegate: self)
+        
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+//            self.collectionView.reloadData()
+//        }
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setNeedsFocusUpdate()
+        //setNeedsFocusUpdate()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setNeedsFocusUpdate()
+        //setNeedsFocusUpdate()
     }
     
     
@@ -39,11 +45,11 @@ class ChannelViewController: TMWViewController {
         self.dismiss(animated: true)
     }
     
-    override var preferredFocusedView: UIView? {
-        get {
-            return self.collectionView
-        }
-    }
+//    override var preferredFocusedView: UIView? {
+//        get {
+//            return self.collectionView
+//        }
+//    }
     
     
 #if TARGET_OS_IOS
@@ -67,8 +73,8 @@ extension ChannelViewController {
         self.loadingIndicator.stopAnimating()
         channels = ChannelData
         self.collectionView.reloadData()
-        setNeedsFocusUpdate()
-        self.open_firstChannel()
+        //setNeedsFocusUpdate()
+        //self.open_firstChannel()
     }
 }
 
@@ -154,7 +160,7 @@ extension ChannelViewController : UICollectionViewDelegate {
     func open_firstChannel() {
         if is_home {
             if self.channels.count != 0 {
-                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
                     let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                     let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MediaViewController") as! MediaViewController
                     nextViewController.ImageUrl = self.channels[0].image ?? ""
@@ -167,7 +173,7 @@ extension ChannelViewController : UICollectionViewDelegate {
                     nextViewController.arr_channels = self.channels
                     nextViewController.selected_Indx = 0
                     self.present(nextViewController, animated:true, completion:nil)
-                }
+                //}
             }
         }
     }
