@@ -68,9 +68,7 @@ extension ChannelViewController {
         channels = ChannelData
         self.collectionView.reloadData()
         setNeedsFocusUpdate()
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
-            self.open_firstChannel()
-        }
+        self.open_firstChannel()
     }
 }
 
@@ -156,18 +154,20 @@ extension ChannelViewController : UICollectionViewDelegate {
     func open_firstChannel() {
         if is_home {
             if self.channels.count != 0 {
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MediaViewController") as! MediaViewController
-                nextViewController.ImageUrl = self.channels[0].image ?? ""
-                nextViewController.VideoURl = channels[0].url ?? ""
-                nextViewController.name = channels[0].name ?? ""
-                nextViewController.desc = channels[0].description ?? ""
-                nextViewController.channelID = "\(channels[0].id ?? 0)"
-                nextViewController.Channeltext = String(channels[0].number ?? 0)
-                nextViewController.is_epg = false
-                nextViewController.arr_channels = self.channels
-                nextViewController.selected_Indx = 0
-                self.present(nextViewController, animated:true, completion:nil)
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.2) {
+                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                    let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MediaViewController") as! MediaViewController
+                    nextViewController.ImageUrl = self.channels[0].image ?? ""
+                    nextViewController.VideoURl = self.channels[0].url ?? ""
+                    nextViewController.name = self.channels[0].name ?? ""
+                    nextViewController.desc = self.channels[0].description ?? ""
+                    nextViewController.channelID = "\(self.channels[0].id ?? 0)"
+                    nextViewController.Channeltext = String(self.channels[0].number ?? 0)
+                    nextViewController.is_epg = false
+                    nextViewController.arr_channels = self.channels
+                    nextViewController.selected_Indx = 0
+                    self.present(nextViewController, animated:true, completion:nil)
+                }
             }
         }
     }
