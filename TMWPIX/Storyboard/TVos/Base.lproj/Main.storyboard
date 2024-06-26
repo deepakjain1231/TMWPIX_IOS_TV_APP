@@ -2308,27 +2308,39 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="100" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logotmwpix" translatesAutoresizingMaskIntoConstraints="NO" id="lgd-Yt-38B" customClass="FocusableImgView_NotSelected" customModule="TMWPIXtvOS" customModuleProvider="target">
                                         <rect key="frame" x="1460" y="6" width="300" height="48"/>
                                     </imageView>
-                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNs-k3-61K" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rJP-1H-hRR" customClass="FocusableView_forBackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="500" height="60"/>
+                                        <subviews>
+                                            <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNs-k3-61K" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="60" height="60"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="bNs-k3-61K" secondAttribute="height" multiplier="1:1" id="3pr-8W-zvg"/>
+                                                </constraints>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" image="icon_back"/>
+                                                <connections>
+                                                    <action selector="ViewDismissed:" destination="gjb-RD-6AQ" eventType="primaryActionTriggered" id="Ce4-bK-PT9"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="bNs-k3-61K" secondAttribute="height" multiplier="1:1" id="3pr-8W-zvg"/>
+                                            <constraint firstItem="bNs-k3-61K" firstAttribute="top" secondItem="rJP-1H-hRR" secondAttribute="top" id="VtR-pf-FvS"/>
+                                            <constraint firstAttribute="width" constant="500" id="b9T-w2-n4M"/>
+                                            <constraint firstItem="bNs-k3-61K" firstAttribute="leading" secondItem="rJP-1H-hRR" secondAttribute="leading" id="iMF-zD-ycn"/>
+                                            <constraint firstAttribute="bottom" secondItem="bNs-k3-61K" secondAttribute="bottom" id="sGN-go-BEO"/>
                                         </constraints>
-                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                        <state key="normal" image="icon_back"/>
-                                        <connections>
-                                            <action selector="ViewDismissed:" destination="gjb-RD-6AQ" eventType="primaryActionTriggered" id="Ce4-bK-PT9"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="0.0078431372550000003" green="0.050980392159999999" blue="0.094117647060000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="lgd-Yt-38B" secondAttribute="trailing" id="0cH-Qv-sZO"/>
-                                    <constraint firstAttribute="bottom" secondItem="bNs-k3-61K" secondAttribute="bottom" id="7bi-sj-ijr"/>
                                     <constraint firstAttribute="height" constant="60" id="9s7-QB-hup"/>
                                     <constraint firstItem="lgd-Yt-38B" firstAttribute="height" secondItem="wzl-Ba-dve" secondAttribute="height" multiplier="0.8" id="HXr-a0-HVr"/>
-                                    <constraint firstItem="bNs-k3-61K" firstAttribute="top" secondItem="wzl-Ba-dve" secondAttribute="top" id="IU7-ug-ZkT"/>
-                                    <constraint firstItem="bNs-k3-61K" firstAttribute="leading" secondItem="wzl-Ba-dve" secondAttribute="leading" id="caw-pb-FlE"/>
+                                    <constraint firstItem="rJP-1H-hRR" firstAttribute="top" secondItem="wzl-Ba-dve" secondAttribute="top" id="QJs-8r-mUr"/>
+                                    <constraint firstAttribute="bottom" secondItem="rJP-1H-hRR" secondAttribute="bottom" id="W8S-FU-gii"/>
                                     <constraint firstItem="lgd-Yt-38B" firstAttribute="centerY" secondItem="wzl-Ba-dve" secondAttribute="centerY" id="hWY-mh-BXj"/>
+                                    <constraint firstItem="rJP-1H-hRR" firstAttribute="leading" secondItem="wzl-Ba-dve" secondAttribute="leading" id="vIy-t0-P9o"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jzU-gt-4RE">
@@ -2402,7 +2414,7 @@
                                             <constraint firstItem="2Qh-dh-3oF" firstAttribute="leading" secondItem="dOK-CI-58H" secondAttribute="leading" id="wXc-ko-1w9"/>
                                         </constraints>
                                     </view>
-                                    <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9K5-ts-yDq" customClass="Focusable_Label_Temp" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                    <view tag="100" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9K5-ts-yDq">
                                         <rect key="frame" x="10" y="75" width="1740" height="30"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Selecionar Perfil" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RtX-OZ-CRj">
@@ -2614,12 +2626,13 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="backButton" destination="bNs-k3-61K" id="h30-Oq-7Fk"/>
+                        <outlet property="btn_Back" destination="bNs-k3-61K" id="m7p-Eg-Paf"/>
                         <outlet property="collectionView" destination="juy-aU-zPc" id="D1M-6S-lah"/>
                         <outlet property="passwordView" destination="enw-eh-prE" id="gpg-h0-rjE"/>
                         <outlet property="tfPassword" destination="yBa-Xb-8QX" id="NNh-2F-1Gh"/>
                         <outlet property="view_Header_title" destination="9K5-ts-yDq" id="cW1-gk-HbV"/>
                         <outlet property="view_Header_title_Short" destination="dOK-CI-58H" id="vVQ-K2-fT5"/>
+                        <outlet property="view_btn_Back_BG" destination="rJP-1H-hRR" id="ce1-Xi-FPq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="62r-cP-c7d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -3754,7 +3767,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0Q-cL-wG4">
                                         <rect key="frame" x="0.0" y="863" width="1760" height="100"/>
                                         <subviews>
-                                            <view tag="1001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBt-y3-4DX">
+                                            <view tag="1001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBt-y3-4DX" customClass="FocusableView" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                 <rect key="frame" x="22" y="15" width="100" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAn-44-4Oj">
@@ -3828,7 +3841,7 @@
                                                             <constraint firstItem="3fK-d4-UD6" firstAttribute="top" secondItem="z0H-yy-L3O" secondAttribute="top" id="jdJ-aM-7jr"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8v-bv-XYW">
+                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8v-bv-XYW" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                         <rect key="frame" x="176" y="7" width="82" height="82"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="L8v-bv-XYW" secondAttribute="height" multiplier="1:1" id="z6H-KH-lVe"/>
@@ -3839,7 +3852,7 @@
                                                             <action selector="openChangeAudioTapped:" destination="cLj-Qa-B9p" eventType="primaryActionTriggered" id="vfe-sb-Imm"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLl-l4-26O">
+                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLl-l4-26O" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                         <rect key="frame" x="82" y="7" width="82" height="82"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="dLl-l4-26O" secondAttribute="height" multiplier="1:1" id="bCU-LR-I6G"/>
@@ -3850,7 +3863,7 @@
                                                             <action selector="openInformationBoxTapped:" destination="cLj-Qa-B9p" eventType="primaryActionTriggered" id="RvO-T0-bWI"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQH-cu-ehn">
+                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQH-cu-ehn" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                         <rect key="frame" x="-12" y="7" width="82" height="82"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="kQH-cu-ehn" secondAttribute="height" multiplier="1:1" id="o4t-LN-PdX"/>

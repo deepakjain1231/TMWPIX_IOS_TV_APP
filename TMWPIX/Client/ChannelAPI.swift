@@ -106,83 +106,83 @@ class ChannelAPI{
     
     
     //======= Get channel API ==========
-    static func getChannelData(delegate: ChannelViewController){
-        let userInfo = UserInfo.getInstance()
-        let params = [
-            "user" : "",
-            "time" : utils.getTime(),
-            "hash" : utils.getHash(),
-            "dtoken" : utils.getDToken(),
-            "os" : "ios",//utils.getOperatingSystem(),
-            "operator" : "1",
-            "tipo" : "t",
-            "usrtoken" : userInfo?.token,
-            "hashtoken" : utils.getHashToken(token: (userInfo?.token)!),
-            "device_id" : utils.getDeviceId(),
-            "device_name" : utils.getDeviceName(),
-            "platform" : utils.getPlatform(),
-            "appversion" : utils.getAppVersion()]
-        
-        AF.request(Constants.baseUrl+Constants.API_METHOD_CHANNELS, parameters: params)
-            .response{ response in
-                
-                if let data = response.data {
-                    do {
-                        let dictonary =  try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
-                        
-                        let profileData = dictonary!["channels"]
-                        if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
-                            var channels: [Channel] = []
-                            for aDic in arrayOfDic{
-                                let data = Channel()
-                                if let id = aDic["id"] as? Int{
-                                    data.id = id
-                                }
-                                if let name = aDic["name"] as? String{
-                                    data.name = name
-                                }
-                                if let url = aDic["url"] as? String{
-                                    data.url = url
-                                }
-                                if let description = aDic["description"] as? String{
-                                    data.description = description
-                                }
-                                if let crypto = aDic["crypto"] as? Int{
-                                    data.crypto = crypto
-                                }
-                                if let image = aDic["image"] as? String{
-                                    data.image = image
-                                }
-                                if let midiatype = aDic["midiatype"] as? String{
-                                    data.midiatype = midiatype
-                                }
-                                if let publico = aDic["publico"] as? Int{
-                                    data.publico = publico
-                                }
-                                if let regiao = aDic["regiao"] as? String{
-                                    data.regiao = regiao
-                                }
-                                if let podeAssistir = aDic["podeAssistir"] as? Int{
-                                    data.podeAssistir = podeAssistir
-                                }
-                                if let overlayImage = aDic["overlayImage"] as? String{
-                                    data.overlayImage = overlayImage
-                                }
-                                if let number = aDic["number"] as? Int{
-                                    data.number = number
-                                }
-                                channels.append(contentsOf: [data])
-                            }
-                            delegate.channelResponseHandler(ChannelData: channels)
-                        }
-                    } catch let error as NSError {
-                        print(error)
-                    }
-                } else {
-                    getChannelData(delegate: delegate)
-                }
-            }
-    }// close bracket getHomeBackgroundData
+//    static func getChannelData(delegate: ChannelViewController){
+//        let userInfo = UserInfo.getInstance()
+//        let params = [
+//            "user" : "",
+//            "time" : utils.getTime(),
+//            "hash" : utils.getHash(),
+//            "dtoken" : utils.getDToken(),
+//            "os" : "ios",//utils.getOperatingSystem(),
+//            "operator" : "1",
+//            "tipo" : "t",
+//            "usrtoken" : userInfo?.token,
+//            "hashtoken" : utils.getHashToken(token: (userInfo?.token)!),
+//            "device_id" : utils.getDeviceId(),
+//            "device_name" : utils.getDeviceName(),
+//            "platform" : utils.getPlatform(),
+//            "appversion" : utils.getAppVersion()]
+//        
+//        AF.request(Constants.baseUrl+Constants.API_METHOD_CHANNELS, parameters: params)
+//            .response{ response in
+//                
+//                if let data = response.data {
+//                    do {
+//                        let dictonary =  try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
+//                        
+//                        let profileData = dictonary!["channels"]
+//                        if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
+//                            var channels: [Channel] = []
+//                            for aDic in arrayOfDic{
+//                                let data = Channel()
+//                                if let id = aDic["id"] as? Int{
+//                                    data.id = id
+//                                }
+//                                if let name = aDic["name"] as? String{
+//                                    data.name = name
+//                                }
+//                                if let url = aDic["url"] as? String{
+//                                    data.url = url
+//                                }
+//                                if let description = aDic["description"] as? String{
+//                                    data.description = description
+//                                }
+//                                if let crypto = aDic["crypto"] as? Int{
+//                                    data.crypto = crypto
+//                                }
+//                                if let image = aDic["image"] as? String{
+//                                    data.image = image
+//                                }
+//                                if let midiatype = aDic["midiatype"] as? String{
+//                                    data.midiatype = midiatype
+//                                }
+//                                if let publico = aDic["publico"] as? Int{
+//                                    data.publico = publico
+//                                }
+//                                if let regiao = aDic["regiao"] as? String{
+//                                    data.regiao = regiao
+//                                }
+//                                if let podeAssistir = aDic["podeAssistir"] as? Int{
+//                                    data.podeAssistir = podeAssistir
+//                                }
+//                                if let overlayImage = aDic["overlayImage"] as? String{
+//                                    data.overlayImage = overlayImage
+//                                }
+//                                if let number = aDic["number"] as? Int{
+//                                    data.number = number
+//                                }
+//                                channels.append(contentsOf: [data])
+//                            }
+//                            delegate.channelResponseHandler(ChannelData: channels)
+//                        }
+//                    } catch let error as NSError {
+//                        print(error)
+//                    }
+//                } else {
+//                    getChannelData(delegate: delegate)
+//                }
+//            }
+//    }// close bracket getHomeBackgroundData
     
     
     

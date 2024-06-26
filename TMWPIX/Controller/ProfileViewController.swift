@@ -18,9 +18,10 @@ enum ProfileState {
 class ProfileViewController: TMWViewController, UITextFieldDelegate {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var tfPassword: UITextField!
+    @IBOutlet weak var btn_Back: UIButton!
+    @IBOutlet weak var view_btn_Back_BG: UIView!
     
     @IBOutlet weak var view_Header_title: UIView!
     @IBOutlet weak var view_Header_title_Short: UIView!
@@ -38,6 +39,10 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
         self.view_Header_title.isHidden = true
         self.view_Header_title_Short.isHidden = false
         self.passwordView.isHidden = true
+                
+        let tap_Back = UITapGestureRecognizer(target: self, action: #selector(self.tapped_Back(gesture:)))
+        tap_Back.allowedPressTypes = [NSNumber(value: UIPress.PressType.select.rawValue)]
+        self.view_btn_Back_BG.addGestureRecognizer(tap_Back)
     }
     
     
@@ -52,13 +57,17 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
         }
     }
     
-    @IBAction func ViewDismissed(_ sender: Any) {
+    func press_back() {
         if isProfileState != .profileList {
             isProfileState = .profileList
             handleBackButton()
         }else{
             dismiss(animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func ViewDismissed(_ sender: Any) {
+        self.press_back()
     }
     
     @IBAction func dismissPassowrdDialog(_ sender: Any) {
@@ -99,8 +108,7 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
 
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let nextViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
-                self.navigationController?.pushViewController(nextViewController, animated: true)
-                //Temp Comment//self.present(nextViewController, animated:true, completion:nil)
+                self.present(nextViewController, animated:true, completion:nil)
             }
         }else{
             if isProfileState == .deleteProfileList {
@@ -124,6 +132,10 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
         return false
     }
     
+    
+    @objc func tapped_Back(gesture: UITapGestureRecognizer) {
+        self.press_back()
+    }
 }
 
 extension ProfileViewController : UICollectionViewDataSource{
@@ -207,16 +219,6 @@ extension ProfileViewController : UICollectionViewDataSource{
         return cell
     }
     
-    
-    override func shouldUpdateFocus(in context: UIFocusUpdateContext) -> Bool {
-        // Condition
-        return true
-    }
-    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-        // Condition
-        debugPrint(context)
-    }
-    
     override var preferredFocusedView: UIView? {
         get {
             return self.collectionView
@@ -275,11 +277,11 @@ extension ProfileViewController : UICollectionViewDelegate {
 extension ProfileViewController{
     func handleBackButton(){
         if isFromLogin == true && isProfileState == .profileList{
-            backButton.isHidden = true
+            self.view_btn_Back_BG.isHidden = true
             self.view_Header_title.isHidden = true
             self.view_Header_title_Short.isHidden = false
         }else{
-            backButton.isHidden = false
+            self.view_btn_Back_BG.isHidden = false
             self.view_Header_title.isHidden = false
             self.view_Header_title_Short.isHidden = true
         }

@@ -12,13 +12,13 @@ import UIKit
 import PlayKit
 //import GoSwiftyM3U8
 
-class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, delegateChange_Language {
+class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, delegateChange_Language, delegate_channelSelect {
     
     var superVC = UIViewController()
     var arr_channels : [Channel] = []
     
     var counter = 10
-    var is_openinfo = false
+    //var is_openinfo = false
     var current_focusItemHint: String?
     @IBOutlet weak var MediaView: PlayerView!
     @IBOutlet weak var headerView: UIView!
@@ -102,7 +102,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
         */
         
         let tap_up = UITapGestureRecognizer(target: self, action: #selector(self.tapped_upClick(gesture:)))
-        tap_up.allowedPressTypes = [NSNumber(value: UIPress.PressType.downArrow.rawValue)]
+        tap_up.allowedPressTypes = [NSNumber(value: UIPress.PressType.upArrow.rawValue)]
         self.view.addGestureRecognizer(tap_up)
         
         let tap_down = UITapGestureRecognizer(target: self, action: #selector(self.tapped_downClick(gesture:)))
@@ -315,124 +315,128 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
         self.nextChannel()
     }
     
+    func movetochannel() {
+        self.nextChannel()
+    }
+    
 //    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
 //        DispatchQueue.main.async {
 //            let anyPress: UIPress? = presses.first
 //            self.manageButtonClickEvent(click_type: anyPress?.key?.characters ?? "")
 //        }
 //    }
-    private func manageButtonClickEvent(click_type: String) {
-        if self.is_openinfo == false {
-            self.startTimer()
-            if click_type == "UIKeyInputUpArrow" {
-                //                if self.current_focusItemHint == "back" {
-                //
-                //                    debugPrint("Previous Channel")
-                //
-                //                    DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
-                //                        guard let self = self else { return }
-                //                        selected_Indx -= 1
-                //                        self.nextChannel()
-                //                    }
-                //
-                //                }
-                //else
-                if self.current_focusItemHint == "titleView" ||
-                    self.current_focusItemHint == "indicate_1" ||
-                    self.current_focusItemHint == "indicate_2" ||
-                    self.current_focusItemHint == "indicate_3" {
-                    self.selected_Indx -= 1
-                    self.nextChannel()
-                }
-            }
-            else if click_type == "UIKeyInputDownArrow" {
-                //                if self.current_focusItemHint == "back" {
-                //                    self.setupFocusButton("titleView")
-                //                }
-                //else
-                if self.current_focusItemHint == "titleView" ||
-                    self.current_focusItemHint == "indicate_1" ||
-                    self.current_focusItemHint == "indicate_2" ||
-                    self.current_focusItemHint == "indicate_3" {
-                    debugPrint("Next Channel")
-                    
-                    self.selected_Indx += 1
-                    self.nextChannel()
-                }
-            }
-            else if click_type == "UIKeyInputLeftArrow" {
-                if self.current_focusItemHint == "indicate_1" {
-                    self.setupFocusButton("indicate_2")
-                }
-                else if self.current_focusItemHint == "indicate_2" {
-                    self.setupFocusButton("indicate_3")
-                }
-                else if self.current_focusItemHint == "indicate_3" {
-                    self.setupFocusButton("titleView")
-                }
-            }
-            else if click_type == "UIKeyInputRightArrow" {
-                if self.current_focusItemHint == "titleView" {
-                    self.setupFocusButton("indicate_3")
-                }
-                else if self.current_focusItemHint == "indicate_3" {
-                    self.setupFocusButton("indicate_2")
-                }
-                else if self.current_focusItemHint == "indicate_2" {
-                    self.setupFocusButton("indicate_1")
-                }
-            }
-            else {
-                if click_type == "\r" {
-                    if self.current_focusItemHint == "back" {
-                        self.back_action()
-                    }
-                    else if self.current_focusItemHint == "indicate_3" {
-                        self.click_menu()
-                    }
-                    else if self.current_focusItemHint == "indicate_2" {
-                        self.click_info()
-                    }
-                    else if self.current_focusItemHint == "indicate_1" {
-                        self.change_audio()
-                    }
-                }
-            }
-        }
-        else {
-            if self.current_focusItemHint == "indicate_2" {
-                self.is_openinfo = false
-                self.presentedViewController?.dismiss(animated: true)
-            }
-        }
-        
-
-        
-        
-        
-
-        
-//        if self.current_focusItemHint == "up" && anyPress?.key?.characters == "UIKeyInputUpArrow" {
-//            DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
-//                guard let self = self else { return }
-//                
-//                selected_Indx -= 1
-//                self.nextChannel()
+//    private func manageButtonClickEvent(click_type: String) {
+//        if self.is_openinfo == false {
+//            self.startTimer()
+//            if click_type == "UIKeyInputUpArrow" {
+//                //                if self.current_focusItemHint == "back" {
+//                //
+//                //                    debugPrint("Previous Channel")
+//                //
+//                //                    DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
+//                //                        guard let self = self else { return }
+//                //                        selected_Indx -= 1
+//                //                        self.nextChannel()
+//                //                    }
+//                //
+//                //                }
+//                //else
+//                if self.current_focusItemHint == "titleView" ||
+//                    self.current_focusItemHint == "indicate_1" ||
+//                    self.current_focusItemHint == "indicate_2" ||
+//                    self.current_focusItemHint == "indicate_3" {
+//                    self.selected_Indx -= 1
+//                    self.nextChannel()
+//                }
 //            }
-//            
-//        }
-//        else 
-//        if self.current_focusItemHint == "bottom" && anyPress?.key?.characters == "UIKeyInputDownArrow" {
-//            DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
-//                guard let self = self else { return }
-//                
-//                selected_Indx += 1
-//                self.nextChannel()
+//            else if click_type == "UIKeyInputDownArrow" {
+//                //                if self.current_focusItemHint == "back" {
+//                //                    self.setupFocusButton("titleView")
+//                //                }
+//                //else
+//                if self.current_focusItemHint == "titleView" ||
+//                    self.current_focusItemHint == "indicate_1" ||
+//                    self.current_focusItemHint == "indicate_2" ||
+//                    self.current_focusItemHint == "indicate_3" {
+//                    debugPrint("Next Channel")
+//                    
+//                    self.selected_Indx += 1
+//                    self.nextChannel()
+//                }
 //            }
-//            
+//            else if click_type == "UIKeyInputLeftArrow" {
+//                if self.current_focusItemHint == "indicate_1" {
+//                    self.setupFocusButton("indicate_2")
+//                }
+//                else if self.current_focusItemHint == "indicate_2" {
+//                    self.setupFocusButton("indicate_3")
+//                }
+//                else if self.current_focusItemHint == "indicate_3" {
+//                    self.setupFocusButton("titleView")
+//                }
+//            }
+//            else if click_type == "UIKeyInputRightArrow" {
+//                if self.current_focusItemHint == "titleView" {
+//                    self.setupFocusButton("indicate_3")
+//                }
+//                else if self.current_focusItemHint == "indicate_3" {
+//                    self.setupFocusButton("indicate_2")
+//                }
+//                else if self.current_focusItemHint == "indicate_2" {
+//                    self.setupFocusButton("indicate_1")
+//                }
+//            }
+//            else {
+//                if click_type == "\r" {
+//                    if self.current_focusItemHint == "back" {
+//                        self.back_action()
+//                    }
+//                    else if self.current_focusItemHint == "indicate_3" {
+//                        self.click_menu()
+//                    }
+//                    else if self.current_focusItemHint == "indicate_2" {
+//                        self.click_info()
+//                    }
+//                    else if self.current_focusItemHint == "indicate_1" {
+//                        self.change_audio()
+//                    }
+//                }
+//            }
 //        }
-        
-    }
+//        else {
+//            if self.current_focusItemHint == "indicate_2" {
+//                self.is_openinfo = false
+//                self.presentedViewController?.dismiss(animated: true)
+//            }
+//        }
+//        
+//
+//        
+//        
+//        
+//
+//        
+////        if self.current_focusItemHint == "up" && anyPress?.key?.characters == "UIKeyInputUpArrow" {
+////            DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
+////                guard let self = self else { return }
+////                
+////                selected_Indx -= 1
+////                self.nextChannel()
+////            }
+////            
+////        }
+////        else 
+////        if self.current_focusItemHint == "bottom" && anyPress?.key?.characters == "UIKeyInputDownArrow" {
+////            DispatchQueue.main.asyncDeduped(target: self, after: 0.75) { [weak self] in
+////                guard let self = self else { return }
+////                
+////                selected_Indx += 1
+////                self.nextChannel()
+////            }
+////            
+////        }
+//        
+//    }
     
     func nextChannel () {
         if self.selected_Indx == -1 {
@@ -476,7 +480,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     }
     
     func click_info() {
-        self.is_openinfo = true
+        //self.is_openinfo = true
         
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let popupVC = storyboard.instantiateViewController(withIdentifier: "InfoViewController") as! InfoViewController
@@ -496,20 +500,18 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             self.present(nextViewController, animated:true, completion:nil)
         } else {
             if self.player != nil { self.player.stop() }
-            
-            self.is_openinfo = true
-            
-            //self.dismiss(animated: false) {
-                let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let popupVC = storyboard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
-                popupVC.channels = self.arr_channels
-                popupVC.is_home = true
-                self.navigationController?.pushViewController(popupVC, animated: true)
-                //Temp comment
-//                popupVC.modalPresentationStyle = .fullScreen
-//                let pVC = popupVC.popoverPresentationController
-//                pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
-//                self.superVC.present(popupVC, animated: true, completion: nil)
+
+            let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let popupVC = storyboard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
+            popupVC.channels = self.arr_channels
+            popupVC.is_home = true
+            popupVC.delegate = self
+                //self.navigationController?.pushViewController(popupVC, animated: true)
+
+            popupVC.modalPresentationStyle = .fullScreen
+            let pVC = popupVC.popoverPresentationController
+            pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
+            self.present(popupVC, animated: true, completion: nil)
             //}
             
                 
@@ -569,6 +571,13 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     func did_changeLanguage(changed_track: Track) {
         self.selectTrack(changed_track)
         self.startTimer()
+    }
+    
+    func change_channel_selection(_ suucess: Bool, indx: Int) {
+        if suucess {
+            self.selected_Indx = indx
+            self.nextChannel()
+        }
     }
 }
 

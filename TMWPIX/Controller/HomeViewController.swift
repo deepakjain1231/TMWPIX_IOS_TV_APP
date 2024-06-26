@@ -118,8 +118,7 @@ class HomeViewController: TMWViewController {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MediaViewController") as! MediaViewController
         nextViewController.superVC = self
-        self.navigationController?.pushViewController(nextViewController, animated: true)
-        //Temp comment//self.present(nextViewController, animated:true, completion:nil)
+        self.present(nextViewController, animated:true, completion:nil)
         
         /*
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

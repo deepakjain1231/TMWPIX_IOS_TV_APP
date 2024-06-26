@@ -5,6 +5,11 @@
 //  Created by Apple on 03/08/2022.
 //
 
+protocol delegate_channelSelect {
+    func change_channel_selection(_ suucess: Bool, indx: Int)
+}
+
+
 import Foundation
 
 import SDWebImage
@@ -16,17 +21,18 @@ class ChannelViewController: TMWViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     var channels : [Channel] = []
     var is_home = true
+    var delegate: delegate_channelSelect?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        self.loadingIndicator.startAnimating()
-        ChannelAPI.getChannelData(delegate: self)
+//        self.loadingIndicator.startAnimating()
+//        ChannelAPI.getChannelData(delegate: self)
         
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
-//            self.collectionView.reloadData()
-//        }
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+            self.collectionView.reloadData()
+        }
         
     }
     
@@ -68,15 +74,15 @@ class ChannelViewController: TMWViewController {
 }
 
 
-extension ChannelViewController {
-    func channelResponseHandler(ChannelData:[Channel]){
-        self.loadingIndicator.stopAnimating()
-        channels = ChannelData
-        self.collectionView.reloadData()
-        //setNeedsFocusUpdate()
-        //self.open_firstChannel()
-    }
-}
+//extension ChannelViewController {
+//    func channelResponseHandler(ChannelData:[Channel]){
+//        self.loadingIndicator.stopAnimating()
+//        channels = ChannelData
+//        self.collectionView.reloadData()
+//        //setNeedsFocusUpdate()
+//        //self.open_firstChannel()
+//    }
+//}
 
 
 extension ChannelViewController : UICollectionViewDataSource {
@@ -126,6 +132,10 @@ extension ChannelViewController : UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         if is_home {
+            
+            self.delegate?.change_channel_selection(true, indx: indexPath.row)
+            self.dismiss(animated: true)
+            /*
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MediaViewController") as! MediaViewController
             nextViewController.ImageUrl = channels[indexPath.row].image ?? ""
@@ -138,7 +148,7 @@ extension ChannelViewController : UICollectionViewDelegate {
             nextViewController.arr_channels = self.channels
             nextViewController.selected_Indx = indexPath.row
             self.present(nextViewController, animated:true, completion:nil)
-            
+            */
         } else {
             let nextViewController = self.presentingViewController as! MediaViewController
             nextViewController.ImageUrl = channels[indexPath.row].image!
@@ -157,24 +167,24 @@ extension ChannelViewController : UICollectionViewDelegate {
     }
     
     
-    func open_firstChannel() {
-        if is_home {
-            if self.channels.count != 0 {
-                //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MediaViewController") as! MediaViewController
-                    nextViewController.ImageUrl = self.channels[0].image ?? ""
-                    nextViewController.VideoURl = self.channels[0].url ?? ""
-                    nextViewController.name = self.channels[0].name ?? ""
-                    nextViewController.desc = self.channels[0].description ?? ""
-                    nextViewController.channelID = "\(self.channels[0].id ?? 0)"
-                    nextViewController.Channeltext = String(self.channels[0].number ?? 0)
-                    nextViewController.is_epg = false
-                    nextViewController.arr_channels = self.channels
-                    nextViewController.selected_Indx = 0
-                    self.present(nextViewController, animated:true, completion:nil)
-                //}
-            }
-        }
-    }
+//    func open_firstChannel() {
+//        if is_home {
+//            if self.channels.count != 0 {
+//                //DispatchQueue.main.asyncAfter(deadline: DispatchTime.now()) {
+//                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//                    let nextViewController = storyBoard.instantiateViewController(withIdentifier: "MediaViewController") as! MediaViewController
+//                    nextViewController.ImageUrl = self.channels[0].image ?? ""
+//                    nextViewController.VideoURl = self.channels[0].url ?? ""
+//                    nextViewController.name = self.channels[0].name ?? ""
+//                    nextViewController.desc = self.channels[0].description ?? ""
+//                    nextViewController.channelID = "\(self.channels[0].id ?? 0)"
+//                    nextViewController.Channeltext = String(self.channels[0].number ?? 0)
+//                    nextViewController.is_epg = false
+//                    nextViewController.arr_channels = self.channels
+//                    nextViewController.selected_Indx = 0
+//                    self.present(nextViewController, animated:true, completion:nil)
+//                //}
+//            }
+//        }
+//    }
 }

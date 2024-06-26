@@ -677,3 +677,40 @@ private extension DispatchQueue {
         return "\(Unmanaged.passUnretained(object).toOpaque())." + String(describing: object)
     }
 }
+
+
+
+class FocusableView_forBackButton: UIView {
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.isFocused {
+            // Change appearance when focused (e.g., increase size, change border color)
+            if let arr_views = context.nextFocusedView?.subviews {
+                if arr_views.first?.tag == 100 {
+                    arr_views.first?.layer.cornerRadius = 8
+                    arr_views.first?.layer.borderWidth = 2.0
+                    arr_views.first?.layer.borderColor = UIColor.white.cgColor
+                }
+            }
+        } else {
+            // Reset appearance when unfocused
+            self.layer.borderWidth = 0.0
+            if let arr_views = context.previouslyFocusedView?.subviews {
+                if arr_views.first?.tag == 100 {
+                    arr_views.first?.layer.borderWidth = 0
+                }
+            }
+        }
+    }
+}

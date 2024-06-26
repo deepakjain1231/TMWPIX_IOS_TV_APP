@@ -39,7 +39,15 @@ class ProfileViewCell: UICollectionViewCell {
     }
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         // Condition
-        self.did_completation_Focus?(context.nextFocusedView?.tag)
+        //self.did_completation_Focus?(context.nextFocusedView?.tag)
+        
+        if isFocused {
+            self.did_completation_Focus?(context.nextFocusedView?.tag)
+        }
+        else {
+            self.backgorundView.layer.borderWidth = 1
+            self.backgorundView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
+        }
     }
     
 }
