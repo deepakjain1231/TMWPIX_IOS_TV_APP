@@ -47,6 +47,13 @@ class EditProfileViewController: TMWViewController, UITextFieldDelegate {
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
     }
     
+    
+    override var preferredFocusedView: UIView? {
+        get {
+            return self.nameText
+        }
+    }
+    
     @IBAction func genderBtnTapped(_ sender: Any) {
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let popupVC = storyboard.instantiateViewController(withIdentifier: "GenderViewController") as! GenderViewController
@@ -83,6 +90,7 @@ class EditProfileViewController: TMWViewController, UITextFieldDelegate {
             // take name, password and state to send to api
         }else{
             //call edit profile api
+            self.loadingIndicator.startAnimating()
             ProfileAPI.editProfile(status: "ativo", infantil: tempState, password: str_Password, name: str_Name, delegate: self)
         }
     }
@@ -108,9 +116,14 @@ extension EditProfileViewController {
 
     func editProfileResponseHandler(errorMessage:String) {
         DispatchQueue.main.async {
+            self.loadingIndicator.stopAnimating()
+            
             if errorMessage == "" {
                 self.dismiss(animated: true) {
                 }
+            }
+            else {
+                utils.showDestructiveAlert(message: errorMessage, presentationController: self)
             }
         }
     }

@@ -232,6 +232,10 @@ extension ProfileViewController {
     func ProfileResponseHandler(profileData:[UserProfile]) {
         DispatchQueue.main.async {
             self.loadingIndicator.stopAnimating()
+            if self.userProfiles.count != 0 {
+                self.userProfiles.removeAll()
+                self.collectionView.reloadData()
+            }
             self.userProfiles = profileData
             self.collectionView.reloadData()
         }
