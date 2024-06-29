@@ -37,7 +37,7 @@ class EditProfileViewController: TMWViewController, UITextFieldDelegate {
         super.viewDidAppear(animated)
         if isAddProfile == false {
             self.nameText.text = userProfile.name
-            self.passwordText.text = userProfile.senha
+            self.passwordText.text = ""// userProfile.senha
             if userProfile.infantil == 1 {
                 stateSelection(stateSelection: "infantil")
             }else{
@@ -91,7 +91,7 @@ class EditProfileViewController: TMWViewController, UITextFieldDelegate {
         }else{
             //call edit profile api
             self.loadingIndicator.startAnimating()
-            ProfileAPI.editProfile(status: "ativo", infantil: tempState, password: str_Password, name: str_Name, delegate: self)
+            ProfileAPI.editProfile(status: "ativo", infantil: tempState, password: str_Password, name: str_Name, delegate: self, str_profile_id: self.userProfile.id ?? 0)
         }
     }
     

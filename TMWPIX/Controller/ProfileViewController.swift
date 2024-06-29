@@ -17,6 +17,8 @@ enum ProfileState {
 
 class ProfileViewController: TMWViewController, UITextFieldDelegate {
     
+    var currentIndx = 0
+    var isInitialTime = false
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var passwordView: UIView!
     @IBOutlet weak var tfPassword: UITextField!
@@ -38,7 +40,6 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
         self.tfPassword.delegate = self
         self.view_Header_title.isHidden = true
         self.view_Header_title_Short.isHidden = false
-        self.passwordView.isHidden = true
                 
         let tap_Back = UITapGestureRecognizer(target: self, action: #selector(self.tapped_Back(gesture:)))
         tap_Back.allowedPressTypes = [NSNumber(value: UIPress.PressType.select.rawValue)]
@@ -50,7 +51,6 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
         super.viewWillAppear(animated)
         self.view_Header_title.isHidden = true
         self.view_Header_title_Short.isHidden = false
-        self.passwordView.isHidden = true
         
         DispatchQueue.main.async {
             self.getProfileList()
@@ -83,12 +83,14 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
     }
 
     @IBAction func EditProfileTapped(_ sender: Any) {
+        self.currentIndx = 0
         isProfileState = .editProfileList
         handleBackButton()
         setNeedsFocusUpdate()
     }
     
     @IBAction func RemoveProfileTapped(_ sender: Any) {
+        self.currentIndx = 0
         isProfileState = .deleteProfileList
         handleBackButton()
         setNeedsFocusUpdate()
@@ -99,6 +101,10 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
         
         if isProfileState == .profileList {
             if sel_index == userProfiles.count{
+                
+                self.tfPassword.text = ""
+                self.passwordView.isHidden = true
+                
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let nextViewController = storyBoard.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
                 nextViewController.isAddProfile = true
@@ -106,20 +112,30 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
             } else {
                 userProfiles[sel_index].saveUserProfile()
 
+                self.tfPassword.text = ""
+                self.passwordView.isHidden = true
+                
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let nextViewController = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
                 self.present(nextViewController, animated:true, completion:nil)
             }
         }else{
             if isProfileState == .deleteProfileList {
+                
+                self.tfPassword.text = ""
+                self.passwordView.isHidden = true
+                
                 // call delete profile
                 let profileId = userProfiles[sel_index].id
                 ProfileAPI.removeProfile(profileId: "\(profileId!)", delegate: self)
-                self.passwordView.isHidden = true
             }else{
+                
+                self.tfPassword.text = ""
+                self.passwordView.isHidden = true
+                
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let nextViewController = storyBoard.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
-                nextViewController.userProfile = userProfiles[sel_index]
+                nextViewController.userProfile = self.userProfiles[self.sel_index]
                 self.present(nextViewController, animated:true, completion:nil)
             }
         }
@@ -182,17 +198,6 @@ extension ProfileViewController : UICollectionViewDataSource{
             cell.profilePic.image = UIImage(named:"perfil")
             cell.profilePic.layer.borderColor = UIColor.white.cgColor
             cell.name.text = userProfiles[indexPath.row].name
-            
-            if self.isFromLogin == false {
-                if (UserProfile.getInstance()?.id ?? 0) == (userProfiles[indexPath.row].id ?? 0) {
-                    cell.backgorundView.layer.borderWidth = 3
-                    cell.backgorundView.layer.borderColor = UIColor.fromHex(hexString: "#DE003F").cgColor
-                }
-                else {
-                    cell.backgorundView.layer.borderWidth = 1
-                    cell.backgorundView.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.5).cgColor
-                }
-            }
         }
 
         cell.did_completation_Focus = { (indx_tag) in
@@ -214,13 +219,15 @@ extension ProfileViewController : UICollectionViewDataSource{
             
         }
         
-        
-        
         return cell
     }
+       
     
     override var preferredFocusedView: UIView? {
-        get {
+        if self.passwordView.isHidden == false {
+            return self.tfPassword
+        }
+        else {
             return self.collectionView
         }
     }
@@ -232,12 +239,23 @@ extension ProfileViewController {
     func ProfileResponseHandler(profileData:[UserProfile]) {
         DispatchQueue.main.async {
             self.loadingIndicator.stopAnimating()
-            if self.userProfiles.count != 0 {
-                self.userProfiles.removeAll()
-                self.collectionView.reloadData()
-            }
             self.userProfiles = profileData
+            
+            if self.isInitialTime == false {
+                self.isInitialTime = true
+                if self.isFromLogin == false {
+                    if let indx = self.userProfiles.firstIndex(where: { dic_profile in
+                        return (dic_profile.id ?? 0) == (UserProfile.getInstance()?.id ?? 0)
+                    }) {
+                        self.currentIndx = indx
+                    }
+                }
+            }
+            
             self.collectionView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                self.setNeedsFocusUpdate()
+            }
         }
     }
     
@@ -260,8 +278,14 @@ extension ProfileViewController: UICollectionViewDelegateFlowLayout {
 
 extension ProfileViewController : UICollectionViewDelegate {
     
+    func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
+        let indx_path = IndexPath.init(row: self.currentIndx, section: 0)
+        return indx_path
+    }
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.sel_index = indexPath.row
+        self.currentIndx = indexPath.row
         if indexPath.row == userProfiles.count {
             self.moveToNext()
         }
@@ -272,7 +296,11 @@ extension ProfileViewController : UICollectionViewDelegate {
             }
             else {
                 self.passwordView.isHidden = false
-                self.tfPassword.becomeFirstResponder()
+                DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
+                    self.setNeedsFocusUpdate()
+                    self.tfPassword.becomeFirstResponder()
+                }
+                self.setNeedsFocusUpdate()
             }
         }
     }

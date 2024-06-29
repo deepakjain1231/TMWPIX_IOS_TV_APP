@@ -63,7 +63,7 @@ class EPGViewController: TMWViewController {
         let nowDateValue = utils.getLocalTime()
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy - MM - dd"
+        formatter.dateFormat = "dd/MM/yyyy"
         formatter.calendar = Calendar(identifier: .gregorian)
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -71,6 +71,7 @@ class EPGViewController: TMWViewController {
         
         let current_time = Date().nextHalfHour // "May 23, 2020 at 1:00  AM"
         formatter.dateFormat = "h:mm a"
+        formatter.timeZone = TimeZone.current
         let str_currentttime = formatter.string(from: current_time)
         debugPrint(str_currentttime)
         if let indx = self.arr_time.firstIndex(where: { dic_time in
@@ -315,6 +316,13 @@ extension EPGViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate 
 extension EPGViewController : UICollectionViewDelegate {
+    
+    func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
+        let indx_path = IndexPath.init(row: self.indx_channel, section: 0)
+        return indx_path
+    }
+    
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == 0 || indexPath.row == 0 { return }
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -348,10 +356,10 @@ extension EPGViewController{
         //        self.programCollectionViewController.reloadData()
         
         //let index = utils.getCurrentTimeDifferenceInMins() / 15 + 1
-        let indexPath = IndexPath(item: self.indx_channel, section: 0)
-        //self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        let indexPath = IndexPath(item: self.indx_channel, section: 1)
+        self.collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         
-        self.collectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredVertically, animated: true)
+        //self.collectionView.scrollToItem(at: indexPath, at: UICollectionView.ScrollPosition.centeredVertically, animated: true)
         
         setNeedsFocusUpdate()
     }

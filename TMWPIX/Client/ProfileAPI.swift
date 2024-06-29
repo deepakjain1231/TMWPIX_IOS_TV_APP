@@ -177,7 +177,7 @@ class ProfileAPI{
             }
     }
     
-    static func editProfile(status: String, infantil: Int, password: String, name: String, delegate: EditProfileViewController) {
+    static func editProfile(status: String, infantil: Int, password: String, name: String, delegate: EditProfileViewController, str_profile_id: Int) {
         
         let userInfo = UserInfo.getInstance()
         let userProfile = UserProfile.getInstance()
@@ -187,12 +187,12 @@ class ProfileAPI{
         let str_dtoken = utils.getDToken()
         let str_usrtoken = userInfo?.token ?? ""
         let str_hashtoken = utils.getHashToken(token: str_usrtoken)
-        let str_profile_id = userProfile?.id ?? 0
+        //let str_profile_id = userProfile?.id ?? 0
         let str_clientID = userInfo?.client_id ?? 0
         let str_password = utils.md5(string: password)
         
         let str_url = Constants.baseUrl + "/profileedit?user=&time=\(str_time)&hash=\(str_hash)&dtoken=\(str_dtoken)&os=ios&operator=1&tipo=t&usrtoken=\(str_usrtoken)&hashtoken=\(str_hashtoken)&id=\(str_profile_id)"
-
+        
         var params = ["status": "ativo",
                       "infantil": infantil,
                       "nome": name.trimed(),
@@ -204,25 +204,25 @@ class ProfileAPI{
         }
         
         AF.request(str_url, method: .post, parameters: params).response{  response in
-                
-                if let data = response.data {
-                    print(data)
-                    print(response.result)
-                    do {
-                        let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
-                        let profileStatus = dictonary?["success"] as? String ?? ""
-                        if profileStatus != "" {
-                            delegate.addProfileResponseHandler(errorMessage: "")
-                        }else{
-                            let error = dictonary?["error"]
-                            let str_msg = error?["message"] as? String ?? "Somehing went wrong, please try again"
-                            delegate.editProfileResponseHandler(errorMessage: str_msg)
-                        }
-                    }catch let error as NSError {
-                        print(error)
+            
+            if let data = response.data {
+                print(data)
+                print(response.result)
+                do {
+                    let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
+                    let profileStatus = dictonary?["success"] as? String ?? ""
+                    if profileStatus != "" {
+                        delegate.addProfileResponseHandler(errorMessage: "")
+                    }else{
+                        let error = dictonary?["error"]
+                        let str_msg = error?["message"] as? String ?? "Somehing went wrong, please try again"
+                        delegate.editProfileResponseHandler(errorMessage: str_msg)
                     }
-                    
+                }catch let error as NSError {
+                    print(error)
                 }
+                
             }
+        }
     }
 }
