@@ -30,12 +30,13 @@ class ProfileAPI{
                       "appversion" : utils.getAppVersion()]
         
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_LOGIN, parameters: params)
+        let str_url = Constants.baseUrl+Constants.API_METHOD_LOGIN
+        AF.request(str_url, parameters: params)
             .response{  response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         var profiles: [UserProfile] = []
@@ -115,12 +116,13 @@ class ProfileAPI{
                       "appversion" : utils.getAppVersion()]
         
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_PROFILEDELETE, parameters: params)
+        let str_url = Constants.baseUrl+Constants.API_METHOD_PROFILEDELETE
+        AF.request(str_url, parameters: params)
             .response{  response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         let profileStatus = dictonary!["success"] as! String
@@ -155,12 +157,13 @@ class ProfileAPI{
             params["senha"] = utils.md5(string: password)
         }
         
-        AF.request(Constants.baseUrl+methodString,method: .post, parameters: params)
+        let str_url = Constants.baseUrl+methodString
+        AF.request(str_url, method: .post, parameters: params)
             .response{  response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         let profileStatus = dictonary!["success"] as! String
@@ -207,7 +210,7 @@ class ProfileAPI{
             
             if let data = response.data {
                 print(data)
-                print(response.result)
+                debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                 do {
                     let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                     let profileStatus = dictonary?["success"] as? String ?? ""

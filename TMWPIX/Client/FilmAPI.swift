@@ -232,16 +232,16 @@ class FilmAPI{
             "device_id" : utils.getDeviceId(),
             "device_name" : utils.getDeviceName(),
             "platform" : utils.getPlatform(),
-            "appversion" : utils.getAppVersion()
-            
-        ]
+            "appversion" : utils.getAppVersion()]
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_CATEGORIES_MOVIES, parameters: params)
+        
+        let str_url = Constants.baseUrl+Constants.API_METHOD_CATEGORIES_MOVIES
+        AF.request(str_url, parameters: params)
             .response{response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         
@@ -290,13 +290,13 @@ class FilmAPI{
                       "platform" : "apple",
                       "appversion" : "1.3.1"]
         
-        let str_URl = Constants.baseUrl+Constants.API_METHOD_MOVIEINFOFULL + "?id=\(delegate.FilmID ?? "")&time=1657435701486&os=ios&operator=1&tipo=t&usrtoken=\(UserInfo.getInstance()?.token ?? "")&perfis=\(userProfile?.id ?? 13349)"
+        let str_url = Constants.baseUrl+Constants.API_METHOD_MOVIEINFOFULL + "?id=\(delegate.FilmID ?? "")&time=1657435701486&os=ios&operator=1&tipo=t&usrtoken=\(UserInfo.getInstance()?.token ?? "")&perfis=\(userProfile?.id ?? 13349)"
         
-        AF.request(str_URl, parameters: nil).response{ [self] response in
+        AF.request(str_url, parameters: nil).response{ [self] response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
 #if TARGET_OS_IOS

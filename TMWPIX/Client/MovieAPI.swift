@@ -34,13 +34,14 @@ class MovieAPI{
                       "platform" : utils.getPlatform(),
                       "appversion" : utils.getAppVersion()]
         //=-------------=
+        let str_url = Constants.baseUrl+Constants.API_METHOD_TICKET
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_TICKET, parameters: params)
+        AF.request(str_url, parameters: params)
             .response{ [self] response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         
@@ -93,12 +94,13 @@ class MovieAPI{
                       "platform" : "apple",
                       "appversion" : "1.3.1"]
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_EPISODEINFOFULL, parameters: params)
+        let str_url = Constants.baseUrl+Constants.API_METHOD_EPISODEINFOFULL
+        AF.request(str_url, parameters: params)
             .response{ [self] response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         #if TARGET_OS_IOS

@@ -28,11 +28,11 @@ class LoginAPI{
                       "appversion" : "1.3.1"]
         
 //        user=&time=1657435701486&hash=3f9b7d853e407cc1159077ad82b0fb1d&dtoken=d41d8cd98f00b204e9800998ecf8427e&os=android&operator=1&tipo=t&usrtoken=APP1234&hashtoken=aa2dd11aad8d9664a4cd9ac33b49caa9&device_id=7f3e54b720a6f34e&device_name=sdk_google_atv_x86&platform=android&appversion=1.3.1
-        
-        AF.request(Constants.baseUrl+Constants.API_METHOD_LOGIN, parameters: params)
+        let str_url = Constants.baseUrl+Constants.API_METHOD_LOGIN
+        AF.request(str_url, parameters: params)
             .response{ response in
                 if let data = response.data {
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         
@@ -94,12 +94,13 @@ class LoginAPI{
                       "platform" : "apple",
                       "appversion" : "1.3.1"]
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_LOGIN, parameters: params)
+        let str_url = Constants.baseUrl+Constants.API_METHOD_LOGIN
+        AF.request(str_url, parameters: params)
             .response{ response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         
@@ -148,11 +149,13 @@ class LoginAPI{
                           "platform" : "apple",
                           "appversion" : "1.3.1"]
             
-            AF.request(Constants.baseUrl+Constants.API_METHOD_LOGIN, parameters: params)
+            let str_url = Constants.baseUrl+Constants.API_METHOD_LOGIN
+            AF.request(str_url, parameters: params)
                 .response{ [self] response in
                     
                     if let data = response.data {
                         print(data)
+                        debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                         print(response.result)
                         do {
                             let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]

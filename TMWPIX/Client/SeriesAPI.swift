@@ -42,12 +42,14 @@ class SeriesAPI{
         
         //    http://api.tmwpix.com/series?appversion=1.3&user=&infantil=1&time=1660154482322&hash=6baa622fa569f0b38fdb011c7a788c0f&dtoken=d41d8cd98f00b204e9800998ecf8427e&os=android&operator=1&tipo=t&usrtoken=APP123&hashtoken=72f331591291c68712c87796f13bad45
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_SERIES_NEW+queryParams, method: .get)
+        
+        let str_url = Constants.baseUrl+Constants.API_METHOD_SERIES_NEW+queryParams
+        AF.request(str_url, method: .get)
             .response{ response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         
@@ -169,12 +171,14 @@ class SeriesAPI{
                       "platform" : utils.getPlatform(),
                       "appversion" : utils.getAppVersion()]
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_SERIEINFO, parameters: params)
+        
+        let str_url = Constants.baseUrl+Constants.API_METHOD_SERIEINFO
+        AF.request(str_url, parameters: params)
             .response{ response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         let series: Series = Series()
@@ -430,15 +434,15 @@ class SeriesAPI{
                       "operator" : "1",
                       "tipo" : tipo,
                       "usrtoken" : usrtoken,
-                      "hashtoken" : hashtoken
-        ]
+                      "hashtoken" : hashtoken]
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_ALUGASERIE, parameters: params)
+        let str_url = Constants.baseUrl+Constants.API_METHOD_ALUGASERIE
+        AF.request(str_url, parameters: params)
             .response{ [self] response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         
@@ -488,12 +492,13 @@ class SeriesAPI{
                       "appversion" : "1.3.1"]
         
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_EPISODEINFOFULL, parameters: params)
+        let str_url = Constants.baseUrl+Constants.API_METHOD_EPISODEINFOFULL
+        AF.request(str_url, parameters: params)
             .response{ [self] response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         let data = OpenEpisode()

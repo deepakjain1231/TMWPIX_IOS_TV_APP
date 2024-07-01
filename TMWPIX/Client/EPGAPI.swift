@@ -15,12 +15,13 @@ class EPGAPI{
     func getTimeData(){
         let params = [""]
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_TIMENOW, parameters: params)
+        let str_url = Constants.baseUrl+Constants.API_METHOD_TIMENOW
+        AF.request(str_url, parameters: params)
             .response{ [self] response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         

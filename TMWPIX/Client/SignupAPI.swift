@@ -30,12 +30,13 @@ class SignupAPI{
                       "creditYear" : "apple",
                       "cvv" : "apple"]
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_SIGNUP, method: .post, parameters: params)
+        let str_url = Constants.baseUrl+Constants.API_METHOD_SIGNUP
+        AF.request(str_url, method: .post, parameters: params)
             .response{ response in
                 
                 if let data = response.data {
                     print(data)
-                    print(response.result)
+                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
                     do {
                         delegate.loadingIndicator.stopAnimating()
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
