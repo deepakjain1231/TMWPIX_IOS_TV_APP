@@ -59,7 +59,6 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     override func viewDidLoad() {
         super.viewDidLoad()
         self.footerView.isHidden = true
-        //self.btn_Back.accessibilityHint = "back"
         self.titleView.accessibilityHint = "titleView"
         self.indicate_1.accessibilityHint = "indicate_1"
         self.indicate_2.accessibilityHint = "indicate_2"
@@ -109,6 +108,14 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
         tap_down.allowedPressTypes = [NSNumber(value: UIPress.PressType.downArrow.rawValue)]
         self.view.addGestureRecognizer(tap_down)
         
+        let tap_left = UITapGestureRecognizer(target: self, action: #selector(self.tapped_leftClick(gesture:)))
+        tap_left.allowedPressTypes = [NSNumber(value: UIPress.PressType.leftArrow.rawValue)]
+        self.view.addGestureRecognizer(tap_left)
+        
+        let tap_right = UITapGestureRecognizer(target: self, action: #selector(self.tapped_rightClick(gesture:)))
+        tap_right.allowedPressTypes = [NSNumber(value: UIPress.PressType.rightArrow.rawValue)]
+        self.view.addGestureRecognizer(tap_right)
+        
     }
     
     func setupFocusButton(_ current_focus: String) {
@@ -127,10 +134,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
         self.indicate_2.layer.borderColor = UIColor.white.cgColor
         self.indicate_3.layer.borderColor = UIColor.white.cgColor
         self.titleView.layer.borderColor = UIColor.fromHex(hexString: "#DE003F").cgColor
-        if current_focus == "back" {
-            self.btn_Back.layer.borderWidth = 2.0
-        }
-        else if current_focus == "titleView" {
+        if current_focus == "titleView" {
             self.titleView.layer.borderWidth = 2.0
         }
         else if current_focus == "indicate_1" {
@@ -304,16 +308,50 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     @objc func tapped_downClick(gesture: UITapGestureRecognizer) {
             // do something
         debugPrint("Next Channel")
-        
+        self.stopTimer()
         self.selected_Indx += 1
         self.nextChannel()
     }
     
     @objc func tapped_upClick(gesture: UITapGestureRecognizer) {
             // do something
+        debugPrint("Next Channel")
         self.selected_Indx -= 1
         self.nextChannel()
     }
+    
+    @objc func tapped_leftClick(gesture: UITapGestureRecognizer) {
+        // do something
+        debugPrint("Left Clicked")
+        self.stopTimer()
+        self.startTimer()
+        if self.current_focusItemHint == "indicate_1" {
+            self.setupFocusButton("indicate_2")
+        }
+        else if self.current_focusItemHint == "indicate_2" {
+            self.setupFocusButton("indicate_3")
+        }
+        else if self.current_focusItemHint == "indicate_3" {
+            self.setupFocusButton("titleView")
+        }
+    }
+
+    @objc func tapped_rightClick(gesture: UITapGestureRecognizer) {
+        // do something
+        debugPrint("Right Clicked")
+        self.stopTimer()
+        self.startTimer()
+        if self.current_focusItemHint == "titleView" {
+            self.setupFocusButton("indicate_3")
+        }
+        else if self.current_focusItemHint == "indicate_3" {
+            self.setupFocusButton("indicate_2")
+        }
+        else if self.current_focusItemHint == "indicate_2" {
+            self.setupFocusButton("indicate_1")
+        }
+    }
+    
     
     func movetochannel() {
         self.nextChannel()

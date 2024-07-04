@@ -3767,7 +3767,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0Q-cL-wG4">
                                         <rect key="frame" x="0.0" y="863" width="1760" height="100"/>
                                         <subviews>
-                                            <view tag="1001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBt-y3-4DX" customClass="FocusableView" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                            <view tag="1001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBt-y3-4DX">
                                                 <rect key="frame" x="22" y="15" width="100" height="70"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAn-44-4Oj">
@@ -3841,7 +3841,7 @@
                                                             <constraint firstItem="3fK-d4-UD6" firstAttribute="top" secondItem="z0H-yy-L3O" secondAttribute="top" id="jdJ-aM-7jr"/>
                                                         </constraints>
                                                     </view>
-                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8v-bv-XYW" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8v-bv-XYW">
                                                         <rect key="frame" x="176" y="7" width="82" height="82"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="L8v-bv-XYW" secondAttribute="height" multiplier="1:1" id="z6H-KH-lVe"/>
@@ -3852,7 +3852,7 @@
                                                             <action selector="openChangeAudioTapped:" destination="cLj-Qa-B9p" eventType="primaryActionTriggered" id="vfe-sb-Imm"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLl-l4-26O" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dLl-l4-26O">
                                                         <rect key="frame" x="82" y="7" width="82" height="82"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="dLl-l4-26O" secondAttribute="height" multiplier="1:1" id="bCU-LR-I6G"/>
@@ -3863,7 +3863,7 @@
                                                             <action selector="openInformationBoxTapped:" destination="cLj-Qa-B9p" eventType="primaryActionTriggered" id="RvO-T0-bWI"/>
                                                         </connections>
                                                     </button>
-                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQH-cu-ehn" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kQH-cu-ehn">
                                                         <rect key="frame" x="-12" y="7" width="82" height="82"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" secondItem="kQH-cu-ehn" secondAttribute="height" multiplier="1:1" id="o4t-LN-PdX"/>
@@ -5103,19 +5103,19 @@
         <image name="signup_qrcode" width="567" height="567"/>
         <image name="star.circle.fill" catalog="system" width="128" height="128"/>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
