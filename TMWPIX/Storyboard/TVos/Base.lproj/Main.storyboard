@@ -4947,7 +4947,10 @@
                                                     <constraint firstAttribute="height" constant="60" id="czV-Gp-MuC"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="bP1-HZ-4Ld" id="KE2-f9-vGm"/>
+                                                </connections>
                                             </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zGL-yz-RZ7">
                                                 <rect key="frame" x="25" y="237" width="1006" height="60"/>

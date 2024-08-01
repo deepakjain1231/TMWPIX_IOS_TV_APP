@@ -32,8 +32,15 @@ class ChannelAPI{
                       "appversion" : utils.getAppVersion()]
         
         
+        var apiCallHeaders: HTTPHeaders {
+            get {
+                return ["User-Agent": "AppleCoreMedia"]
+            }
+        }
+        
+        
         let str_url = Constants.baseUrl+Constants.API_METHOD_NOWPLAYING
-        AF.request(str_url, parameters: params)
+        AF.request(str_url, parameters: params, headers: apiCallHeaders)
             .response{ response in
                 
                 if let data = response.data {
@@ -208,7 +215,13 @@ class ChannelAPI{
             "platform" : utils.getPlatform(),
             "appversion" : utils.getAppVersion()]
         
-        AF.request(Constants.baseUrl+Constants.API_METHOD_CHANNELS, parameters: params)
+        var apiCallHeaders: HTTPHeaders {
+            get {
+                return ["User-Agent": "AppleCoreMedia"]
+            }
+        }
+        
+        AF.request(Constants.baseUrl+Constants.API_METHOD_CHANNELS, parameters: params, headers: apiCallHeaders)
             .response{ response in
                 
                 if let data = response.data {
