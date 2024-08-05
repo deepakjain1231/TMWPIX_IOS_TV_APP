@@ -75,6 +75,10 @@ class ProfileViewController: TMWViewController, UITextFieldDelegate {
     }
     
     @IBAction func nextTapped(_ sender: Any) {
+        if (tfPassword.text ?? "") == "" {
+            
+        }
+        
         if utils.md5(string: tfPassword.text!) == userProfiles[sel_index].senha {
             moveToNext()
         } else {
@@ -291,7 +295,7 @@ extension ProfileViewController : UICollectionViewDelegate {
         }
         else {
             let str_password = userProfiles[sel_index].senha ?? ""
-            if str_password == "" {
+            if str_password == "" || str_password == "d41d8cd98f00b204e9800998ecf8427e" {
                 self.moveToNext()
             }
             else {
