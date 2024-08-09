@@ -34,8 +34,17 @@ class ChannelViewCell: UICollectionViewCell {
         return true
     }
     override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        
+        
+        if isFocused {
+            self.did_completation_Focus?(context.nextFocusedView?.tag)
+        }
+        else {
+            self.backView.backgroundColor = .clear
+        }
+        
         // Condition
-        self.did_completation_Focus?(context.nextFocusedView?.tag)
+           // self.did_completation_Focus?(context.nextFocusedView?.tag)
     }
 }
 

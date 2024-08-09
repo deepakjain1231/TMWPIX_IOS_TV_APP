@@ -531,12 +531,12 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     }
     
     func click_menu() {
-        if is_epg {
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
-            nextViewController.is_home = false
-            self.present(nextViewController, animated:true, completion:nil)
-        } else {
+//        if is_epg {
+//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
+//            nextViewController.is_home = false
+//            self.present(nextViewController, animated:true, completion:nil)
+//        } else {
             if self.player != nil { self.player.stop() }
 
             let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
@@ -544,6 +544,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             popupVC.channels = self.arr_channels
             popupVC.is_home = true
             popupVC.delegate = self
+        popupVC.selected_channel = self.selected_Indx
                 //self.navigationController?.pushViewController(popupVC, animated: true)
 
             popupVC.modalPresentationStyle = .fullScreen
@@ -553,7 +554,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             //}
             
                 
-        }
+        //}
     }
     
 
@@ -636,7 +637,21 @@ extension MediaViewController {
         self.loadingIndicator.stopAnimating()
         self.arr_channels = ChannelData
         self.footerView.isHidden = false
-        self.open_firstChannel()
+        
+        if self.is_epg {
+            if let indx = self.arr_channels.firstIndex(where: { dic_channel in
+                return "\(dic_channel.id ?? 0)" == self.channelID
+            }) {
+                self.selected_Indx = indx
+            }
+            self.channelImage.sd_setImage(with: URL(string: ImageUrl ?? ""))
+            self.channelNumber.text = self.Channeltext
+            self.channelName.text = self.name
+            self.setupScreenData()
+        }
+        else {
+            self.open_firstChannel()
+        }
     }
     
     func open_firstChannel() {

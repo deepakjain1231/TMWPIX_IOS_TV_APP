@@ -32,6 +32,10 @@ class ChannelViewController: TMWViewController {
         
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1) {
             self.collectionView.reloadData()
+            
+            if self.channels.count != 0 {
+                self.collectionView.scrollToItem(at: IndexPath.init(row: self.selected_channel, section: 0), at: .bottom, animated: true)
+            }
         }
         
     }
@@ -51,11 +55,11 @@ class ChannelViewController: TMWViewController {
         self.dismiss(animated: true)
     }
     
-//    override var preferredFocusedView: UIView? {
-//        get {
-//            return self.collectionView
-//        }
-//    }
+    override var preferredFocusedView: UIView? {
+        get {
+            return self.collectionView
+        }
+    }
     
     
 #if TARGET_OS_IOS
@@ -86,6 +90,16 @@ class ChannelViewController: TMWViewController {
 
 
 extension ChannelViewController : UICollectionViewDataSource {
+    
+    func indexPathForPreferredFocusedView(in collectionView: UICollectionView) -> IndexPath? {
+        let indx_path = IndexPath.init(row: self.selected_channel, section: 0)
+        return indx_path
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return channels.count
     }
