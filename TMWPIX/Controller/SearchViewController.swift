@@ -18,24 +18,16 @@ class SearchViewController: TMWViewController, UITextFieldDelegate {
     
     var categoryID = -1
 
-//    @IBOutlet weak var searchView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.searchBar.delegate = self
         self.hideKeyboardWhenTappedAround()
         
-        self.searchBar.textColor = UIColor.black
-        self.searchBar.text = self.str_search_Text
         self.searchView.layer.borderWidth = 2
         self.searchView.layer.borderColor = UIColor(red:0/255, green:0/255, blue:10/255, alpha: 1).cgColor
-        
-        self.searchBar.attributedPlaceholder =
-        NSAttributedString(string: "Pesquise", attributes: [NSAttributedString.Key.foregroundColor : UIColor.lightGray])
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.searchBar.textColor = UIColor.black
         self.searchBar.becomeFirstResponder()
     }
     
