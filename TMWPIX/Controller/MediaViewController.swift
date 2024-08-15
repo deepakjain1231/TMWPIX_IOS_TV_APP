@@ -206,6 +206,10 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        self.stopExistingPlayer()
+    }
+    
+    func stopExistingPlayer() {
         if self.player != nil {
             self.player.stop()
             self.stopTimer()
@@ -580,10 +584,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     
     func back_action() {
         self.dismiss(animated: true) {
-            if self.player != nil {
-                self.player.stop()
-                self.stopTimer()
-            }
+            self.stopExistingPlayer()
         }
     }
     
@@ -614,6 +615,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     
     func change_channel_selection(_ suucess: Bool, indx: Int) {
         if suucess {
+            self.stopExistingPlayer()
             self.selected_Indx = indx
             self.nextChannel()
         }
@@ -639,6 +641,7 @@ extension MediaViewController {
         self.footerView.isHidden = false
         
         if self.is_epg {
+            self.stopExistingPlayer()
             if let indx = self.arr_channels.firstIndex(where: { dic_channel in
                 return "\(dic_channel.id ?? 0)" == self.channelID
             }) {
@@ -656,6 +659,7 @@ extension MediaViewController {
     
     func open_firstChannel() {
         if self.arr_channels.count != 0 {
+            self.stopExistingPlayer()
             self.ImageUrl = self.arr_channels[0].image ?? ""
             self.VideoURl = self.arr_channels[0].url ?? ""
             self.name = self.arr_channels[0].name ?? ""
