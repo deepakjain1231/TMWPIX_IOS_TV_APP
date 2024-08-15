@@ -91,6 +91,7 @@ extension ViewController {
     func loginResponseHandler(userInfo: UserInfo, errorMessage: String){
         self.loadingIndicator.stopAnimating()
         if userInfo.isLogin {
+            self.txt_token.text = ""
             openHomeScreen(animated: true)
         }else{
             utils.showDestructiveAlert(message: errorMessage, presentationController: self)
