@@ -14,6 +14,7 @@ class SearchViewController: TMWViewController, UITextFieldDelegate {
     var str_search_Text = ""
     @IBOutlet weak var searchView: FilmView!
     @IBOutlet weak var searchBar: UITextField!
+    @IBOutlet weak var lbl_search_Text: UILabel!
     @IBOutlet weak var selectBtn: UIButton!
     
     var categoryID = -1
@@ -21,6 +22,10 @@ class SearchViewController: TMWViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        
+        
+        self.searchBar.delegate = self
+        self.searchBar.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
         
         self.searchView.layer.borderWidth = 2
         self.searchView.layer.borderColor = UIColor(red:0/255, green:0/255, blue:10/255, alpha: 1).cgColor
@@ -68,6 +73,11 @@ class SearchViewController: TMWViewController, UITextFieldDelegate {
                 seriesViewController.searchSeriesData(txt: self.searchBar.text!, cat_id: self.categoryID)
             }
         }
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        self.lbl_search_Text.textColor = .black
+        self.lbl_search_Text.text = textField.text
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
