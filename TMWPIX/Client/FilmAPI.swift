@@ -340,9 +340,14 @@ class FilmAPI{
                                 if let image = aDic["image"] as? String {
                                     movieData.movies?.image = image
                                 }
-                                if let url = aDic["url"] as? String {
-                                    movieData.movies?.url = url
-                                }
+                                if let urlString = aDic["url"] as? String {
+                                                                    if urlString.contains("play.m3u8") {
+                                                                        let newUrlString = urlString.replacingOccurrences(of: "play.m3u8", with: "playapple.m3u8")
+                                                                        movieData.movies?.url = newUrlString
+                                                                    } else {
+                                                                        movieData.movies?.url = urlString
+                                                                    }
+                                                                }
                                 if let created = aDic["created"] as? String {
                                     movieData.movies?.created = created
                                 }

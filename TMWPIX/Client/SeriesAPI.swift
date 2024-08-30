@@ -518,10 +518,14 @@ class SeriesAPI{
                                     print(name)
                                     data.episode?.name = name
                                 }
-                                if let url = aDic["url"] as? String{
-                                    print(url)
-                                    data.episode?.url = url
-                                }
+                                if let urlString = aDic["url"] as? String {
+                                                                   if urlString.contains("play.m3u8") {
+                                                                       let newUrlString = urlString.replacingOccurrences(of: "play.m3u8", with: "playapple.m3u8")
+                                                                       data.episode?.url = newUrlString
+                                                                   } else {
+                                                                       data.episode?.url = urlString
+                                                                   }
+                                                               }
                                 if let duration = aDic["duration"] as? String{
                                     print(duration)
                                     data.episode?.duration = duration
