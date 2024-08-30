@@ -473,6 +473,34 @@ class Focusable_BackButton: UIButton {
     }
 }
 
+class Focusable_WhileBG_Button: UIButton {
+    
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.isFocused {
+            self.layer.borderWidth = 2.0
+            self.layer.borderColor = AppColor.app_Dark_RedColor.cgColor
+            self.layer.cornerRadius = 12
+            
+        } else {
+            // Reset appearance when unfocused
+            self.layer.borderWidth = 0.0
+            self.layer.cornerRadius = 0
+            self.layer.borderColor = UIColor.clear.cgColor
+        }
+    }
+}
+
 
 class Focusable_HomeButton: UIButton {
     

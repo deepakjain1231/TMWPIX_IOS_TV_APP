@@ -30,11 +30,13 @@ class ChangeRentalStatusViewController: TMWViewController {
     }
     @IBAction func confirmTapped(_ sender: Any) {
         //call api and use data from text field
+        let str_tokenText = (tokenText.text ?? "").trimed()
         let userInfo = UserInfo.getInstance()
-        if(tokenText.text == ""){
+        if str_tokenText == "" {
             //show alert to enter password or token
             utils.showDestructiveAlert(message: "Por favor, digite o nome de usuário", presentationController: self)
-        }else if(tokenText.text != userInfo?.token){
+        }
+        else if str_tokenText != userInfo?.token {
             //show alert to enter password or token
             utils.showDestructiveAlert(message: "Acesso incorreto, favor digitar novamente", presentationController: self)
         }else{

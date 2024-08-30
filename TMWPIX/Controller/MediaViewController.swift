@@ -100,22 +100,37 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
         }
         */
         
-        let tap_up = UITapGestureRecognizer(target: self, action: #selector(self.tapped_upClick(gesture:)))
-        tap_up.allowedPressTypes = [NSNumber(value: UIPress.PressType.upArrow.rawValue)]
+//        let tap_up = UITapGestureRecognizer(target: self, action: #selector(self.tapped_upClick(gesture:)))
+//        tap_up.allowedTouchTypes = [NSNumber(value: UIPress.PressType.upArrow.rawValue)]
+//        self.view.addGestureRecognizer(tap_up)
+//        
+//        let tap_down = UITapGestureRecognizer(target: self, action: #selector(self.tapped_downClick(gesture:)))
+//        tap_down.allowedTouchTypes = [NSNumber(value: UIPress.PressType.downArrow.rawValue)]
+//        self.view.addGestureRecognizer(tap_down)
+        
+//        let tap_left = UITapGestureRecognizer(target: self, action: #selector(self.tapped_leftClick(gesture:)))
+//        tap_left.allowedTouchTypes = [NSNumber(value: UIPress.PressType.leftArrow.rawValue)]
+//        self.view.addGestureRecognizer(tap_left)
+        
+//        let tap_right = UITapGestureRecognizer(target: self, action: #selector(self.tapped_rightClick(gesture:)))
+//        tap_right.allowedTouchTypes = [NSNumber(value: UIPress.PressType.rightArrow.rawValue)]
+//        self.view.addGestureRecognizer(tap_right)
+        
+        let tap_up = UISwipeGestureRecognizer(target: self, action: #selector(self.tapped_upClick(gesture:)))
+        tap_up.direction = .up
         self.view.addGestureRecognizer(tap_up)
         
-        let tap_down = UITapGestureRecognizer(target: self, action: #selector(self.tapped_downClick(gesture:)))
-        tap_down.allowedPressTypes = [NSNumber(value: UIPress.PressType.downArrow.rawValue)]
+        let tap_down = UISwipeGestureRecognizer(target: self, action: #selector(self.tapped_downClick(gesture:)))
+        tap_down.direction = .down
         self.view.addGestureRecognizer(tap_down)
         
-        let tap_left = UITapGestureRecognizer(target: self, action: #selector(self.tapped_leftClick(gesture:)))
-        tap_left.allowedPressTypes = [NSNumber(value: UIPress.PressType.leftArrow.rawValue)]
+        let tap_left = UISwipeGestureRecognizer(target: self, action: #selector(self.tapped_leftClick(gesture:)))
+        tap_left.direction = .left
         self.view.addGestureRecognizer(tap_left)
         
-        let tap_right = UITapGestureRecognizer(target: self, action: #selector(self.tapped_rightClick(gesture:)))
-        tap_right.allowedPressTypes = [NSNumber(value: UIPress.PressType.rightArrow.rawValue)]
+        let tap_right = UISwipeGestureRecognizer(target: self, action: #selector(self.tapped_rightClick(gesture:)))
+        tap_right.direction = .right
         self.view.addGestureRecognizer(tap_right)
-        
     }
     
     func setupFocusButton(_ current_focus: String) {
