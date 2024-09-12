@@ -262,7 +262,10 @@ extension MovieDetailViewController : UICollectionViewDelegate {
         else {
             self.str_series_id = "\(self.episodes[indexPath.row].id ?? 0)"
             
-            if let videoURL = URL(string: self.episodes[indexPath.row].url ?? "") {
+            var str_seriesURL = self.episodes[indexPath.row].url ?? ""
+            str_seriesURL = str_seriesURL.replacingOccurrences(of: "play.m3u8", with: "playapple.m3u8")
+            
+            if let videoURL = URL(string: str_seriesURL) {
                 let asset = AVURLAsset(url: videoURL, options: nil)
                 let playerItem = AVPlayerItem(asset: asset)
                 self.player = AVPlayer(playerItem: playerItem)

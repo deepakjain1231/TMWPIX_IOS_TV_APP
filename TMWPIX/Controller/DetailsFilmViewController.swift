@@ -157,7 +157,11 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
     }
     
     func play_video() {
-        guard let url = URL(string: self.dic_movieData?.movies?.url ?? "") else {
+        
+        var str_MovieURL = self.dic_movieData?.movies?.url ?? ""
+        str_MovieURL = str_MovieURL.replacingOccurrences(of: "play.m3u8", with: "playapple.m3u8")
+        
+        guard let url = URL(string: str_MovieURL) else {
             debugPrint("Invalid URL")
             return
         }
