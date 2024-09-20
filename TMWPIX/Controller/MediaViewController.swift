@@ -376,12 +376,6 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
         self.nextChannel()
     }
     
-//    override func pressesEnded(_ presses: Set<UIPress>, with event: UIPressesEvent?) {
-//        DispatchQueue.main.async {
-//            let anyPress: UIPress? = presses.first
-//            self.manageButtonClickEvent(click_type: anyPress?.key?.characters ?? "")
-//        }
-//    }
 //    private func manageButtonClickEvent(click_type: String) {
 //        if self.is_openinfo == false {
 //            self.startTimer()
@@ -576,26 +570,31 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
         //}
     }
     
+    func clickButton_Action() {
+        if self.current_focusItemHint == "indicate_1" {
+            self.change_audio()
+        }
+        else if self.current_focusItemHint == "indicate_2" {
+            self.click_info()
+        }
+        else if self.current_focusItemHint == "indicate_3" {
+            self.click_menu()
+        }
+    }
+    
 
     // MARK: - IBAction
     @IBAction func openChangeAudioTapped(_ sender: Any) {
-        self.change_audio()
+        self.clickButton_Action()
     }
     
     @IBAction func openInformationBoxTapped(_ sender: Any) {
-        self.click_info()
+        self.clickButton_Action()
     }
     
     @IBAction func menuClicked(_ sender: Any) {
-        self.click_menu()
+        self.clickButton_Action()
     }
-    
-//    @IBAction func goToMoveChannel(_ sender: Any) {
-//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//        let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChannelViewController") as! ChannelViewController
-//
-//        self.present(nextViewController, animated:true, completion:nil)
-//    }
     
     func back_action() {
         self.dismiss(animated: true) {
