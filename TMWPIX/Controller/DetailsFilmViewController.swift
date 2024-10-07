@@ -123,8 +123,10 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
     
     @IBAction func RentalDetailTapped(_ sender: Any) {
         
-        if (self.dic_movieData?.movies?.alugado ?? "") == "1" ||
-            (self.dic_movieData?.movies?.preco ?? "") == "0" {
+        //As per Call with Dinesh 7 Oct
+        //alugado value is 0 it means free movie
+        
+        if (self.dic_movieData?.movies?.aluguel ?? "") == "0" {
             self.play_video()
         }
         else {
