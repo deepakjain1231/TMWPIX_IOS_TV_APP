@@ -274,6 +274,24 @@ extension DetailsFilmViewController {
         self.btn_Reset.isHidden = true
         self.btn_Play.isHidden = false
         
+        if (self.dic_movieData?.movies?.alugado ?? "") == "0" {
+            
+            let currentTime = utils.getMovieSec_Data(str_type: "film", str_id: self.FilmID ?? "")
+            
+            if currentTime != 0 {
+                self.btn_Reset.isHidden = false
+                self.btn_Play.setTitle("Continuar Assistindo", for: .normal)
+            }
+            else {
+                self.btn_Play.setTitle("Assistir!", for: .normal)
+            }
+            
+        }
+        else {
+            self.btn_Play.setTitle("Alugue esse filme!", for: .normal)
+        }
+        
+        /*
         if (self.dic_movieData?.movies?.alugado ?? "") == "1" ||
             (self.dic_movieData?.movies?.preco ?? "") == "0" {
             
@@ -290,6 +308,7 @@ extension DetailsFilmViewController {
         else {
             self.btn_Play.setTitle("Alugue esse filme!", for: .normal)
         }
+        */
 
     }
 }
