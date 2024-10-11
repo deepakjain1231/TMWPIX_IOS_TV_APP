@@ -279,24 +279,52 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     }
 
     func handleTracks() {
-        player.addObserver(self, events: [PlayerEvent.tracksAvailable, PlayerEvent.textTrackChanged, PlayerEvent.audioTrackChanged], block: { [weak self] (event: PKEvent) in
-            if type(of: event) == PlayerEvent.tracksAvailable {
-                guard let this = self else { return }
-                
-//                this.loadingIndicator.stopAnimating()
-                self?.Indicator_view.isHidden = true
+        player?.addObserver(self, events: [PlayerEvent.tracksAvailable, PlayerEvent.textTrackChanged, PlayerEvent.audioTrackChanged], block: { [weak self] (event: PKEvent) in
+                   if type(of: event) == PlayerEvent.tracksAvailable {
+                       guard let self = self else { return }
 
-                if let tracks = event.tracks?.audioTracks {
-                    this.audio_Tracks = tracks
-                    this.selectedTracks = this.audio_Tracks
-                }
-                
-            } else if type(of: event) == PlayerEvent.textTrackChanged {
-                print("selected text track: \(event.selectedTrack?.title ?? "")")
-            } else if type(of: event) == PlayerEvent.audioTrackChanged {
-                print("selected audio track: \(event.selectedTrack?.title ?? "")")
-            }
-        })
+                       
+                       self.loadingIndicator.stopAnimating()
+
+                       if let audioTracks = event.tracks?.audioTracks {
+                           print("Available audio tracks: \(audioTracks.map { $0.title })")
+                           self.audio_Tracks = audioTracks
+                           self.selectedTracks = self.audio_Tracks
+                           
+                           
+                           // Check for selected track (if any)
+                                       if let selectedTrack = event.selectedTrack {
+                                           print("Selected audio track: \(selectedTrack.title)")
+                                       } else {
+                                           // If no track is selected, default to Portuguese
+                                           if let portugueseTrack = audioTracks.first(where: { $0.title.contains("Portuguese") }) {
+                                               print("Selecting Portuguese as the default track")
+                                               self.selectTrack(portugueseTrack)
+                                           } else {
+                                               // If Portuguese is not available, select the first track
+                                               print("Portuguese track not found, selecting the first available track")
+                                               self.selectTrack(audioTracks.first!)
+                                           }
+                                       }
+                           
+                       }
+                       
+                       if let textTracks = event.tracks?.textTracks {
+                                   print("Text tracks available: \(textTracks)")
+                               }
+                               
+                       if let selectedAudioTrack = event.selectedTrack {
+                                   print("Manually selected audio track: \(selectedAudioTrack.title)")
+                               }
+                       
+                       
+                       
+                   } else if type(of: event) == PlayerEvent.textTrackChanged {
+                       print("selected text track: \(event.selectedTrack?.title ?? "")")
+                   } else if type(of: event) == PlayerEvent.audioTrackChanged {
+                       print("selected audio track: \(event.selectedTrack?.title ?? "")")
+                   }
+               })
         player.addObserver(self, event: PlayerEvent.videoTrackChanged) { event in
             if type(of: event) == PlayerEvent.videoTrackChanged {
                 if let _ = event.playbackInfo {
