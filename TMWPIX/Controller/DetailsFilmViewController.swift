@@ -5,12 +5,13 @@
 //  Created by Apple on 04/08/2022.
 //
 
-import Foundation
+
 
 import UIKit
-import AVFoundation
 import AVKit
 import Alamofire
+import Foundation
+import AVFoundation
 
 class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, delegate_cpfVerified, delegate_change_status {
     
@@ -259,7 +260,8 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
     }
     
     override func viewDidAppear(_ animated: Bool) {
-
+        super.viewDidAppear(animated)
+		
         //Check player started and log player time
         if self.is_PlayerClicked {
             self.is_PlayerClicked = false

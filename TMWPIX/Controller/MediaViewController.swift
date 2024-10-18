@@ -476,7 +476,7 @@ extension MediaViewController {
 //MARK: - API CALL and Handle Response
 extension MediaViewController {
     func channelResponseHandler(ChannelData:[Channel]){
-        self.loadingIndicator.stopAnimating()
+        //self.loadingIndicator.stopAnimating()
         self.arr_channels = ChannelData
         self.footerView.isHidden = false
         

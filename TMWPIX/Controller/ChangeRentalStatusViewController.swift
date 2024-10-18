@@ -33,18 +33,22 @@ class ChangeRentalStatusViewController: TMWViewController {
     @IBAction func dismissView(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
+    
+    
     @IBAction func confirmTapped(_ sender: Any) {
         //call api and use data from text field
-        let str_tokenText = (tokenText.text ?? "").trimed()
         let userInfo = UserInfo.getInstance()
-        if str_tokenText == "" {
+        print(tokenText.text ?? "")
+        print(userInfo?.token ?? "")
+        print(tokenText.text ?? "")
+        if(tokenText.text == ""){
             //show alert to enter password or token
             utils.showDestructiveAlert(message: "Por favor, digite o nome de usuário", presentationController: self)
-        }
-        else if str_tokenText != userInfo?.token {
+        }else if tokenText.text?.caseInsensitiveCompare(userInfo?.token ?? "") != .orderedSame {
             //show alert to enter password or token
             utils.showDestructiveAlert(message: "Acesso incorreto, favor digitar novamente", presentationController: self)
         }else{
+            print("else conditions")
             //api call to take confirmation on rental status
             let userinfo = UserInfo.getInstance()
             if (userinfo?.podeAlugar == false){
@@ -56,6 +60,7 @@ class ChangeRentalStatusViewController: TMWViewController {
             }
         }
     }
+    
 }
 
 extension ChangeRentalStatusViewController {

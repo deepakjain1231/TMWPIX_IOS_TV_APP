@@ -258,6 +258,7 @@ class MoviePlayerViewController: TMWViewController, AVPlayerViewControllerDelega
 
     func handleTracks() {
         player.addObserver(self, events: [PlayerEvent.tracksAvailable, PlayerEvent.textTrackChanged, PlayerEvent.audioTrackChanged], block: { [weak self] (event: PKEvent) in
+            self?.loadingIndicator.stopAnimating()
             if type(of: event) == PlayerEvent.tracksAvailable {
                 guard let this = self else { return }
                 
