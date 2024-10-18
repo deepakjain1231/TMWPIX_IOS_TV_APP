@@ -100,6 +100,19 @@ extension SeriesViewController : UICollectionViewDataSource {
             cell.StarImage.isHidden = films[indexPath.row].aluguel != 2
             cell.SeriesImage.adjustsImageWhenAncestorFocused = true
             
+            let int_aluguelValue = films[indexPath.row].aluguel
+            if int_aluguelValue == 1 {
+                cell.StarImage.isHidden = false
+                cell.StarImage.tintColor = .yellow
+            }
+            else if int_aluguelValue == 2 {
+                cell.StarImage.isHidden = false
+                cell.StarImage.tintColor = .red
+            }
+            else {
+                cell.StarImage.isHidden = true
+            }
+            
         }else{
             cell.SeriesImage.sd_setImage(with: URL(string: series[indexPath.row].image ?? ""))
             cell.StarImage.isHidden = series[indexPath.row].aluguel != 2

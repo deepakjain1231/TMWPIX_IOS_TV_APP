@@ -9,7 +9,7 @@ import Foundation
 
 import UIKit
 
-class OptionViewController: TMWViewController {
+class OptionViewController: TMWViewController, delegate_change_status {
 
     @IBOutlet weak var lbl_Name: UILabel!
     @IBOutlet weak var lbl_Endereco: UILabel!
@@ -17,6 +17,7 @@ class OptionViewController: TMWViewController {
     @IBOutlet weak var lbl_Plano: UILabel!
     @IBOutlet weak var lbl_nesse: UILabel!
     @IBOutlet weak var lbl_device: UILabel!
+    @IBOutlet weak var btn_reabilitar: UIButton!
     
     @IBOutlet weak var btn_Back: UIButton!
     @IBOutlet weak var btn_profile: UIButton!
@@ -31,6 +32,22 @@ class OptionViewController: TMWViewController {
         self.lbl_Plano.text = "Plano: \(appDelegate.dic_UserData?.plano ?? "")"
         self.lbl_nesse.text = "Alugueis grátis restantes nesse mês: \(appDelegate.dic_UserData?.aluguelGratisRestante ?? 0)"
         self.lbl_device.text = "Dispositivo: \(utils.getDeviceId())"
+        
+        self.change_Button_Status()
+    }
+    
+    func change_Button_Status(){
+        let userInfo = UserInfo.getInstance()
+        if userInfo?.podeAlugar == true {
+            //Button Color Red
+            self.btn_reabilitar.setTitle("Reabilitar opção de aluguel", for: .normal)
+            self.btn_reabilitar.backgroundColor = UIColor().hexStringToUIColor(hex: "#DE003F")
+        }
+        else {
+            //Button Color Gray
+            self.btn_reabilitar.setTitle("Desabilitar opção de aluguel", for: .normal)
+            self.btn_reabilitar.backgroundColor = UIColor().hexStringToUIColor(hex: "#DE003F").withAlphaComponent(0.6)
+        }
     }
     
     override var preferredFocusedView: UIView? {
@@ -68,7 +85,9 @@ class OptionViewController: TMWViewController {
         self.present(nextViewController, animated:true, completion:nil)
     }
     
-    
+    func change_status_check(success: Bool) {
+        self.change_Button_Status()
+    }
     
     
     

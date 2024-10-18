@@ -5,27 +5,29 @@
 //  Created by Apple on 10/08/2022.
 //
 
-import Foundation
-
 import UIKit
-import AVFoundation
 import AVKit
+import AVFoundation
+
 
 class MovieDetailViewController: TMWViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
 
-    //    // Movie Detail Data
+    //Movie Detail Data
     var id : Int?
     var name: String?
     var image: String?
     var str_series_id = ""
+    var strSelectedSeason = ""
+    var int_playingTime = 0
+    var is_PlayerClicked:Bool = false
     
     var player: AVPlayer!
     var playerController: AVPlayerViewController!
     
     // Movie Detail
-    var strSelectedSeason = ""
+    @IBOutlet weak var view_Top_layer: UIView!
     @IBOutlet weak var seasonNumber: UILabel!
     @IBOutlet weak var sereisImage: UIImageView!
     @IBOutlet weak var movieTitle: UILabel!
@@ -42,6 +44,8 @@ class MovieDetailViewController: TMWViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.view_Top_layer.isHidden = false
+        
         sereisImage.sd_setImage(with: URL(string:image!))
         movieTitle.text = name
         self.img_logo.tag = 100
@@ -61,7 +65,7 @@ class MovieDetailViewController: TMWViewController {
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let player = object as? AVPlayer, player == self.player, keyPath == "status" {
             if player.status == .readyToPlay {
-                let currentTime = utils.getMovieSec_Data(str_type: "series", str_id: self.str_series_id)
+                let currentTime = self.int_playingTime
                 self.player?.seek(to: CMTimeMake(value: Int64(currentTime), timescale: 1))
                 self.player?.play()
             } else if player.status == .failed {
@@ -116,6 +120,15 @@ class MovieDetailViewController: TMWViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width / 2 , height: UIScreen.main.bounds.height)
+        
+        //Check player started and log player time
+        if self.is_PlayerClicked {
+            self.is_PlayerClicked = false
+            self.loadingIndicator.stopAnimating()
+            FilmAPI.callAPIfor_PauseFilm(str_type: "series", film_id: self.str_series_id, playing_time: self.int_playingTime) { dic_response in
+                self.loadingIndicator.stopAnimating()
+            }
+        }
     }
     
     override func shouldUpdateFocus(in context: UIFocusUpdateContext) -> Bool {
@@ -252,7 +265,7 @@ extension MovieDetailViewController: UICollectionViewDelegateFlowLayout {
 extension MovieDetailViewController : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
+        
         if collectionView == self.collection_season {
             self.loadingIndicator.stopAnimating()
             self.loadingIndicator.startAnimating()
@@ -265,52 +278,44 @@ extension MovieDetailViewController : UICollectionViewDelegate {
             var str_seriesURL = self.episodes[indexPath.row].url ?? ""
             str_seriesURL = str_seriesURL.replacingOccurrences(of: "play.m3u8", with: "playapple.m3u8")
             
-            if let videoURL = URL(string: str_seriesURL) {
-                let asset = AVURLAsset(url: videoURL, options: nil)
-                let playerItem = AVPlayerItem(asset: asset)
-                self.player = AVPlayer(playerItem: playerItem)
-                self.player?.addObserver(self, forKeyPath: "status", options: [], context: nil)// listen the current time of playing video
-                self.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: Double(1), preferredTimescale: 2), queue: DispatchQueue.main) { [weak self] (sec) in
-                    guard let self = self else { return }
-                    debugPrint(sec.seconds)
-                    utils.setMovieData_globally(str_type: "series", str_id: self.str_series_id, time: sec.seconds)
-                }
-                self.player?.volume = 1.0
-                
-                // Create AVPlayerViewController and set player
-                self.playerController = AVPlayerViewController()
-                self.playerController.player = self.player
-                
-                // Present the AVPlayerViewController or add it to your view hierarchy
-                self.present(self.playerController, animated: true)
+            self.loadingIndicator.startAnimating()
+            SeriesAPI.getOpenEpisodeData(episode_id: self.str_series_id) { dic_episode_info in
+                self.loadingIndicator.stopAnimating()
+                self.int_playingTime = Int(dic_episode_info.episode?.starttime ?? "0") ?? 0
+                self.playSeries(seriesURL: str_seriesURL)
             }
-            
         }
-        
-        
-        
-        
-//        if let videoURL = URL(string: self.episodes[indexPath.row].url ?? "") {
-//            // Create an AVPlayer instance with the URL as the asset
-//            let player = AVPlayer(url: videoURL)
-//            
-//            // Create an AVPlayerViewController and set its player
-//            let controller = AVPlayerViewController()
-//            controller.player = player
-//            
-//            // Present the AVPlayerViewController or add it to your view hierarchy
-//            present(controller, animated: true) {
-//                // Start playback
-//                player.play()
-//            }
-//        }
     }
     
+    func playSeries(seriesURL: String) {
+        if let videoURL = URL(string: seriesURL) {
+            let asset = AVURLAsset(url: videoURL, options: nil)
+            let playerItem = AVPlayerItem(asset: asset)
+            self.player = AVPlayer(playerItem: playerItem)
+            self.player?.addObserver(self, forKeyPath: "status", options: [], context: nil)// listen the current time of playing video
+            self.player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: Double(1), preferredTimescale: 2), queue: DispatchQueue.main) { [weak self] (sec) in
+                guard let self = self else { return }
+                debugPrint(sec.seconds)
+                self.is_PlayerClicked = true
+                self.int_playingTime = Int(sec.seconds)
+            }
+            self.player?.volume = 1.0
+            
+            // Create AVPlayerViewController and set player
+            self.playerController = AVPlayerViewController()
+            self.playerController.player = self.player
+            
+            // Present the AVPlayerViewController or add it to your view hierarchy
+            self.present(self.playerController, animated: true)
+        }
+    }
+        
 }
 
 
 extension MovieDetailViewController {
-    func episodeResponseHandler(episodeData:[SeriesEpisode]){
+    func episodeResponseHandler(episodeData:[SeriesEpisode]) {
+        self.view_Top_layer.isHidden = true
         self.loadingIndicator.stopAnimating()
         self.episodes = episodeData
         self.collection_season.reloadData()

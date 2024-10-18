@@ -39,10 +39,6 @@ class SeriesAPI{
         
         let queryParams = params.getQueryItems()
 
-        
-        //    http://api.tmwpix.com/series?appversion=1.3&user=&infantil=1&time=1660154482322&hash=6baa622fa569f0b38fdb011c7a788c0f&dtoken=d41d8cd98f00b204e9800998ecf8427e&os=android&operator=1&tipo=t&usrtoken=APP123&hashtoken=72f331591291c68712c87796f13bad45
-        
-        
         let str_url = Constants.baseUrl+Constants.API_METHOD_SERIES_NEW+queryParams
         AF.request(str_url, method: .get)
             .response{ response in
@@ -53,7 +49,7 @@ class SeriesAPI{
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         
-                        guard let seriesData = dictonary?["contents"] else { return }
+                        guard let seriesData = dictonary?["series"] else { return }
 
                         if let arrayOfDic = seriesData as? [Dictionary<String,AnyObject>]{
                             var series: [Series] = []
@@ -64,13 +60,13 @@ class SeriesAPI{
                                     data.id = id
                                 }
                                 
-                                if let name = aDic["nome"] as? String{
+                                if let name = aDic["name"] as? String{
                                     data.name = name
                                 }
-                                if let image = aDic["capa"] as? String{
+                                if let image = aDic["image"] as? String{
                                     data.image = image
                                 }
-                                if let category = aDic["categorias"] as? String{
+                                if let category = aDic["category"] as? String{
                                     data.category = category
                                 }
                                                    
@@ -91,66 +87,6 @@ class SeriesAPI{
                 }
             }
     }
-    
-    //    func getSeriesSeasonData(){
-    //        let params = ["serieid" : "46",
-    //                      "user" : "",
-    //                      "time" : "1657390028215",
-    //                      "hash" : "6b44ce6d55fb47f49a08c4ed436be469",
-    //                      "dtoken" : "d41d8cd98f00b204e9800998ecf8427e",
-    //                      "os" : "ios",
-    //                      "tipo" : "t",
-    //                      "usrtoken" : "APP123",
-    //                      "hashtoken" : "fc427b261087b109867e42961ca645ce",
-    //                      "device_id" : "7f3e54b720a6f34e",
-    //                      "device_name" : "sdk_google_atv_x86",
-    //                      "platform" : "apple",
-    //                      "appversion" : "1.3.1"]
-    //
-    //        AF.request(Constants.baseUrl+Constants.API_METHOD_SEASONS, parameters: params)
-    //            .response{ [self] response in
-    //
-    //                if let data = response.data {
-    //                    print(data)
-    //                    print(response.result)
-    //                    do {
-    //                        let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
-    //
-    //                        let profileData = dictonary!["seasons"]
-    //                        if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
-    //                            for aDic in arrayOfDic{
-    //                                let Season = SeasonData()
-    //                                if let id = aDic["id"] as? String{
-    //                                    print(id)
-    //                                    Season.id = id
-    //                                }
-    //
-    //                                if let name = aDic["name"] as? String{
-    //                                    print(name)
-    //                                    Season.name = name
-    //                                }
-    //
-    //                                if let year = aDic["year"] as? String{
-    //                                    print(year)
-    //                                    Season.year = year
-    //                                }
-    //
-    //                                if let series_id = aDic["series_id"] as? String{
-    //                                    print(series_id)
-    //                                    Season.series_id = series_id
-    //                                }
-    //                                self.SeriseSeasonData.append(contentsOf: [Season])
-    //                            }
-    //                        }
-    //
-    //                    } catch let error as NSError {
-    //                        print(error)
-    //                    }
-    //                }
-    //            }
-    //    }
-    //
-    //
     
     //======= Series Info API ==============
     
@@ -408,19 +344,7 @@ class SeriesAPI{
     
     //===== Real Aluguel ========
     
-    func getRealAluguelData(email: String,
-                            confirma: String,
-                            cpf: String,
-                            client_id: String,
-                            serie_id: String,
-                            user: String,
-                            time: String,
-                            hash: String,
-                            dtoken: String,
-                            tipo: String,
-                            usrtoken: String,
-                            hashtoken:String
-    ){
+    func getRealAluguelData(email: String, confirma: String, cpf: String, client_id: String, serie_id: String, user: String, time: String, hash: String, dtoken: String, tipo: String, usrtoken: String, hashtoken:String){
         let params = ["email" : email,
                       "confirma" : confirma,
                       "cpf" : cpf,
@@ -473,152 +397,129 @@ class SeriesAPI{
     
     
     //======== Opejn Episode ========
-    func getOpenEpisodeData(){
+    static func getOpenEpisodeData(episode_id: String, completion: @escaping (OpenEpisode) -> Void) {
         let userProfile = UserProfile.getInstance()
-        let params = ["id" : "950",
-                      "perfis" : "\(userProfile?.id ?? 13349)",
-                      "user" : "",
-                      "time" : "1657390028215",
-                      "hash" : "6b44ce6d55fb47f49a08c4ed436be469",
-                      "dtoken" : "d41d8cd98f00b204e9800998ecf8427e",
-                      "os" : "ios",
-                      "operator" : "1",
-                      "tipo" : "t",
-                      "usrtoken" : "APP123",
-                      "hashtoken" : "fc427b261087b109867e42961ca645ce",
-                      "device_id" : "7f3e54b720a6f34e",
-                      "device_name" : "sdk_google_atv_x86",
-                      "platform" : "apple",
-                      "appversion" : "1.3.1"]
         
+        let str_URl = Constants.baseUrl+Constants.API_METHOD_EPISODEINFOFULL + "?id=\(episode_id)&time=1657435701486&os=ios&operator=1&tipo=t&usrtoken=\(UserInfo.getInstance()?.token ?? "")&perfis=\(userProfile?.id ?? 13349)"
         
-        let str_url = Constants.baseUrl+Constants.API_METHOD_EPISODEINFOFULL
-        AF.request(str_url, parameters: params)
-            .response{ [self] response in
-                
-                if let data = response.data {
-                    print(data)
-                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
-                    do {
-                        let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
-                        let data = OpenEpisode()
-                        //------- Epidoe Data ----------------------
-                        let episodeData = dictonary!["episode"]
-                        if let arrayOfDic = episodeData as? [Dictionary<String,AnyObject>]{
-                            for aDic in arrayOfDic{
-                                if let id = aDic["id"] as? String{
-                                    print(id)
-                                    data.episode?.id = id
-                                }
-                                if let number = aDic["number"] as? String{
-                                    print(number)
-                                    data.episode?.number = number
-                                }
-                                if let name = aDic["name"] as? String{
-                                    print(name)
-                                    data.episode?.name = name
-                                }
-                                if let urlString = aDic["url"] as? String {
-                                                                   if urlString.contains("play.m3u8") {
-                                                                       let newUrlString = urlString.replacingOccurrences(of: "play.m3u8", with: "playapple.m3u8")
-                                                                       data.episode?.url = newUrlString
-                                                                   } else {
-                                                                       data.episode?.url = urlString
-                                                                   }
-                                                               }
-                                if let duration = aDic["duration"] as? String{
-                                    print(duration)
-                                    data.episode?.duration = duration
-                                }
-                                if let serie_id = aDic["serie_id"] as? String{
-                                    print(serie_id)
-                                    data.episode?.serie_id = serie_id
-                                }
-                                
-                                if let starttime = aDic["starttime"] as? String{
-                                    print(starttime)
-                                    data.episode?.starttime = starttime
+        AF.request(str_URl, parameters: nil).response { [self] response in
+            if let data = response.data {
+                print(data)
+                print(response.result)
+                do {
+                    let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
+                    
+                    let series_Data = OpenEpisode()
+
+                    //------- Epidoe Data ----------------------
+                    let episodeData = dictonary!["episode"]
+                    if let arrayOfDic = episodeData as? [Dictionary<String,AnyObject>]{
+                        for aDic in arrayOfDic {
+                            series_Data.episode = Episode()
+                            
+                            if let id = aDic["id"] as? String{
+                                series_Data.episode?.id = id
+                            }
+                            if let number = aDic["number"] as? String{
+                                series_Data.episode?.number = number
+                            }
+                            if let name = aDic["name"] as? String{
+                                series_Data.episode?.name = name
+                            }
+                            if let urlString = aDic["url"] as? String {
+                                if urlString.contains("play.m3u8") {
+                                    let newUrlString = urlString.replacingOccurrences(of: "play.m3u8", with: "playapple.m3u8")
+                                    series_Data.episode?.url = newUrlString
+                                } else {
+                                    series_Data.episode?.url = urlString
                                 }
                             }
-                        } // close bracket of episode dict
-                        
-                        //----------- Extra Data ------------------
-                        
-                        let extraData = dictonary!["extra"]
-                        if let arrayOfEtra = extraData as? [Dictionary<String,AnyObject>]{
-                            for aDic in arrayOfEtra{
-                                if let legenda = aDic["legenda"] as? String{
-                                    print(legenda)
-                                    data.extra?.audios = legenda
-                                }
-                                if let audios = aDic["audios"] as? String{
-                                    print(audios)
-                                    data.extra?.audios = audios
-                                }
+                            if let duration = aDic["duration"] as? String{
+                                series_Data.episode?.duration = duration
                             }
-                        } // close bracket of extra data
-                        
-                        //--------- Subtitles data ------------
-                        
-                        let subtitleData = dictonary!["subtitles"]
-                        if let arrayOfDic = subtitleData as? [Dictionary<String,AnyObject>]{
-                            for aDic in arrayOfDic{
-                                if let id = aDic["id"] as? String{
-                                    print(id)
-                                    data.subtitles?.id = id
-                                }
-                                if let idioma = aDic["idioma"] as? String{
-                                    print(idioma)
-                                    data.subtitles?.idioma = idioma
-                                }
-                                
-                                if let siglaidioma = aDic["siglaidioma"] as? String{
-                                    print(siglaidioma)
-                                    data.subtitles?.siglaidioma = siglaidioma
-                                }
-                                if let arquivo = aDic["arquivo"] as? String{
-                                    print(arquivo)
-                                    data.subtitles?.arquivo = arquivo
-                                }
-                                if let codificacao = aDic["codificacao"] as? String{
-                                    print(codificacao)
-                                    data.subtitles?.codificacao = codificacao
-                                }
+                            if let serie_id = aDic["serie_id"] as? String{
+                                series_Data.episode?.serie_id = serie_id
                             }
-                        } // close bracket of Subtitle data
-                        
-                        //--------- Audio data ------------
-                        
-                        let audioData = dictonary!["audio"]
-                        if let arrayOfDic = audioData as? [Dictionary<String,AnyObject>]{
-                            for aDic in arrayOfDic{
-                                if let id = aDic["id"] as? String{
-                                    print(id)
-                                    data.subtitles?.id = id
-                                }
-                                if let idioma = aDic["idioma"] as? String{
-                                    print(idioma)
-                                    data.subtitles?.idioma = idioma
-                                }
-                                
-                                if let siglaidioma = aDic["siglaidioma"] as? String{
-                                    print(siglaidioma)
-                                    data.subtitles?.siglaidioma = siglaidioma
-                                }
-                                if let map = aDic["map"] as? String{
-                                    print(map)
-                                    data.subtitles?.arquivo = map
-                                }
+                            if let starttime = aDic["starttime"] as? Int{
+                                series_Data.episode?.starttime = "\(starttime)"
                             }
-                        } // close bracket of Subtitle data
-                        
-                        self.OpenEpisodeData.append(contentsOf: [data])
-                        
-                    } catch let error as NSError {
-                        print(error)
-                    }
+                            if let starttime = aDic["starttime"] as? String{
+                                series_Data.episode?.starttime = starttime
+                            }
+                        }
+                    } // close bracket of episode dict
+                    
+                    //----------- Extra Data ------------------
+                    
+                    let extraData = dictonary!["extra"]
+                    if let arrayOfEtra = extraData as? [Dictionary<String,AnyObject>]{
+                        for aDic in arrayOfEtra {
+                            series_Data.extra = Extra()
+                            
+                            if let legenda = aDic["legenda"] as? String{
+                                print(legenda)
+                                series_Data.extra?.audios = legenda
+                            }
+                            if let audios = aDic["audios"] as? String{
+                                print(audios)
+                                series_Data.extra?.audios = audios
+                            }
+                        }
+                    } // close bracket of extra data
+                    
+                    //--------- Subtitles data ------------
+                    
+                    let subtitleData = dictonary!["subtitles"]
+                    if let arrayOfDic = subtitleData as? [Dictionary<String,AnyObject>]{
+                        for aDic in arrayOfDic {
+                            series_Data.subtitles = Subtitles()
+                            
+                            if let id = aDic["id"] as? String{
+                                series_Data.subtitles?.id = id
+                            }
+                            if let idioma = aDic["idioma"] as? String{
+                                series_Data.subtitles?.idioma = idioma
+                            }
+                            if let siglaidioma = aDic["siglaidioma"] as? String{
+                                series_Data.subtitles?.siglaidioma = siglaidioma
+                            }
+                            if let arquivo = aDic["arquivo"] as? String{
+                                series_Data.subtitles?.arquivo = arquivo
+                            }
+                            if let codificacao = aDic["codificacao"] as? String{
+                                series_Data.subtitles?.codificacao = codificacao
+                            }
+                        }
+                    } // close bracket of Subtitle data
+                    
+                    //--------- Audio data ------------
+                    
+                    let audioData = dictonary!["audio"]
+                    if let arrayOfDic = audioData as? [Dictionary<String,AnyObject>]{
+                        for aDic in arrayOfDic{
+                            series_Data.subtitles = Subtitles()
+                            
+                            if let id = aDic["id"] as? String{
+                                series_Data.subtitles?.id = id
+                            }
+                            if let idioma = aDic["idioma"] as? String{
+                                series_Data.subtitles?.idioma = idioma
+                            }
+                            if let siglaidioma = aDic["siglaidioma"] as? String{
+                                series_Data.subtitles?.siglaidioma = siglaidioma
+                            }
+                            if let map = aDic["map"] as? String{
+                                series_Data.subtitles?.arquivo = map
+                            }
+                        }
+                    } // close bracket of Subtitle data
+                    completion(series_Data)
+                    
+                } catch let error as NSError {
+                    print(error)
                 }
             }
+        }
     }
     
     

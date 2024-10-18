@@ -42,10 +42,10 @@ class Constants {
     
     
     
-    static let API_METHOD_MOVIES_NEW: String = "/v2/movies"
-    static let API_METHOD_SERIES_NEW: String = "/v2/series"
+    static let API_METHOD_MOVIES_NEW: String = "/movies/recents"
+    static let API_METHOD_SERIES_NEW: String = "/series"
 
-    
+    static let API_METHOD_LOG_FILM_TIME: String = "/log/logplayer"
     
     
     

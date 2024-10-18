@@ -5,13 +5,18 @@
 //  Created by Apple on 04/08/2022.
 //
 
-import Foundation
-
-import Foundation
+protocol delegate_change_status {
+    func change_status_check(success: Bool)
+}
 
 import UIKit
+import Foundation
+
 
 class ChangeRentalStatusViewController: TMWViewController {
+    
+    var delegate: delegate_change_status?
+    
     @IBOutlet weak var tokenText: UITextField!
     
     override func viewDidLoad() {
@@ -58,11 +63,15 @@ extension ChangeRentalStatusViewController {
         let userInfo = UserInfo.getInstance()
         userInfo?.podeAlugar = true
         userInfo?.saveUserInfo()
+        self.delegate?.change_status_check(success: true)
+        dismiss(animated: true, completion: nil)
         
     }
     func disableAluguelResponseHandler(errorMessage: String){
         let userInfo = UserInfo.getInstance()
         userInfo?.podeAlugar = false
         userInfo?.saveUserInfo()
+        self.delegate?.change_status_check(success: true)
+        dismiss(animated: true, completion: nil)
     }
 }

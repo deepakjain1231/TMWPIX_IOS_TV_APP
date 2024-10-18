@@ -13,6 +13,7 @@ class ErrorResolvedViewController: TMWViewController {
     
     var str_Error = ""
     var screenFrom = ""
+    var delegate: delegate_change_status?
     var superVC: UIViewController?
     
     @IBOutlet weak var tfError: UITextField!
@@ -58,6 +59,14 @@ class ErrorResolvedViewController: TMWViewController {
                                         self.superVC?.present(alert, animated: true, completion: nil)
                                     }
                                 }
+                            }
+                        }
+                        else {
+                            self.delegate?.change_status_check(success: true)
+                            let alert = UIAlertController(title: nil, message: "Bilhete Registrado", preferredStyle: UIAlertController.Style.alert)
+                            alert.addAction(UIAlertAction.init(title: "OK", style: .default))
+                            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+                                self.superVC?.present(alert, animated: true, completion: nil)
                             }
                         }
                     }

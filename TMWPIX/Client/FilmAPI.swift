@@ -72,7 +72,7 @@ class FilmAPI{
                 do {
                     let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                     
-                    guard let profileData = dictonary?["contents"] else { return }
+                    guard let profileData = dictonary?["movies"] else { return }
                     if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
                         
                         var filmData:[FilmSeries] = []
@@ -84,13 +84,13 @@ class FilmAPI{
                                 data.id = id
                             }
                             
-                            if let name = aDic["nome"] as? String{
+                            if let name = aDic["name"] as? String{
                                 data.name = name
                             }
-                            if let image = aDic["capa"] as? String{
+                            if let image = aDic["image"] as? String{
                                 data.image = image
                             }
-                            if let category = aDic["categorias"] as? String{
+                            if let category = aDic["category"] as? String{
                                 data.category = category
                             }
 //                            if let parental_control = aDic["parental_control"] as? String{
@@ -123,96 +123,6 @@ class FilmAPI{
             }
         }
     } // Close Bracket of getFilmSeriesData
-    
-    
-    //======== Fetch Film Series ==============
-    //    func getSeriesData(user: String,
-    //                           time: String,
-    //                           hash: String,
-    //                           dtoken: String,
-    //                           usrtoken: String,
-    //                           hashtoken: String
-    //    ){
-    //        let params = ["appversion" : "1.3",
-    //                      "user" : user,
-    //                      "infantil" : "1",
-    //                      "time" : time,
-    //                      "hash" : hash,
-    //                      "dtoken" : dtoken,
-    //                      "time" : time,
-    //                      "hash" : hash,
-    //                      "dtoken" : dtoken,
-    //                      "os" : utils.getOperatingSystem(),
-    //                      "operator" : "1",
-    //                      "tipo" : "t",
-    //                      "usrtoken" : usrtoken,
-    //                      "hashtoken" : hashtoken
-    //        ]
-    //
-    //        AF.request(Constants.baseUrl+Constants.API_METHOD_ALUGASERIE, parameters: params)
-    //            .response{ [self] response in
-    //
-    //                if let data = response.data {
-    //                    print(data)
-    //                    print(response.result)
-    //                    do {
-    //                        let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
-    //
-    //                        let profileData = dictonary!["error"]
-    //                        if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
-    //                            for aDic in arrayOfDic{
-    //                                let data = FilmSeries()
-    //
-    //                                if let id = aDic["id"] as? Int{
-    ////                                    print(code)
-    //                                    data.id = id
-    //                                }
-    //
-    //                                if let name = aDic["name"] as? String{
-    ////                                    print(code)
-    //                                    data.name = name
-    //                                }
-    //                                if let image = aDic["image"] as? String{
-    ////                                    print(code)
-    //                                    data.image = image
-    //                                }
-    //                                if let category = aDic["category"] as? Int{
-    ////                                    print(code)
-    //                                    data.category = category
-    //                                }
-    //                                if let parental_control = aDic["parental_control"] as? String{
-    ////                                    print(code)
-    //                                    data.parental_control = parental_control
-    //                                }
-    //                                if let midiatype = aDic["midiatype"] as? String{
-    ////                                    print(code)
-    //                                    data.midiatype = midiatype
-    //                                }
-    //                                if let aluguel = aDic["aluguel"] as? Int{
-    ////                                    print(code)
-    //                                    data.aluguel = aluguel
-    //                                }
-    //                                if let novidade = aDic["novidade"] as? Int{
-    ////                                    print(code)
-    //                                    data.novidade = novidade
-    //                                }
-    //
-    //                                if let preco = aDic["preco"] as? Int{
-    //                                    print(preco)
-    //                                    data.preco = preco
-    //                                }
-    //
-    //                                self.fetchFilmSeries.append(contentsOf: [data])
-    //                            }
-    //                        }
-    //
-    //                    } catch let error as NSError {
-    //                        print(error)
-    //                    }
-    //                }
-    //            }
-    //    } // Close Bracket of getFilmSeriesData
-    
     
     
     //======== Fetch Film Catagories ==============
@@ -272,7 +182,7 @@ class FilmAPI{
     } // Close Bracket of getFilmSeriesData
     
     //======== Opejn Movie Full Info ========
-    static func getMovieInfoData(delegate: DetailsFilmViewController){
+    static func getMovieInfoData(delegate: DetailsFilmViewController) {
         let userProfile = UserProfile.getInstance()
         let params = ["id" : "\(delegate.FilmID ?? "")",
                       "perfis" : "\(userProfile?.id ?? 13349)",
@@ -476,24 +386,16 @@ class FilmAPI{
         let userProfile = UserProfile.getInstance()
         
         let str_url = Constants.baseUrl+Constants.API_METHOD_ERRORTICKET
+        let str_FilmID = delegate.FilmID ?? ""
+        let str_Desc = delegate.tfError.text ?? ""
+        let str_ProfileID = "\(userProfile?.id ?? 16433)"
+        let str_UserToken = "\(userInfo?.token ?? "")"
+        let str_clientID = "\(userInfo?.client_id ?? 0)"
+        let str_hashtoken = utils.getHashToken(token: str_UserToken)
         
-        let params = ["descricao"       : "\(delegate.tfError.text)",
-                      "setor"           : "filmes",
-                      "idconteudo"      : delegate.FilmID,
-                      "clientes_id"     : "\(userInfo?.client_id)",
-                      "perfis_id"       : "\(userProfile?.id ?? 13349)",
-                      "user"            : "",
-                      "time"            : "1657390028215",
-                      "hash"            : "6b44ce6d55fb47f49a08c4ed436be469",
-                      "dtoken"          : userInfo?.password,
-                      "os"              : "ios",
-                      "operator"        : "1",
-                      "tipo"            : "t",
-                      "usrtoken"        : userInfo?.token,
-                      "hashtoken"       : "fc427b261087b109867e42961ca645ce",
-                      "page"            : "movie"]
+        let str_Report_URL = "\(str_url)?idconteudo=\(str_FilmID)&page=movie&tipo=t&setor=filmes&os=ios&hashtoken=\(str_hashtoken)&user=&descricao=\(str_Desc)&time=\(utils.getTime())&hash=\(utils.getHash())&perfis_id=\(str_ProfileID)&operator=1&usrtoken=\(str_UserToken)&dtoken=\(utils.getDToken())&clientes_id=\(str_clientID)"
         
-        var request = URLRequest(url: URL(string: "\(str_url)?descricao=\(delegate.tfError.text ?? "")&setor=filmes&idconteudo=\(delegate.FilmID ?? "")&clientes_id=\(userInfo?.client_id ?? 0)&perfis_id=\(userProfile?.id ?? 13349)&user=&time=1657390028215&hash=6b44ce6d55fb47f49a08c4ed436be469&dtoken=\(userInfo?.password ?? "")&os=ios& operator=1&tipo=t&usrtoken=\(userInfo?.token ?? "")&hashtoken=fc427b261087b109867e42961ca645ce&page=movie")!,timeoutInterval: 60.0)
+        var request = URLRequest(url: URL(string: str_Report_URL)!,timeoutInterval: 60.0)
         request.httpMethod = "GET"
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -511,28 +413,22 @@ class FilmAPI{
         task.resume()
     }
     
-    
     static func check_report_Status(film_id: String, completion: @escaping (String) -> Void) {
         let userInfo = UserInfo.getInstance()
         let userProfile = UserProfile.getInstance()
         
-        let str_URL = Constants.baseUrl+Constants.API_METHOD_TICKETSTATUS
+        let str_BaseURL = Constants.baseUrl+Constants.API_METHOD_TICKETSTATUS
+        let str_client_id = "\(userInfo?.client_id ?? 0)"
+        let str_Profile_ID = "\(userProfile?.id ?? 13349)"
+        let str_hash = utils.getHash()
+        let str_Time = utils.getTime()
+        let str_d_Token = utils.getDToken()
+        let userToken: String = userInfo?.token ?? ""
+        let str_hash_token = utils.getHashToken(token: (userToken))
         
-        let params = ["idconteudo": film_id,
-                      "cliente_id": "\(userInfo?.client_id ?? 0)",
-                      "tipoconteudo": "filmes",
-                      "perfis": "\(userProfile?.id ?? 13349)",
-                      "user": "",
-                      "time": "1657390028215",
-                      "hash": "6b44ce6d55fb47f49a08c4ed436be469",
-                      "dtoken": "\(userInfo?.password ?? "")",
-                      "os": "ios",
-                      "operator": "1",
-                      "tipo": "t",
-                      "usrtoken": userInfo?.token,
-                      "hashtoken": "fc427b261087b109867e42961ca645ce"]
+        let str_URL = "\(str_BaseURL)?idconteudo=\(film_id)&cliente_id=\(str_client_id)&tipoconteudo=filmes&perfis=\(str_Profile_ID)&user=&time=\(str_Time)&hash=\(str_hash)&dtoken=\(str_d_Token)&os=ios&operator=1&tipo=t&usrtoken=\(userToken)&hashtoken=\(str_hash_token)"
         
-        var request = URLRequest(url: URL(string: "\(str_URL)?idconteudo=\(film_id)&cliente_id=\(userInfo?.client_id ?? 0)&tipoconteudo=filmes&perfis=\(userProfile?.id ?? 13349)&user=&time=1657390028215&hash=6b44ce6d55fb47f49a08c4ed436be469&dtoken=\(userInfo?.password ?? "")&os=ios&operator=1&tipo=t&usrtoken=\(userInfo?.token ?? "")&hashtoken=fc427b261087b109867e42961ca645ce")!,timeoutInterval: 60.0)
+        var request = URLRequest(url: URL(string: str_URL)!,timeoutInterval: 60.0)
         request.httpMethod = "GET"
 
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
@@ -558,6 +454,39 @@ class FilmAPI{
             }
         }
         return nil
+    }
+    
+    //======== Opejn Movie Full Info ========
+    static func callAPIfor_PauseFilm(str_type: String, film_id: String, playing_time: Int, completion: @escaping ([String: Any]?) -> Void) {
+        
+        let userInfo = UserInfo.getInstance()
+        let userProfile = UserProfile.getInstance()
+        
+        let strBaseURL = Constants.baseUrl+Constants.API_METHOD_LOG_FILM_TIME
+        let str_Profile_ID = "\(userProfile?.id ?? 13349)"
+        let str_hash = utils.getHash()
+        let str_Time = utils.getTime()
+        let str_d_Token = utils.getDToken()
+        let userToken: String = userInfo?.token ?? ""
+        let str_hash_token = utils.getHashToken(token: (userToken))
+        
+        let str_URL = "\(strBaseURL)?id=\(film_id)&perfis_id=\(str_Profile_ID)&status=pause&setor=\(str_type)&tempo=\(playing_time)&socket=1729138297864&user=&time=\(str_Time)&hash=\(str_hash)&dtoken=\(str_d_Token)&os=ios&operator=1&tipo=t&usrtoken=\(userToken)&hashtoken=\(str_hash_token)"
+
+        AF.request(str_URL, parameters: nil).response { [self] response in
+            
+            if let data = response.data {
+                print(data)
+                print(response.result)
+                do {
+                    let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
+                    
+                    completion(dictonary)
+                    
+                } catch let error as NSError {
+                    print(error)
+                }
+            }
+        }
     }
 }
 

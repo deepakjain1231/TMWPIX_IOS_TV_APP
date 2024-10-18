@@ -226,65 +226,6 @@ class utils {
         presentationController.present(alert, animated: true, completion: nil)
     }
     
-    
-    
-    static func setMovieData_globally(str_type: String, str_id: String, time: Double) {
-        let dic_Save = ["id": str_id,
-                        "time": time,
-                        "type": str_type,] as [String : Any]
-        
-        var tempData = [[String: Any]]()
-        let arr_Data = utils.stored_moview_timing
-        if arr_Data.count != 0 {
-            if let indx = arr_Data.firstIndex(where: { dic in
-                return (dic["type"] as? String ?? "" == str_type) && (dic["id"] as? String ?? "" == str_id)
-            }) {
-                tempData = arr_Data
-                tempData[indx] = dic_Save
-            }
-            else {
-                tempData.removeAll()
-                tempData.append(dic_Save)
-            }
-        }
-        else {
-            tempData.removeAll()
-            tempData.append(dic_Save)
-        }
-        utils.set_stored_moview_timing(data: tempData)
-    }
-    
-    static func getMovieSec_Data(str_type: String, str_id: String) -> Double {
-        var current_time: Double = 0
-
-        let arr_Data = utils.stored_moview_timing
-        if arr_Data.count != 0 {
-            if let indx = arr_Data.firstIndex(where: { dic in
-                return (dic["type"] as? String ?? "" == str_type) && (dic["id"] as? String ?? "" == str_id)
-            }) {
-                current_time = (arr_Data[indx]["time"] as? Double ?? 0)
-            }
-            else {
-                current_time = 0
-            }
-        }
-        return current_time
-    }
-    
-    
-    // MARK: - Store Movie Timeing
-    static var stored_moview_timing: [[String:Any]] {
-        let storedValue = UserDefaults.standard.array(forKey: "stoped_movie_Timing")
-        if let _ = storedValue {
-            return storedValue as! [[String:Any]]
-        }
-        return []
-    }
-    
-    static func set_stored_moview_timing(data: [[String:Any]]) {
-        UserDefaults.standard.set(data, forKey: "stoped_movie_Timing")
-    }
-    
 
 }
 
@@ -738,6 +679,43 @@ class FocusableView_forBackButton: UIView {
                 if arr_views.first?.tag == 100 {
                     arr_views.first?.layer.borderWidth = 0
                 }
+            }
+        }
+    }
+}
+
+
+
+class Focusable_Enable_Diable_Button: UIButton {
+    override var canBecomeFocused: Bool {
+        return true
+    }
+
+    override var isUserInteractionEnabled: Bool {
+        get {
+            return true
+        }
+        set {}
+    }
+
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        if self.isFocused {
+            // Change appearance when focused (e.g., increase size, change border color)
+            self.layer.borderWidth = 2.0
+            self.layer.borderColor = UIColor.white.cgColor
+            self.backgroundColor = AppColor.app_Light_RedColor
+            self.layer.cornerRadius = 8
+        } else {
+            // Reset appearance when unfocused
+            let userInfo = UserInfo.getInstance()
+            
+            self.layer.cornerRadius = 8
+            self.layer.borderWidth = 0.0
+            if userInfo?.podeAlugar == true {
+                self.backgroundColor = AppColor.app_Dark_RedColor
+            }
+            else {
+                self.backgroundColor = AppColor.app_Dark_RedColor.withAlphaComponent(0.6)
             }
         }
     }
