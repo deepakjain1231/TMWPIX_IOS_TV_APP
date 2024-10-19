@@ -82,6 +82,7 @@ class OptionViewController: TMWViewController, delegate_change_status {
         
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ChangeRentalStatusViewController") as! ChangeRentalStatusViewController
+        nextViewController.delegate = self
         self.present(nextViewController, animated:true, completion:nil)
     }
     

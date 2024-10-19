@@ -19,6 +19,7 @@ class AudioViewController: TMWViewController {
     var delegate: delegateChange_Language?
     @IBOutlet weak var portuguesBtn: UIButton!
     @IBOutlet weak var inglesBtn: UIButton!
+    @IBOutlet weak var btn_close: UIButton!
     
     var selectedTracks: [Track] = []
     var currentTrack = ""
@@ -27,21 +28,27 @@ class AudioViewController: TMWViewController {
         super.viewDidLoad()
         if selectedTracks.count > 0 {
             if currentTrack == selectedTracks[0].id || selectedTracks.count == 1 {
-                portuguesBtn.setTitleColor(UIColor.systemOrange, for: UIControl.State.normal)
+                //portuguesBtn.setTitleColor(UIColor.systemOrange, for: UIControl.State.normal)
             }
 //            portuguesBtn.setTitle(selectedTracks[0].title, for: .normal)
         }
         if selectedTracks.count == 1 {
             if selectedTracks[0].title == "English" {
-                inglesBtn.setTitleColor(UIColor.systemOrange, for: UIControl.State.normal)
+                //inglesBtn.setTitleColor(UIColor.systemOrange, for: UIControl.State.normal)
             }
         } else if selectedTracks.count > 1 {
             if currentTrack == selectedTracks[1].id {
-                inglesBtn.setTitleColor(UIColor.systemOrange, for: UIControl.State.normal)
+                //inglesBtn.setTitleColor(UIColor.systemOrange, for: UIControl.State.normal)
             }
 //            inglesBtn.setTitle(selectedTracks[1].title, for: .normal)
         } else {
             inglesBtn.isHidden = true
+        }
+    }
+    
+    override var preferredFocusedView: UIView? {
+        get {
+            return self.btn_close
         }
     }
     

@@ -111,7 +111,7 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
         if let player = object as? AVPlayer, player == self.player, keyPath == "status" {
             if player.status == .readyToPlay {
-                let currentTime = Int(self.dic_movieData?.movies?.starttime ?? "0") ?? 0
+                let currentTime = self.dic_movieData?.movies?.starttime ?? 0
                 self.player?.seek(to: CMTimeMake(value: Int64(currentTime), timescale: 1))
                 self.player?.play()
             } else if player.status == .failed {
@@ -169,7 +169,7 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
         FilmAPI.callAPIfor_PauseFilm(str_type: "filmes", film_id: self.FilmID ?? "", playing_time: self.int_playingTime) { dic_response in
             self.int_playingTime = -1
             self.loadingIndicator.stopAnimating()
-            self.dic_movieData?.movies?.starttime = "\(self.int_playingTime)"
+            self.dic_movieData?.movies?.starttime = self.int_playingTime
             self.setupButtonText()
             self.play_video()
         }
@@ -268,7 +268,7 @@ class DetailsFilmViewController: TMWViewController, delegate_Cpf_Verified, deleg
             self.loadingIndicator.stopAnimating()
             FilmAPI.callAPIfor_PauseFilm(str_type: "filmes", film_id: self.FilmID ?? "", playing_time: self.int_playingTime) { dic_response in
                 self.loadingIndicator.stopAnimating()
-                self.dic_movieData?.movies?.starttime = "\(self.int_playingTime)"
+                self.dic_movieData?.movies?.starttime = self.int_playingTime
                 self.setupButtonText()
             }
         }
@@ -361,7 +361,7 @@ extension DetailsFilmViewController {
             if (self.dic_movieData?.movies?.alugado == "1") {
                 // Paid movie and already rented
                 
-                if self.dic_movieData?.movies?.starttime != "-1" {
+                if (self.dic_movieData?.movies?.starttime ?? 0) > 0 {
                     self.btn_Reset.isHidden = false
                     self.btn_Play.setTitle("Continuar Assistindo", for: .normal)
                 } else {
@@ -389,7 +389,7 @@ extension DetailsFilmViewController {
         } else if (self.dic_movieData?.movies?.aluguel == "0" && (self.dic_movieData?.movies?.preco ?? "0") == "0.0") {
             // Free movie
 
-            if self.dic_movieData?.movies?.starttime != "-1" {
+            if (self.dic_movieData?.movies?.starttime ?? 0) > 0 {
                 self.btn_Reset.isHidden = false
                 self.btn_Play.setTitle("Continuar Assistindo", for: .normal)
             } else {
@@ -412,7 +412,7 @@ extension DetailsFilmViewController {
         } else {
             // Handle any other case
 
-            if self.dic_movieData?.movies?.starttime != "-1" {
+            if (self.dic_movieData?.movies?.starttime ?? 0) > 0 {
                 self.btn_Reset.isHidden = false
                 self.btn_Play.setTitle("Continuar Assistindo", for: .normal)
             } else {

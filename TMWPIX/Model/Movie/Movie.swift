@@ -34,7 +34,7 @@ class Movies{
     var classificacao: String?
     var background: String?
     var precoaluguel: String?
-    var starttime: String?
+    var starttime: Int?
 }
 
 

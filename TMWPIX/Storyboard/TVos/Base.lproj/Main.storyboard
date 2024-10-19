@@ -1746,8 +1746,8 @@
                                         <rect key="frame" x="22" y="22" width="916" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Selecionar audio" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYu-dH-2nC">
-                                                <rect key="frame" x="18" y="12" width="152" height="26"/>
-                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                                <rect key="frame" x="18" y="12" width="166" height="26"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -1777,27 +1777,30 @@
                                             <constraint firstAttribute="height" constant="50" id="nJi-TF-aN1"/>
                                         </constraints>
                                     </view>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Mm4-iY-L9B">
-                                        <rect key="frame" x="9" y="107" width="942" height="146"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="Mm4-iY-L9B">
+                                        <rect key="frame" x="22" y="107" width="916" height="128"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRR-bX-7Hf">
-                                                <rect key="frame" x="0.0" y="0.0" width="942" height="73"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Portugues - Selecionado">
-                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="27"/>
-                                                    <color key="baseForegroundColor" red="0.99085015060000003" green="0.71004724500000005" blue="0.032738417390000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                </buttonConfiguration>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRR-bX-7Hf" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="916" height="55"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="55" id="ZJq-Hp-7Bn"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="     Portugues - Selecionado">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="portuguesTapped:" destination="pFa-iw-30d" eventType="primaryActionTriggered" id="5vM-Hj-M6Y"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGz-8H-8tL">
-                                                <rect key="frame" x="0.0" y="73" width="942" height="73"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Ingles">
-                                                    <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="27"/>
-                                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                </buttonConfiguration>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EGz-8H-8tL" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="73" width="916" height="55"/>
+                                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                <state key="normal" title="     Ingles">
+                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                                 <connections>
                                                     <action selector="inglesTapped:" destination="pFa-iw-30d" eventType="primaryActionTriggered" id="VMt-qU-Gwv"/>
                                                 </connections>
@@ -1809,10 +1812,10 @@
                                 <color key="backgroundColor" red="0.03045255505" green="0.053832218049999998" blue="0.1036251113" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="kuX-5R-ZNk" secondAttribute="trailing" constant="22" id="3e7-qO-lCk"/>
-                                    <constraint firstItem="Mm4-iY-L9B" firstAttribute="leading" secondItem="id1-aC-Bcc" secondAttribute="leading" constant="9" id="4zg-HC-aEv"/>
+                                    <constraint firstItem="Mm4-iY-L9B" firstAttribute="leading" secondItem="id1-aC-Bcc" secondAttribute="leading" constant="22" id="4zg-HC-aEv"/>
                                     <constraint firstItem="Mm4-iY-L9B" firstAttribute="top" secondItem="kuX-5R-ZNk" secondAttribute="bottom" constant="35" id="ZVR-Lh-ugb"/>
                                     <constraint firstItem="kuX-5R-ZNk" firstAttribute="top" secondItem="id1-aC-Bcc" secondAttribute="top" constant="22" id="a2v-AF-O9W"/>
-                                    <constraint firstAttribute="trailing" secondItem="Mm4-iY-L9B" secondAttribute="trailing" constant="9" id="kiY-Hh-tLT"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mm4-iY-L9B" secondAttribute="trailing" constant="22" id="kiY-Hh-tLT"/>
                                     <constraint firstItem="kuX-5R-ZNk" firstAttribute="leading" secondItem="id1-aC-Bcc" secondAttribute="leading" constant="22" id="mLi-3m-kba"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
@@ -1832,6 +1835,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="btn_close" destination="7up-Iv-r6b" id="pZA-88-lcA"/>
                         <outlet property="inglesBtn" destination="EGz-8H-8tL" id="ygC-rj-Obp"/>
                         <outlet property="portuguesBtn" destination="xRR-bX-7Hf" id="PES-Fy-rK0"/>
                     </connections>
@@ -3557,8 +3561,25 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="18" translatesAutoresizingMaskIntoConstraints="NO" id="k2b-qX-Mgl">
                                                         <rect key="frame" x="0.0" y="644" width="372" height="158"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ge3-C2-HLP" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAc-LJ-fwV" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="0.0" width="372" height="70"/>
+                                                                <color key="backgroundColor" red="0.10588235294117647" green="0.51372549019607838" blue="0.80392156862745101" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
+                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <state key="normal" title="Reportar Erro"/>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="5"/>
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                                <connections>
+                                                                    <action selector="ReportErrorTapped:" destination="rTK-Jd-GeU" eventType="primaryActionTriggered" id="ogr-XM-aaz"/>
+                                                                </connections>
+                                                            </button>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ge3-C2-HLP" customClass="Focusable_BackButton" customModule="TMWPIXtvOS" customModuleProvider="target">
+                                                                <rect key="frame" x="0.0" y="88" width="372" height="70"/>
                                                                 <color key="backgroundColor" red="0.30588235294117649" green="0.64313725490196072" blue="0.54117647058823526" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3572,23 +3593,6 @@
                                                                 </userDefinedRuntimeAttributes>
                                                                 <connections>
                                                                     <action selector="btn_resolve_Error_Action:" destination="rTK-Jd-GeU" eventType="primaryActionTriggered" id="Zay-lu-f8U"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vAc-LJ-fwV" customClass="Focusable_Button" customModule="TMWPIXtvOS" customModuleProvider="target">
-                                                                <rect key="frame" x="0.0" y="88" width="372" height="70"/>
-                                                                <color key="backgroundColor" red="0.87058823529999996" green="0.0" blue="0.2470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
-                                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
-                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                                <state key="normal" title="Reportar Erro"/>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                        <real key="value" value="5"/>
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                                <connections>
-                                                                    <action selector="ReportErrorTapped:" destination="rTK-Jd-GeU" eventType="primaryActionTriggered" id="ogr-XM-aaz"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>

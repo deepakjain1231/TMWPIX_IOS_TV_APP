@@ -193,6 +193,10 @@ class MovieAPI{
                                 }
                                 if let starttime = aDic["starttime"] as? String{
                                     print(starttime)
+                                    data.movies?.starttime = Int(starttime) ?? 0
+                                }
+                                if let starttime = aDic["starttime"] as? Int{
+                                    print(starttime)
                                     data.movies?.starttime = starttime
                                 }
                                 

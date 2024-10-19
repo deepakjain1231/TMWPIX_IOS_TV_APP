@@ -298,6 +298,9 @@ class FilmAPI{
                                     movieData.movies?.precoaluguel = precoaluguel
                                 }
                                 if let starttime = aDic["starttime"] as? String {
+                                    movieData.movies?.starttime = Int(starttime) ?? 0
+                                }
+                                if let starttime = aDic["starttime"] as? Int {
                                     movieData.movies?.starttime = starttime
                                 }
                             }
