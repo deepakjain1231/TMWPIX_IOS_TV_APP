@@ -357,11 +357,37 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     }
     
     func change_audio() {
+        var is_selected = ""
+        let currentTrackk = self.player.currentAudioTrack ?? ""
+        if selectedTracks.count > 0 {
+            if currentTrackk == selectedTracks[0].id || selectedTracks.count == 1 {
+                is_selected = "portuguesBtn"
+            }
+        }
+        if selectedTracks.count == 1 {
+            if selectedTracks[0].title == "English" {
+                is_selected = "inglesBtn"
+            }
+        }
+        else if selectedTracks.count > 1 {
+            if selectedTracks.count == 2 {
+                if currentTrackk == selectedTracks[0].id {
+                    is_selected = "portuguesBtn"
+                }
+                else {
+                    is_selected = "inglesBtn"
+                }
+            }
+        }
+        
+        
         let storyboard : UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let popupVC = storyboard.instantiateViewController(withIdentifier: "AudioViewController") as! AudioViewController
         popupVC.delegate = self
         popupVC.modalPresentationStyle = .overCurrentContext
         popupVC.modalTransitionStyle = .crossDissolve
+        popupVC.is_selected = is_selected
+        popupVC.currentTrack = self.player.currentAudioTrack ?? ""
         popupVC.selectedTracks = self.selectedTracks
         let pVC = popupVC.popoverPresentationController
         pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
