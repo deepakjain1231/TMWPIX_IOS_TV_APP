@@ -107,11 +107,11 @@ class LoginAPI{
                         let profileData = dictonary!["profiles"]
                         if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
                             for aDic in arrayOfDic{
-                            #if TARGET_OS_IOS
+#if TARGET_OS_IOS
                                 let userInfo = TMWPIX.UserInfo.getInstance()
-                            #else
+#else
                                 let userInfo = TMWPIXtvOS.UserInfo.getInstance()
-                            #endif
+#endif
                                 
                                 //                                    print(aDic)//print each of the dictionaries
                                 if let Email = aDic["email"] as? String{
@@ -123,7 +123,7 @@ class LoginAPI{
                                     print(Pass)//print price of each dic
                                     userInfo!.password = Pass
                                 }
-//                                self.UserInfo.append(contentsOf: [User])
+                                //                                self.UserInfo.append(contentsOf: [User])
                             }
                         }
                         
@@ -163,11 +163,11 @@ class LoginAPI{
                             let profileData = dictonary!["profiles"]
                             if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
                                 for aDic in arrayOfDic{
-                                    #if TARGET_OS_IOS
+#if TARGET_OS_IOS
                                     let userInfo = TMWPIX.UserInfo.getInstance()
-                                    #else
-                                        let userInfo = TMWPIXtvOS.UserInfo.getInstance()
-                                    #endif
+#else
+                                    let userInfo = TMWPIXtvOS.UserInfo.getInstance()
+#endif
                                     
                                     //                                    print(aDic)//print each of the dictionaries
                                     if let Email = aDic["email"] as? String{
@@ -179,7 +179,7 @@ class LoginAPI{
                                         print(Pass)//print price of each dic
                                         userInfo?.password = Pass
                                     }
-//                                    self.UserInfo.append(contentsOf: [User])
+                                    //                                    self.UserInfo.append(contentsOf: [User])
                                 }
                             }
                             
@@ -189,6 +189,55 @@ class LoginAPI{
                     }
                     
                 }
+        }
+    }
+    
+    
+    static func getMobileNumbers_Data(delegate: ViewController){
+        
+        let str_URL = Constants.baseUrl + Constants.API_METHOD_GET_MOBILE_INFO
+        
+        AF.request(str_URL, method: .get, parameters: nil).response{response in
+            if let data = response.data {
+                print(data)
+                print(response.result)
+                do {
+                    let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [[String: Any]]
+                    
+                    let contactData = Contact_Info_Model()
+                    
+                    if let arrayOfDic = dictonary as? [Dictionary<String,AnyObject>] {
+
+                        contactData.contactInfo = [ContactInfo]()
+                        
+                        for aDic in arrayOfDic {
+                            let contact = ContactInfo()
+                            
+                            if let id = aDic["id"] as? Int {
+                                contact.id = id
+                            }
+                            if let ddd = aDic["ddd"] as? String {
+                                contact.ddd = ddd
+                            }
+                            if let numero = aDic["numero"] as? String {
+                                contact.numero = numero
+                            }
+                            if let ativo = aDic["ativo"] as? Int {
+                                contact.ativo = ativo
+                            }
+                            contactData.contactInfo?.append(contact)
+                        }
+                        delegate.contact_information_ResponseHandler(contactInfo: contactData, errorMessage: "")
+                    }
+                    else {
+                        delegate.contact_information_ResponseHandler(contactInfo: contactData, errorMessage: "")
+                    }
+                } catch let error as NSError {
+                    print(error)
+                    let contactData = Contact_Info_Model()
+                    delegate.contact_information_ResponseHandler(contactInfo: contactData, errorMessage: "")
+                }
+            }
         }
     }
 }

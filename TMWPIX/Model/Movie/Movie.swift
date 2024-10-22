@@ -38,4 +38,16 @@ class Movies{
 }
 
 
+class Contact_Info_Model{
+    var contactInfo: [ContactInfo]?
+}
+
+class ContactInfo {
+    var id: Int?
+    var ddd: String?
+    var numero: String?
+    var ativo: Int?
+}
+
+
 
