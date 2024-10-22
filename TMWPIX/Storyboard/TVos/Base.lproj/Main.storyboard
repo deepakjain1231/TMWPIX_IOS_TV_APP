@@ -1787,7 +1787,7 @@
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="27"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                <state key="normal" title="     Portugues - Selecionado">
+                                                <state key="normal" title="     Portugues">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
@@ -3783,14 +3783,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CLS-sH-hQd">
-                                <rect key="frame" x="80" y="60" width="1760" height="960"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2w-YI-vFN" customClass="PlayerView" customModule="PlayKit">
-                                        <rect key="frame" x="-60" y="0.0" width="1880" height="982"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1102"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FjY-dD-0W7">
-                                        <rect key="frame" x="0.0" y="0.0" width="1760" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1920" height="0.0"/>
                                         <subviews>
                                             <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njp-pc-H9R">
                                                 <constraints>
@@ -3803,7 +3803,7 @@
                                                 </connections>
                                             </button>
                                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logotmwpix" translatesAutoresizingMaskIntoConstraints="NO" id="CVW-ag-fMj" customClass="FocusableImgView_NotSelected" customModule="TMWPIXtvOS" customModuleProvider="target">
-                                                <rect key="frame" x="1460" y="0.0" width="300" height="0.0"/>
+                                                <rect key="frame" x="1620" y="0.0" width="300" height="0.0"/>
                                             </imageView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3818,7 +3818,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0Q-cL-wG4">
-                                        <rect key="frame" x="0.0" y="863" width="1760" height="100"/>
+                                        <rect key="frame" x="80" y="920" width="1760" height="100"/>
                                         <subviews>
                                             <view tag="1001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nBt-y3-4DX">
                                                 <rect key="frame" x="22" y="15" width="100" height="70"/>
@@ -3962,14 +3962,14 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray4Color"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="v2w-YI-vFN" secondAttribute="trailing" constant="-60" id="1RQ-gM-K4Q"/>
+                                    <constraint firstAttribute="trailing" secondItem="v2w-YI-vFN" secondAttribute="trailing" id="1RQ-gM-K4Q"/>
                                     <constraint firstAttribute="trailing" secondItem="FjY-dD-0W7" secondAttribute="trailing" id="6EX-UW-Bl1"/>
-                                    <constraint firstAttribute="bottom" secondItem="D0Q-cL-wG4" secondAttribute="bottom" constant="-3" id="QQF-D4-3Rx"/>
+                                    <constraint firstAttribute="bottom" secondItem="D0Q-cL-wG4" secondAttribute="bottom" constant="60" id="QQF-D4-3Rx"/>
                                     <constraint firstItem="v2w-YI-vFN" firstAttribute="top" secondItem="CLS-sH-hQd" secondAttribute="top" id="QQm-Q5-ZL8"/>
                                     <constraint firstItem="FjY-dD-0W7" firstAttribute="top" secondItem="CLS-sH-hQd" secondAttribute="top" id="hTy-Rm-YmE"/>
-                                    <constraint firstItem="v2w-YI-vFN" firstAttribute="leading" secondItem="CLS-sH-hQd" secondAttribute="leading" constant="-60" id="pb2-E2-Aem"/>
-                                    <constraint firstAttribute="trailing" secondItem="D0Q-cL-wG4" secondAttribute="trailing" id="rXX-oO-iY8"/>
-                                    <constraint firstItem="D0Q-cL-wG4" firstAttribute="leading" secondItem="CLS-sH-hQd" secondAttribute="leading" id="uOx-wX-J22"/>
+                                    <constraint firstItem="v2w-YI-vFN" firstAttribute="leading" secondItem="CLS-sH-hQd" secondAttribute="leading" id="pb2-E2-Aem"/>
+                                    <constraint firstAttribute="trailing" secondItem="D0Q-cL-wG4" secondAttribute="trailing" constant="80" id="rXX-oO-iY8"/>
+                                    <constraint firstItem="D0Q-cL-wG4" firstAttribute="leading" secondItem="CLS-sH-hQd" secondAttribute="leading" constant="80" id="uOx-wX-J22"/>
                                     <constraint firstAttribute="bottom" secondItem="v2w-YI-vFN" secondAttribute="bottom" constant="-22" id="veY-8U-ApE"/>
                                     <constraint firstItem="FjY-dD-0W7" firstAttribute="leading" secondItem="CLS-sH-hQd" secondAttribute="leading" id="yai-IR-1ue"/>
                                 </constraints>
@@ -3982,12 +3982,12 @@
                         <viewLayoutGuide key="safeArea" id="gqS-s4-8cS"/>
                         <color key="backgroundColor" systemColor="systemGray4Color"/>
                         <constraints>
-                            <constraint firstItem="CLS-sH-hQd" firstAttribute="bottom" secondItem="gqS-s4-8cS" secondAttribute="bottom" id="4hN-PE-wXU"/>
-                            <constraint firstItem="CLS-sH-hQd" firstAttribute="trailing" secondItem="gqS-s4-8cS" secondAttribute="trailing" id="Fkd-SU-XgP"/>
+                            <constraint firstItem="CLS-sH-hQd" firstAttribute="bottom" secondItem="ety-sp-j1R" secondAttribute="bottom" id="4hN-PE-wXU"/>
+                            <constraint firstItem="CLS-sH-hQd" firstAttribute="trailing" secondItem="ety-sp-j1R" secondAttribute="trailing" id="Fkd-SU-XgP"/>
                             <constraint firstItem="caJ-de-OX9" firstAttribute="centerX" secondItem="CLS-sH-hQd" secondAttribute="centerX" id="NzF-yd-W97"/>
                             <constraint firstItem="caJ-de-OX9" firstAttribute="centerY" secondItem="CLS-sH-hQd" secondAttribute="centerY" id="aOr-cq-p51"/>
-                            <constraint firstItem="gqS-s4-8cS" firstAttribute="leading" secondItem="CLS-sH-hQd" secondAttribute="leading" id="cTE-hj-71x"/>
-                            <constraint firstItem="CLS-sH-hQd" firstAttribute="top" secondItem="gqS-s4-8cS" secondAttribute="top" id="p3u-bi-PL6"/>
+                            <constraint firstAttribute="leading" secondItem="CLS-sH-hQd" secondAttribute="leading" id="cTE-hj-71x"/>
+                            <constraint firstItem="CLS-sH-hQd" firstAttribute="top" secondItem="ety-sp-j1R" secondAttribute="top" id="p3u-bi-PL6"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
@@ -5187,19 +5187,19 @@
         <image name="signup_qrcode" width="567" height="567"/>
         <image name="star.circle.fill" catalog="system" width="128" height="128"/>
         <systemColor name="linkColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
