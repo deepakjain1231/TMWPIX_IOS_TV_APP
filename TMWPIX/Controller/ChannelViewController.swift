@@ -171,6 +171,8 @@ extension ChannelViewController : UICollectionViewDelegate {
             nextViewController.desc = channels[indexPath.row].description!
             nextViewController.channelID = "\(channels[indexPath.row].id!)"
             nextViewController.Channeltext = String(channels[indexPath.row].number!)
+            nextViewController.podeAssistir = channels[indexPath.row].podeAssistir
+            nextViewController.OverlayImageURL = channels[indexPath.row].overlayImage ?? ""
             nextViewController.is_epg = true
             nextViewController.reloadPlayer()
             nextViewController.arr_channels = self.channels

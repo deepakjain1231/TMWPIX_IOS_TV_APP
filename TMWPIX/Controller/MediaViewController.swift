@@ -37,11 +37,14 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     @IBOutlet weak var channelTitle: UILabel!
     @IBOutlet weak var channelName: UILabel!
     @IBOutlet weak var channelDesc: UILabel!
+    @IBOutlet weak var img_overlay: UIImageView!
     
     @IBOutlet weak var Indicator_view: UIActivityIndicatorView!
     
     var selected_Indx = 0
     
+    var OverlayImageURL: String?
+    var podeAssistir: Int?
     var Channeltext:String?
     var ImageUrl:String?
     var VideoURl:String?
@@ -58,6 +61,7 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.img_overlay.isHidden = true
         self.footerView.isHidden = true
         self.titleView.accessibilityHint = "titleView"
         self.indicate_1.accessibilityHint = "indicate_1"
@@ -168,6 +172,24 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
         self.channelImage.sd_setImage(with: URL(string: ImageUrl!))
         self.channelNumber.text = Channeltext
         self.channelName.text = self.name
+        
+        if let int_podeAssister = self.podeAssistir, int_podeAssister == 0  {
+
+            if (self.OverlayImageURL ?? "") != "" {
+                if self.player != nil {
+                    self.player.volume = 0
+                }
+                self.img_overlay.isHidden = false
+                self.img_overlay.sd_setImage(with: URL.init(string: self.OverlayImageURL ?? ""))
+            }
+            
+        }
+        else {
+            if self.player != nil {
+                self.player.volume = 1
+            }
+            self.img_overlay.isHidden = true
+        }
 
         ChannelAPI.getNowPlayingData(id: self.channelID!, delegate: self)
         self.player.stop()
@@ -344,6 +366,26 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
             self.desc = self.arr_channels[self.selected_Indx].description ?? ""
             self.channelID = "\(self.arr_channels[self.selected_Indx].id ?? 0)"
             self.Channeltext = String(self.arr_channels[self.selected_Indx].number ?? 0)
+            self.podeAssistir = self.arr_channels[self.selected_Indx].podeAssistir
+            self.OverlayImageURL = self.arr_channels[self.selected_Indx].overlayImage ?? ""
+            
+            if let int_podeAssister = self.podeAssistir, int_podeAssister == 0  {
+
+                if (self.OverlayImageURL ?? "") != "" {
+                    if self.player != nil {
+                        self.player.volume = 0
+                    }
+                    self.img_overlay.isHidden = false
+                    self.img_overlay.sd_setImage(with: URL.init(string: self.OverlayImageURL ?? ""))
+                }
+                
+            }
+            else {
+                if self.player != nil {
+                    self.player.volume = 1
+                }
+                self.img_overlay.isHidden = true
+            }
             
             self.channelImage.sd_setImage(with: URL(string: ImageUrl ?? ""))
             self.channelNumber.text = Channeltext
@@ -532,12 +574,30 @@ extension MediaViewController {
             self.desc = self.arr_channels[0].description ?? ""
             self.channelID = "\(self.arr_channels[0].id ?? 0)"
             self.Channeltext = String(self.arr_channels[0].number ?? 0)
+            self.podeAssistir = self.arr_channels[0].podeAssistir
+            self.OverlayImageURL = self.arr_channels[0].overlayImage ?? ""
             self.is_epg = false
             self.selected_Indx = 0
             
             self.channelImage.sd_setImage(with: URL(string: ImageUrl ?? ""))
             self.channelNumber.text = self.Channeltext
             self.channelName.text = self.name
+            
+            if let int_podeAssister = self.podeAssistir, int_podeAssister == 0  {
+
+                if (self.OverlayImageURL ?? "") != "" {
+                    self.player.volume = 0
+                    self.img_overlay.isHidden = false
+                    self.img_overlay.sd_setImage(with: URL.init(string: self.OverlayImageURL ?? ""))
+                }
+                
+            }
+            else {
+                if self.player != nil {
+                    self.player.volume = 1
+                }
+                self.img_overlay.isHidden = true
+            }
             
             self.setupScreenData()
         }

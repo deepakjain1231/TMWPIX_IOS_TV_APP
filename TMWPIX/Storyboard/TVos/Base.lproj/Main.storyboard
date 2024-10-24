@@ -2361,7 +2361,7 @@
                                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="22"/>
                                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                                                        <state key="normal" title="Editor Perfis"/>
+                                                        <state key="normal" title="Editar Perfis"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                 <real key="value" value="8"/>
@@ -3775,7 +3775,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v2w-YI-vFN" customClass="PlayerView" customModule="PlayKit">
-                                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1102"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FjY-dD-0W7">
@@ -3806,6 +3806,9 @@
                                             <constraint firstAttribute="bottom" secondItem="Njp-pc-H9R" secondAttribute="bottom" id="mIn-O5-erh"/>
                                         </constraints>
                                     </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mmv-MP-jlx">
+                                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                                    </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D0Q-cL-wG4">
                                         <rect key="frame" x="80" y="920" width="1760" height="100"/>
                                         <subviews>
@@ -3955,11 +3958,15 @@
                                     <constraint firstAttribute="trailing" secondItem="FjY-dD-0W7" secondAttribute="trailing" id="6EX-UW-Bl1"/>
                                     <constraint firstAttribute="bottom" secondItem="D0Q-cL-wG4" secondAttribute="bottom" constant="60" id="QQF-D4-3Rx"/>
                                     <constraint firstItem="v2w-YI-vFN" firstAttribute="top" secondItem="CLS-sH-hQd" secondAttribute="top" id="QQm-Q5-ZL8"/>
+                                    <constraint firstItem="Mmv-MP-jlx" firstAttribute="leading" secondItem="CLS-sH-hQd" secondAttribute="leading" id="dCX-qG-t0t"/>
                                     <constraint firstItem="FjY-dD-0W7" firstAttribute="top" secondItem="CLS-sH-hQd" secondAttribute="top" id="hTy-Rm-YmE"/>
+                                    <constraint firstItem="Mmv-MP-jlx" firstAttribute="top" secondItem="FjY-dD-0W7" secondAttribute="bottom" id="oNl-Vt-8D0"/>
                                     <constraint firstItem="v2w-YI-vFN" firstAttribute="leading" secondItem="CLS-sH-hQd" secondAttribute="leading" id="pb2-E2-Aem"/>
+                                    <constraint firstAttribute="bottom" secondItem="Mmv-MP-jlx" secondAttribute="bottom" id="qUN-AR-jJj"/>
                                     <constraint firstAttribute="trailing" secondItem="D0Q-cL-wG4" secondAttribute="trailing" constant="80" id="rXX-oO-iY8"/>
                                     <constraint firstItem="D0Q-cL-wG4" firstAttribute="leading" secondItem="CLS-sH-hQd" secondAttribute="leading" constant="80" id="uOx-wX-J22"/>
-                                    <constraint firstAttribute="bottom" secondItem="v2w-YI-vFN" secondAttribute="bottom" constant="-22" id="veY-8U-ApE"/>
+                                    <constraint firstAttribute="bottom" secondItem="v2w-YI-vFN" secondAttribute="bottom" id="veY-8U-ApE"/>
+                                    <constraint firstAttribute="trailing" secondItem="Mmv-MP-jlx" secondAttribute="trailing" id="wED-jY-aVf"/>
                                     <constraint firstItem="FjY-dD-0W7" firstAttribute="leading" secondItem="CLS-sH-hQd" secondAttribute="leading" id="yai-IR-1ue"/>
                                 </constraints>
                             </view>
@@ -3994,6 +4001,7 @@
                         <outlet property="channelNumber" destination="yAn-44-4Oj" id="xau-Nc-vQr"/>
                         <outlet property="channelTitle" destination="pVU-pk-dWw" id="SHF-6W-czT"/>
                         <outlet property="footerView" destination="D0Q-cL-wG4" id="3US-XA-DWl"/>
+                        <outlet property="img_overlay" destination="Mmv-MP-jlx" id="cHS-SO-dPI"/>
                         <outlet property="indicate_1" destination="L8v-bv-XYW" id="w0e-hD-Xpe"/>
                         <outlet property="indicate_2" destination="dLl-l4-26O" id="Pxo-eh-0gR"/>
                         <outlet property="indicate_3" destination="kQH-cu-ehn" id="Ct7-Hh-ur6"/>
