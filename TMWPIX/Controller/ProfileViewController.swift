@@ -326,8 +326,17 @@ extension ProfileViewController{
     func getProfileList(){
         isProfileState = .profileList
         handleBackButton()
-        self.loadingIndicator.startAnimating()
-        ProfileAPI.getProfileData(delegate: self);
+        
+        if self.isFromLogin == false {
+            self.loadingIndicator.startAnimating()
+            ProfileAPI.getProfileData(delegate: self);
+        }
+        else {
+            self.collectionView.reloadData()
+            self.tfPassword.text = ""
+            self.passwordView.isHidden = true
+        }
+
     }
 }
 

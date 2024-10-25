@@ -12,70 +12,80 @@ import Alamofire
 class LoginAPI{
     
     static func getLoginFirstTimeData(token: String, delegate: ViewController){
-        
-        let params = ["user" : "",
-                      "time" : utils.getTime(),
-                      "hash" : utils.getHash(),
-                      "dtoken" : utils.getDToken(),
-                      "os" : "ios",
-                      "operator" : "1",
-                      "tipo" : "t",
-                      "usrtoken" : token,
-                      "hashtoken" : utils.getHashToken(token: token),
-                      "device_id" : "f3e54b720a6f34e",//utils.getDeviceId(),
-                      "device_name" : utils.getDeviceName(),
-                      "platform" : utils.getPlatform(),
-                      "appversion" : "1.3.1"]
-        
-//        user=&time=1657435701486&hash=3f9b7d853e407cc1159077ad82b0fb1d&dtoken=d41d8cd98f00b204e9800998ecf8427e&os=android&operator=1&tipo=t&usrtoken=APP1234&hashtoken=aa2dd11aad8d9664a4cd9ac33b49caa9&device_id=7f3e54b720a6f34e&device_name=sdk_google_atv_x86&platform=android&appversion=1.3.1
-        let str_url = Constants.baseUrl+Constants.API_METHOD_LOGIN
-        AF.request(str_url, parameters: params)
-            .response{ response in
-                if let data = response.data {
-                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
-                    do {
-                        let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
-                        
-                        let profileData = dictonary!["profiles"]
-                        if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
-                            let userInfo = UserInfo.getInstance()
-                            for aDic in arrayOfDic{
 
-                                if let Email = aDic["email"] as? String {
-                                    print(Email)//print price of each dic
-                                    userInfo?.email = Email
-                                }
-                                
-                                if let Pass = aDic["senha"] as? String {
-                                    print(Pass)//print price of each dic
-                                    userInfo?.password = Pass
-                                }
-                                
-                                if let client_id = aDic["client_id"] as? Int {
-                                    userInfo?.client_id = client_id
-                                }
+        let str_hashToken = utils.getHashToken(token: token)
+        let strURL = Constants.baseUrl+Constants.API_METHOD_LOGIN + "?appversion=\(utils.getAppVersion())&device_name=\(utils.getDeviceName())&hashtoken=\(str_hashToken)&usrtoken=\(token)&hash=\(utils.getHash())&user=&tipo=t&platform=\(utils.getPlatform())&time=\(utils.getTime())&os=ios&dtoken=\(utils.getDToken())&operator=1&device_id=\(utils.getDeviceId())"
+
+        AF.request(strURL, method: .get, parameters: nil).response { response in
+            if let data = response.data {
+                debugPrint("API====>>>\(strURL)\n\nResult=====>>\(response.result)")
+                do {
+                    let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
+                    var profiles: [UserProfile] = []
+                    
+                    let profileData = dictonary!["profiles"]
+                    if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
+                        let userInfo = UserInfo.getInstance()
+                        for aDic in arrayOfDic {
+                            let User = UserProfile()
+                            if let id = aDic["id"] as? Int {
+                                User.id = id
                             }
-                            userInfo?.isLogin = true
-                            userInfo?.token = token
-                            userInfo?.saveUserInfo()
-                            delegate.loginResponseHandler(userInfo: userInfo!, errorMessage: "")
-                        }else{
-                            let userInfo = UserInfo.getInstance()
-                            userInfo?.isLogin = false
-                            userInfo?.saveUserInfo()
-                            let error = dictonary!["error"]
-                            delegate.loginResponseHandler(userInfo: userInfo!, errorMessage: error!["message"] as! String)
+                            
+                            if let name = aDic["name"] as? String{
+                                User.name = name
+                            }
+                            
+                            if let client_id = aDic["client_id"] as? Int{
+                                User.client_id = client_id
+                            }
+                            
+                            if let infantil = aDic["infantil"] as? Int{
+                                User.infantil = infantil
+                            }
+                            
+                            if let cpf = aDic["cpf"] as? String{
+                                User.cpf = cpf
+                            }
+                            
+                            if let email = aDic["email"] as? String{
+                                User.email = email
+                            }
+                            
+                            if let password = aDic["password"] as? String{
+                                User.password = password
+                            }
+                            if let AluguelGratisRestante = aDic["AluguelGratisRestante"] as? Int{
+                                User.AluguelGratisRestante = AluguelGratisRestante
+                            }
+                            
+                            if let senha = aDic["senha"] as? String{
+                                User.senha = senha
+                            }
+                            profiles.append(contentsOf: [User])
                         }
-                        
-                    } catch let error as NSError {
-                        print(error)
+                                
+                        userInfo?.isLogin = true
+                        userInfo?.token = token
+                        userInfo?.saveUserInfo()
+                        delegate.loginResponseHandler(userInfo: userInfo!, errorMessage: "", profileData: profiles)
+                    }else{
                         let userInfo = UserInfo.getInstance()
                         userInfo?.isLogin = false
                         userInfo?.saveUserInfo()
-                        delegate.loginResponseHandler(userInfo: userInfo!, errorMessage: "")
+                        let error = dictonary!["error"]
+                        delegate.loginResponseHandler(userInfo: userInfo!, errorMessage: error!["message"] as! String, profileData: nil)
                     }
+                    
+                } catch let error as NSError {
+                    print(error)
+                    let userInfo = UserInfo.getInstance()
+                    userInfo?.isLogin = false
+                    userInfo?.saveUserInfo()
+                    delegate.loginResponseHandler(userInfo: userInfo!, errorMessage: "", profileData: nil)
                 }
             }
+        }
     }
     
     func getLoginFirstTimeData(){

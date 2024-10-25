@@ -40,7 +40,7 @@ class ViewController: TMWViewController, UITextFieldDelegate {
         let userInfo = UserInfo.getInstance()
         if (userInfo?.isLogin == true){
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-                self.openHomeScreen(animated: false)
+                self.openHomeScreen(animated: false, profile_data: nil)
             }
         }
     }
@@ -56,7 +56,6 @@ class ViewController: TMWViewController, UITextFieldDelegate {
     }
     
     func trigger_login_Action() {
-        //        tokenText.text = "APP123"
         if(self.txt_token.text?.isEmpty == true) {
             //show please enter token error
             utils.showDestructiveAlert(message: "Por favor, digite o nome de usuário", presentationController: self)
@@ -70,10 +69,6 @@ class ViewController: TMWViewController, UITextFieldDelegate {
         }
     }
     
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        scrollView.contentSize = CGSize(width: UIScreen.main.bounds.width / 2, height: UIScreen.main.bounds.height + 20)
-//    }
 
    //MARK: - UITextField Delegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -86,18 +81,24 @@ class ViewController: TMWViewController, UITextFieldDelegate {
 }
 
 extension ViewController {
-    func openHomeScreen(animated: Bool){
+    
+    func openHomeScreen(animated: Bool, profile_data: [UserProfile]?){
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
-        nextViewController.isFromLogin = true
+        nextViewController.isFromLogin = animated
+        
+        if let dic_profileData = profile_data {
+            nextViewController.userProfiles = dic_profileData
+        }
+        
         self.present(nextViewController, animated:animated, completion:nil)
     }
     
-    func loginResponseHandler(userInfo: UserInfo, errorMessage: String){
+    func loginResponseHandler(userInfo: UserInfo, errorMessage: String, profileData:[UserProfile]?){
         self.loadingIndicator.stopAnimating()
         if userInfo.isLogin {
             self.txt_token.text = ""
-            openHomeScreen(animated: true)
+            openHomeScreen(animated: true, profile_data: profileData)
         }else{
             utils.showDestructiveAlert(message: errorMessage, presentationController: self)
         }

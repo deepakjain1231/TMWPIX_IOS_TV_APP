@@ -7,41 +7,39 @@
 
 import Foundation
 import Alamofire
+import UIKit
 
 
-class ProfileAPI{
+class ProfileAPI {
     
-//    static var UserInfo: [UserProfile] = []
-    
-    static func getProfileData(delegate: ProfileViewController){
+    static func getProfileData(delegate: ProfileViewController) {
         let userInfo = UserInfo.getInstance()
-        let params = ["user" : "",
-                      "time" : utils.getTime(),
-                      "hash" : utils.getHash(),
-                      "dtoken" : utils.getDToken(),
-                      "os" : "ios",
-                      "operator" : "1",
-                      "tipo" : "t",
-                      "usrtoken" : userInfo?.token,
-                      "hashtoken" : utils.getHashToken(token: (userInfo?.token)!),
-                      "device_id" : utils.getDeviceId(),
-                      "device_name" : utils.getDeviceName(),
-                      "platform" : utils.getPlatform(),
-                      "appversion" : utils.getAppVersion()]
         
-        
-        let str_url = Constants.baseUrl+Constants.API_METHOD_LOGIN
-        AF.request(str_url, parameters: params)
-            .response{  response in
-                
-                if let data = response.data {
-                    print(data)
-                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
-                    do {
-                        let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
+        let str_Token = userInfo?.token ?? ""
+        let str_hashToken = utils.getHashToken(token: (userInfo?.token ?? ""))
+        let strURL = Constants.baseUrl+Constants.API_METHOD_LOGIN + "?appversion=\(utils.getAppVersion())&device_name=\(utils.getDeviceName())&hashtoken=\(str_hashToken)&usrtoken=\(str_Token)&hash=\(utils.getHash())&user=&tipo=t&platform=\(utils.getPlatform())&time=\(utils.getTime())&os=ios&dtoken=\(utils.getDToken())&operator=1&device_id=\(utils.getDeviceId())"
+
+        AF.request(strURL, method: .get, parameters: nil).response {  response in
+            if let data = response.data {
+                print(data)
+                debugPrint("API====>>>\(strURL)\n\nResult=====>>\(response.result)")
+                do {
+                    let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
+                    if let dic_error = dictonary?["error"] as? [String: Any], let str_msg = dic_error["message"] as? String, str_msg != "" {
+                        let alert = UIAlertController(title: nil, message: str_msg, preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { actionn in
+                            //delegate.ProfileResponseHandler(profileData: profiles)
+                        }))
+                        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
+                            delegate.present(alert, animated: true, completion: nil)
+                        }
+                        return
+                    }
+                    else {
+                        
                         var profiles: [UserProfile] = []
                         let profileData = dictonary!["profiles"]
-                        if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>]{
+                        if let arrayOfDic = profileData as? [Dictionary<String,AnyObject>] {
                             for aDic in arrayOfDic{
                                 let User = UserProfile()
                                 
@@ -87,15 +85,16 @@ class ProfileAPI{
                             }
                             delegate.ProfileResponseHandler(profileData: profiles)
                         }
-                        
-                    } catch let error as NSError {
-                        print(error)
-                        getProfileData(delegate: delegate)
                     }
-                } else {
+                    
+                } catch let error as NSError {
+                    print(error)
                     getProfileData(delegate: delegate)
                 }
+            } else {
+                getProfileData(delegate: delegate)
             }
+        }
     }
     
     static func removeProfile(profileId: String, delegate: ProfileViewController){
