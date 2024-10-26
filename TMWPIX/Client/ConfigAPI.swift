@@ -94,15 +94,15 @@ class ConfigAPI{
                       "time" : utils.getTime(),
                       "hash" : utils.getHash(),
                       "dtoken" : utils.getDToken(),
-                      "os" : "android",//utils.getOperatingSystem(),
+                      "os" : "ios",//utils.getOperatingSystem(),
                       "operator" : "1",
                       "tipo" : "t",
                       "usrtoken" : userInfo?.token,
                       "hashtoken" : utils.getHashToken(token: (userInfo?.token)!),
-                      "device_id" : "7f3e54b720a6f34e",
-                      "device_name" : "sdk_google_atv_x86",
+                      "device_id" : utils.getDeviceId(),
+                      "device_name" : utils.getDeviceName(),
                       "platform" : utils.getPlatform(),
-                      "appversion" : "1.3.1"]
+                      "appversion" : utils.getAppVersion()]
         
         AF.request(Constants.baseUrl+Constants.API_METHOD_USERINFO, parameters: params)
             .response{ [self] response in
@@ -126,20 +126,21 @@ class ConfigAPI{
     
     //========= Get Cobrancas =================
     func getCobrancasData(){
+        let userInfo = UserInfo.getInstance()
         let params = [
             "user" : "",
-            "time" : "1657390028215",
-            "hash" : "6b44ce6d55fb47f49a08c4ed436be469",
-            "dtoken" : "d41d8cd98f00b204e9800998ecf8427e",
+            "time" : utils.getTime(),
+            "hash" : utils.getHash(),
+            "dtoken" : utils.getDToken(),
             "os" : "ios",
             "operator" : "1",
             "tipo" : "t",
-            "usrtoken" : "APP123",
-            "hashtoken" : "fc427b261087b109867e42961ca645ce",
-            "device_id" : "7f3e54b720a6f34e",
-            "device_name" : "sdk_google_atv_x86",
-            "platform" : "apple",
-            "appversion" : "1.3.1"]
+            "usrtoken" : userInfo?.token,
+            "hashtoken" : utils.getHashToken(token: (userInfo?.token)!),
+            "device_id" : utils.getDeviceId(),
+            "device_name" : utils.getDeviceName(),
+            "platform" : utils.getPlatform(),
+            "appversion" : utils.getAppVersion()]
         
         
         let str_url = Constants.baseUrl+Constants.API_METHOD_COBRANCAS

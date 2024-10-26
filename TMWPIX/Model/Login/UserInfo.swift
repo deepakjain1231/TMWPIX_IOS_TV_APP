@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Alamofire
 
 let kUserInfo = "UserInfo"
 let kemail = "email"
@@ -59,6 +60,18 @@ class UserInfo: NSObject, NSCoding {
     }
     
     func removeUser() {
+        let userInfo = UserInfo.getInstance()
+        let userToken: String = userInfo?.token ?? ""
+        
+        let str_hashToken = utils.getHashToken(token: userToken)
+        let strURL = Constants.baseUrl+Constants.API_METHOD_LOGOUT + "?hashtoken=\(str_hashToken)&usrtoken=\(token)&hash=\(utils.getHash())&user=&tipo=t&platform=\(utils.getPlatform())&time=\(utils.getTime())&os=ios&dtoken=\(utils.getDToken())&operator=1"
+
+        AF.request(strURL, method: .get, parameters: nil).response { response in
+            if let data = response.data {
+                debugPrint("API====>>>\(strURL)\n\nResult=====>>\(response)")
+               
+            }
+        }
         if email != nil { email = "" }
         if password != nil { password = "" }
         if token != nil { token = "" }

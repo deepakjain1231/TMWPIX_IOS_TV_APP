@@ -88,29 +88,16 @@ class LoginAPI{
         }
     }
     
-    func getLoginFirstTimeData(){
+    func getLoginFirstTimeData(token: String, delegate: ViewController){
         
-        let params = ["user" : "",
-                      "time" : "1657435701486",
-                      "hash" : "3f9b7d853e407cc1159077ad82b0fb1d",
-                      "dtoken" : "d41d8cd98f00b204e9800998ecf8427e",
-                      "os" : "ios",
-                      "operator" : "1",
-                      "tipo" : "t",
-                      "usrtoken" : "APP123",
-                      "hashtoken" : "aa2dd11aad8d9664a4cd9ac33b49caa9",
-                      "device_id" : "7f3e54b720a6f34e",
-                      "device_name" : "sdk_google_atv_x86",
-                      "platform" : "apple",
-                      "appversion" : "1.3.1"]
-        
-        let str_url = Constants.baseUrl+Constants.API_METHOD_LOGIN
-        AF.request(str_url, parameters: params)
+        let str_hashToken = utils.getHashToken(token: token)
+        let strURL = Constants.baseUrl+Constants.API_METHOD_LOGIN + "?appversion=\(utils.getAppVersion())&device_name=\(utils.getDeviceName())&hashtoken=\(str_hashToken)&usrtoken=\(token)&hash=\(utils.getHash())&user=&tipo=t&platform=\(utils.getPlatform())&time=\(utils.getTime())&os=ios&dtoken=\(utils.getDToken())&operator=1&device_id=\(utils.getDeviceId())"
+
+        AF.request(strURL, method: .get, parameters: nil)
             .response{ response in
                 
                 if let data = response.data {
-                    print(data)
-                    debugPrint("API====>>>\(str_url)\n\nParam=====>>\(params)\n\nResult=====>>\(response.result)")
+                    
                     do {
                         let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
                         

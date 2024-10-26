@@ -24,7 +24,7 @@ class Middlewares{
     // ============ Integratable Methods =============
     
     func isValidUser(email:String, password:String) -> Bool{
-        loginAPI.getLoginFirstTimeData()
+//        loginAPI.getLoginFirstTimeData()
         return false
     }
     
