@@ -180,7 +180,8 @@ class utils {
     }
     
     static func getTime() -> String{
-        return String(format: "%f", Date().timeIntervalSinceReferenceDate)
+//        return String(format: "%f", Date().timeIntervalSinceReferenceDate)
+        return String(format: "%.0f", Date().timeIntervalSince1970 * 1000)
     }
     
     static func getHash() -> String{

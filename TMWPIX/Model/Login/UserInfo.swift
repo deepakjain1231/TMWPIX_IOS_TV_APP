@@ -64,7 +64,11 @@ class UserInfo: NSObject, NSCoding {
         let userToken: String = userInfo?.token ?? ""
         
         let str_hashToken = utils.getHashToken(token: userToken)
-        let strURL = Constants.baseUrl+Constants.API_METHOD_LOGOUT + "?hashtoken=\(str_hashToken)&usrtoken=\(token)&hash=\(utils.getHash())&user=&tipo=t&platform=\(utils.getPlatform())&time=\(utils.getTime())&os=ios&dtoken=\(utils.getDToken())&operator=1"
+        
+        debugPrint("Token ====>>>\(token)")
+        debugPrint("Token ====>>>\(userToken)")
+        
+        let strURL = Constants.baseUrl+Constants.API_METHOD_LOGOUT + "?hashtoken=\(str_hashToken)&usrtoken=\(userToken)&hash=\(utils.getHash())&user=&tipo=t&time=\(utils.getTime())&os=ios&dtoken=\(utils.getDToken())&operator=1&device_id=\(utils.getDeviceId())"
 
         AF.request(strURL, method: .get, parameters: nil).response { response in
             if let data = response.data {
