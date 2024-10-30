@@ -164,11 +164,11 @@ class utils {
         
     }
     static func getPlatform() -> String{
-        return UIDevice.current.model
+        return "AppleTVOS"
     }
     
     static func getDeviceName() -> String{
-        return UIDevice.current.name
+        return "AppleTV"
     }
     
     static func getDeviceId() -> String{
