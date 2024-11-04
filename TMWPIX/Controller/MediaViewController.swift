@@ -398,6 +398,21 @@ class MediaViewController: TMWViewController, AVPlayerViewControllerDelegate, de
         }
     }
     
+    func needTosoundMute() {
+        if let int_podeAssister = self.podeAssistir, int_podeAssister == 0  {
+            if (self.OverlayImageURL ?? "") != "" {
+                if self.player != nil {
+                    self.player?.volume = 0
+                }
+            }
+        }
+        else {
+            if self.player != nil {
+                self.player?.volume = 1
+            }
+        }
+    }
+    
     func change_audio() {
         var is_selected = ""
         let currentTrackk = self.player.currentAudioTrack ?? ""
@@ -620,6 +635,7 @@ extension MediaViewController {
         preparePlayer()
 
         player.addObserver(self, events: [PlayerEvent.canPlay]) { event in
+            self.needTosoundMute()
             self.player.play()
             self.startTimer()
         }

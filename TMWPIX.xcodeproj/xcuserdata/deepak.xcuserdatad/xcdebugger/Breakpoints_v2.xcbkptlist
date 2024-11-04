@@ -94,8 +94,8 @@
             filePath = "TMWPIX/Controller/MediaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "548"
-            endingLineNumber = "548"
+            startingLineNumber = "563"
+            endingLineNumber = "563"
             landmarkName = "channelResponseHandler(ChannelData:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "TMWPIX/Controller/MediaViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "579"
-            endingLineNumber = "579"
+            startingLineNumber = "594"
+            endingLineNumber = "594"
             landmarkName = "open_firstChannel()"
             landmarkType = "7">
          </BreakpointContent>

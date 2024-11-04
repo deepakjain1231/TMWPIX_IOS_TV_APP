@@ -20,7 +20,7 @@ class LoginAPI{
             if let data = response.data {
                 debugPrint("API====>>>\(strURL)\n\nResult=====>>\(response.result)")
                 do {
-                    let dictonary =  try JSONSerialization.jsonObject(with: response.data!, options: []) as? [String:AnyObject]
+                    let dictonary =  try JSONSerialization.jsonObject(with: data, options: []) as? [String:AnyObject]
                     var profiles: [UserProfile] = []
                     
                     let profileData = dictonary!["profiles"]
