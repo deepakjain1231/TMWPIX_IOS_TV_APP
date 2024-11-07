@@ -85,6 +85,33 @@ class UserInfo: NSObject, NSCoding {
         if saveUserInfo != nil { saveUserInfo() }
     }
     
+    
+    func deleteUser() {
+        let userInfo = UserInfo.getInstance()
+        let userToken: String = userInfo?.token ?? ""
+        
+        let str_hashToken = utils.getHashToken(token: userToken)
+        
+        debugPrint("Token ====>>>\(token)")
+        debugPrint("Token ====>>>\(userToken)")
+        
+        let strURL = "https://tmwpix.com/conta/cancelamento?os=ios&token=\(userToken)"
+
+        AF.request(strURL, method: .get, parameters: nil).response { response in
+            if let data = response.data {
+                debugPrint("API====>>>\(strURL)\n\nResult=====>>\(response)")
+               
+            }
+        }
+        if email != nil { email = "" }
+        if password != nil { password = "" }
+        if token != nil { token = "" }
+        if client_id != nil { client_id = 0 }
+        if isLogin != nil { isLogin = false }
+        if podeAlugar != nil { podeAlugar = false }
+        if saveUserInfo != nil { saveUserInfo() }
+    }
+    
     //MARK: ecoding/decoding methods for custom objects
     required convenience init(coder decoder: NSCoder) {
         self.init()

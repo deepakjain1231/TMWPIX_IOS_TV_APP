@@ -74,7 +74,7 @@ class OptionViewController: TMWViewController, delegate_change_status {
     @IBAction func close_an_AccountTapped(_ sender: Any) {
         let userInfo = UserInfo.getInstance()
         if (userInfo?.isLogin == true){
-            userInfo?.removeUser()
+            userInfo?.deleteUser()
             // dismiss all presented view controllers until we have login screen again
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
