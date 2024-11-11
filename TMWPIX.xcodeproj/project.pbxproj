@@ -13,6 +13,7 @@
 		008CB6D82BDD25E9003C948C /* AlignedCollectionViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 008CB6D72BDD25E9003C948C /* AlignedCollectionViewFlowLayout.swift */; };
 		0094AC702C195ADF00D0B00E /* SeriesNameCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0094AC6F2C195ADF00D0B00E /* SeriesNameCollectionCell.swift */; };
 		00B7490F2BE33354008810C5 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C4C8BC6290F6DCF00B5AD26 /* RegisterViewController.swift */; };
+		00DED2392CE1D3D5002A967F /* ContactInfoDialouge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00DED2382CE1D3D5002A967F /* ContactInfoDialouge.swift */; };
 		00E392642BCAA5D300E8A615 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 00E392632BCAA5D300E8A615 /* Alamofire */; };
 		0449D61228B52A40000144D4 /* Series.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0449D61028B52A40000144D4 /* Series.swift */; };
 		0468D27028E589C80009FBFD /* Program.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18990F0528BCAC85009BB6F6 /* Program.swift */; };
@@ -117,6 +118,7 @@
 		006672CB2C03217600198A1A /* CPFVerifiedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPFVerifiedVC.swift; sourceTree = "<group>"; };
 		008CB6D72BDD25E9003C948C /* AlignedCollectionViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlignedCollectionViewFlowLayout.swift; sourceTree = "<group>"; };
 		0094AC6F2C195ADF00D0B00E /* SeriesNameCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeriesNameCollectionCell.swift; sourceTree = "<group>"; };
+		00DED2382CE1D3D5002A967F /* ContactInfoDialouge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoDialouge.swift; sourceTree = "<group>"; };
 		0449D61028B52A40000144D4 /* Series.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Series.swift; sourceTree = "<group>"; };
 		049FE37028AD17D900685A79 /* TMWPIXtvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TMWPIXtvOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		049FE38928AD47F500685A79 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -529,6 +531,7 @@
 				1893900D28BF4C67008ADB9E /* GenderViewController.swift */,
 				1863080228C0FCE200CD0DEB /* TMWViewController.swift */,
 				006672CB2C03217600198A1A /* CPFVerifiedVC.swift */,
+				00DED2382CE1D3D5002A967F /* ContactInfoDialouge.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -806,6 +809,7 @@
 				049FE36428AD17D900685A79 /* SceneDelegate.swift in Sources */,
 				049FE39728AFD8FC00685A79 /* File.swift in Sources */,
 				0468D27828E58BF30009FBFD /* ChangeRentalStatusViewController.swift in Sources */,
+				00DED2392CE1D3D5002A967F /* ContactInfoDialouge.swift in Sources */,
 				0468D27128E589CD0009FBFD /* EPGInfo.swift in Sources */,
 				049FE36528AD17D900685A79 /* User.swift in Sources */,
 			);

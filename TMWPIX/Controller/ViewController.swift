@@ -106,6 +106,7 @@ extension ViewController {
     
     
     func contact_information_ResponseHandler(contactInfo: Contact_Info_Model, errorMessage: String) {
+        appDelegate.contactInfoData = contactInfo
         self.setupMobileNumber(contactdata: contactInfo)
     }
     

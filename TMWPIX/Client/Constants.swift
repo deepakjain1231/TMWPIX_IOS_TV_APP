@@ -47,7 +47,7 @@ class Constants {
     static let API_METHOD_SERIES_NEW: String = "/series"
 
     static let API_METHOD_LOG_FILM_TIME: String = "/log/logplayer"
-    
+    static let API_METHOD_CLOSE_ACCOUNT: String = "/conta/cancelamento"
     
     
     

@@ -91,11 +91,8 @@ class UserInfo: NSObject, NSCoding {
         let userToken: String = userInfo?.token ?? ""
         
         let str_hashToken = utils.getHashToken(token: userToken)
-        
-        debugPrint("Token ====>>>\(token)")
-        debugPrint("Token ====>>>\(userToken)")
-        
-        let strURL = "https://tmwpix.com/conta/cancelamento?os=ios&token=\(userToken)"
+
+        let strURL = Constants.baseUrl+Constants.API_METHOD_CLOSE_ACCOUNT + "?os=ios&token=\(userToken)"
 
         AF.request(strURL, method: .get, parameters: nil).response { response in
             if let data = response.data {
