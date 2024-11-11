@@ -61,7 +61,7 @@ class OptionViewController: TMWViewController, delegate_change_status {
     
     override var preferredFocusedView: UIView? {
         get {
-            return self.btn_profile// self.view_main_POPupBG.isHidden ? self.btn_close :  self.btn_profile
+            return self.btn_profile
         }
     }
     
@@ -85,11 +85,7 @@ class OptionViewController: TMWViewController, delegate_change_status {
         if (userInfo?.isLogin == true) {
             
             if (appDelegate.dic_UserData?.type ?? "").trimed().lowercased() == "pagante" {
-                userInfo?.deleteUser()
-                // dismiss all presented view controllers until we have login screen again
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-                self.present(nextViewController, animated:true, completion:nil)
+                self.openPopup_forConfirmation()
             }
             else {
                 //Showing Popup
@@ -115,6 +111,14 @@ class OptionViewController: TMWViewController, delegate_change_status {
     
     func change_status_check(success: Bool) {
         self.change_Button_Status()
+        if success {
+            let userInfo = UserInfo.getInstance()
+            userInfo?.deleteUser()
+            // dismiss all presented view controllers until we have login screen again
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
+            self.present(nextViewController, animated:true, completion:nil)
+        }
     }
     
     
@@ -122,6 +126,18 @@ class OptionViewController: TMWViewController, delegate_change_status {
     func openPopup() {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let popupVC = storyBoard.instantiateViewController(withIdentifier: "ContactInfoDialouge") as! ContactInfoDialouge
+        popupVC.modalPresentationStyle = .overCurrentContext
+        popupVC.modalTransitionStyle = .crossDissolve
+        let pVC = popupVC.popoverPresentationController
+        pVC?.sourceRect = CGRect(x: 100, y: 100, width: 1, height: 1)
+        present(popupVC, animated: true, completion: nil)
+    }
+    
+    //MARK: - CODE FOR CLOSE ACCOUNT POPUP
+    func openPopup_forConfirmation() {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let popupVC = storyBoard.instantiateViewController(withIdentifier: "AlertActionDialouge") as! AlertActionDialouge
+        popupVC.delegate = self
         popupVC.modalPresentationStyle = .overCurrentContext
         popupVC.modalTransitionStyle = .crossDissolve
         let pVC = popupVC.popoverPresentationController
