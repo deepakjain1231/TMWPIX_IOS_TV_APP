@@ -158,12 +158,14 @@ class OptionViewController: TMWViewController, delegate_change_status {
                     debugPrint(dictonary)
                     self.loadingIndicator.stopAnimating()
                     let int_status = dictonary?["status"] as? Int ?? 0
-                    let str_msg = dictonary?["message"] as? Int ?? 0
+                    let str_msg = dictonary?["message"] as? String ?? ""  // Changed to String
                     let bool_error = dictonary?["error"] as? Bool ?? false
                     
                     var str_errorMessage = ""
                     if int_status == 200 {
-                        str_errorMessage = "Você cancelou sua assinatura. Ela permanecerá ativa até \(str_msg)"
+                        // Format date string
+                        let formattedDate = self.formatDateString(str_msg)
+                        str_errorMessage = "Você cancelou sua assinatura. Ela permanecerá ativa até \(formattedDate)"
                     }
                     else {
                         str_errorMessage = "Algo errado... Tente novamente mais tarde..."
@@ -172,7 +174,7 @@ class OptionViewController: TMWViewController, delegate_change_status {
                     let alert = UIAlertController(title: nil, message: str_errorMessage, preferredStyle: UIAlertController.Style.alert)
                     alert.addAction(UIAlertAction.init(title: "OK", style: .default, handler: { actionn in
                         if int_status == 200 {
-                            self.move_ToLoginScreen()
+//                            self.move_ToLoginScreen()
                         }
                     }))
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1.0) {
@@ -185,13 +187,25 @@ class OptionViewController: TMWViewController, delegate_change_status {
 
             }
         }
-        userInfo?.removeDic()
+//        userInfo?.removeDic()
     }
     
     
 
     
-    
+    func formatDateString(_ dateString: String) -> String {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        
+        let outputFormatter = DateFormatter()
+        outputFormatter.dateFormat = "dd-MM-yyyy HH:mm:ss"
+        
+        if let date = inputFormatter.date(from: dateString) {
+            return outputFormatter.string(from: date)
+        } else {
+            return dateString // Return original if parsing fails
+        }
+    }
 
     
     
