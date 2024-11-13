@@ -158,7 +158,7 @@ class OptionViewController: TMWViewController, delegate_change_status {
                     debugPrint(dictonary)
                     self.loadingIndicator.stopAnimating()
                     let int_status = dictonary?["status"] as? Int ?? 0
-                    let str_msg = dictonary?["message"] as? Int ?? 0
+                    let str_msg = dictonary?["message"] as? String ?? ""
                     let bool_error = dictonary?["error"] as? Bool ?? false
                     
                     var str_errorMessage = ""
