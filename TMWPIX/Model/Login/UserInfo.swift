@@ -109,6 +109,16 @@ class UserInfo: NSObject, NSCoding {
         if saveUserInfo != nil { saveUserInfo() }
     }
     
+    func removeDic() {
+        if email != nil { email = "" }
+        if password != nil { password = "" }
+        if token != nil { token = "" }
+        if client_id != nil { client_id = 0 }
+        if isLogin != nil { isLogin = false }
+        if podeAlugar != nil { podeAlugar = false }
+        if saveUserInfo != nil { saveUserInfo() }
+    }
+    
     //MARK: ecoding/decoding methods for custom objects
     required convenience init(coder decoder: NSCoder) {
         self.init()
